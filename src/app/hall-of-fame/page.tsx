@@ -4,10 +4,12 @@ import { HOFHero } from "./components/HallOfFameHero";
 import { AwardWinners } from "./components/AwardWinners";
 
 export default function HallOfFamePage(){
-    return <>
-    <HOFHero/>
-    <AwardWinners/>
-    <BestThesisCategory/>
-    <BestThesisMentor/>
+    return (
+    <>
+        <HOFHero/>
+        <AwardWinners/>
+        <BestThesisCategory/>
+        <BestThesisMentor/>
     </>
+    )
 }

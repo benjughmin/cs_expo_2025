@@ -1,6 +1,6 @@
 export function AwardWinners() {
   return (
-    <section className="flex flex-col items-center gap-6 bg-cyan-400 p-4 pt-10 md:gap-8 md:p-6 lg:gap-10 lg:p-8">
+    <section className="flex flex-col items-center gap-6 bg-[#110d09] text-white p-4 pt-10 md:gap-8 md:p-6 lg:gap-10 lg:p-8">
       
       {/* award 1 */}
       <h1 className="text-xl font-bold md:text-2xl lg:text-3xl">Award Title 1</h1>
