@@ -1,7 +1,7 @@
 import { AwardProps } from "../types/hof.types"
 
 // placeholder data to be used in Awardee section
-export const AwardeeData: AwardProps[] = [
+export const AwardData: AwardProps[] = [
   // Award 1
   {
     title: "Award Title 1",
