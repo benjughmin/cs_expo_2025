@@ -34,6 +34,7 @@ export function BestThesisMentor() {
             className="object-cover"
             quality={100}
             priority
+            sizes="40vw"
           />
         </div>
       </div>

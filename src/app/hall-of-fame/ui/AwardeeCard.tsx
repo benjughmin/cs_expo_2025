@@ -34,11 +34,12 @@ export function AwardeeCard({
         <div className="relative h-[300px] w-full flex-shrink-0 overflow-hidden rounded-lg bg-white">
           <Image
             src={awardee.img}
-            alt="Mentor image"
+            alt={awardee.groupName}
             fill
-            className="object-fll"
+            className="object-cover"
             quality={100}
             priority
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
         </div>
 
@@ -47,8 +48,12 @@ export function AwardeeCard({
           <div className="flex text-[24px] leading-[50px]">
             <p>{awardee.groupName}</p>
           </div>
+
+          {/* Description */}
           <div className="flex flex-1 flex-col">
             <p className="text-[24px] leading-[20px] font-light">{awardee.desc}</p>
+
+            {/* Tags */}
             <p className="mt-2 mb-4 text-[14px] leading-[20px] font-light text-white/50">
               {awardee.tags.join(" | ")}
             </p>
