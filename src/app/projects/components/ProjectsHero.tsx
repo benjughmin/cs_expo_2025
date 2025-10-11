@@ -1,7 +1,7 @@
 {/* This component represents the hero section of the Projects page. It includes a title and a descriptive paragraph. */}
 export default function ProjectsHero() {
   return (
-    <section className="flex flex-col items-center text-center">
+    <section className="min-h-screen flex flex-col items-center justify-center text-center p-8">
       <h1 className="text-6xl font-bold tracking-wider">
         PROJECT COLLECTION
       </h1>
@@ -12,3 +12,4 @@ export default function ProjectsHero() {
     </section>
   );
 }
+
