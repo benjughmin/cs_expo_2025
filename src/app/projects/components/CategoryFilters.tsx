@@ -10,7 +10,7 @@ export default function CategoryFilters() {
   ];
 
 return (
-    <section className="w-full py-8 flex flex-wrap items-center justify-evenly gap-10 mb-8">
+    <section className="w-full py-8 flex flex-wrap items-center justify-center gap-10 mb-8">
       {categories.map((category, index) => (
         <button
           key={index}
