@@ -9,18 +9,16 @@ export default function CategoryFilters() {
     "Category",
   ];
 
-  return (
-    <section className="w-full max-w-6xl mx-auto py-8">
-      <div className="flex flex-wrap items-center justify-center gap-4">
-        {categories.map((category, index) => (
-          <button
-            key={index}
-            className="px-6 py-2 text-white border border-white/50 rounded-full hover:bg-white/10 transition-colors"
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+return (
+    <section className="w-full py-8 flex flex-wrap items-center justify-evenly gap-10 mb-8">
+      {categories.map((category, index) => (
+        <button
+          key={index}
+          className="w-[176px] h-[56px] text-lg text-white border border-white/50 rounded-full hover:bg-white/10 transition-colors"
+        >
+          {category}
+        </button>
+      ))}
     </section>
   );
 }

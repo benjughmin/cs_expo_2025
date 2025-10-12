@@ -5,12 +5,10 @@ export default function ProjectsGrid() {
   const projectCount = Array.from({ length: 9 });
 
   return (
-    <section className="w-full max-w-6xl mx-auto py-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projectCount.map((_, index) => (
-          <ProjectsCard key={index} />
-        ))}
-      </div>
+    <section className="w-full max-w-[1200px] py-8 grid grid-cols-3 gap-12 mx-auto">
+      {projectCount.map((_, index) => (
+        <ProjectsCard key={index} />
+      ))}
     </section>
   );
-}
+} 
