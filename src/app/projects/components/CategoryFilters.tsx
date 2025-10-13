@@ -1,4 +1,6 @@
 {/* This component represents the category filter buttons. */}
+
+//Sample for UI only, still don't know how categories will be handled in the database
 export default function CategoryFilters() {
   const categories = [
     "Category",
