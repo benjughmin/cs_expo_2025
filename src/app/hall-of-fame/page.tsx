@@ -1,7 +1,7 @@
-import { BestThesisCategory } from "./components/BestThesisCategory"
-import { BestThesisMentor } from "./components/BestThesisMentor"
-import { HOFHero } from "./components/HallOfFameHero"
-import { Awardee } from "./components/Awardee"
+import { BestThesisCategory } from "../../components/hall-of-fame/BestThesisCategory"
+import { BestThesisMentor } from "../../components/hall-of-fame/BestThesisMentor"
+//import { HOFHero } from "../../components/hall-of-fame/HallOfFameHero"
+import { Awardee } from "../../components/hall-of-fame/Awardee"
 import { ProjectsHero } from "./ui/ProjectsHero"
 
 export default function HallOfFamePage() {

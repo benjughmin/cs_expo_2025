@@ -1,8 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import { BestProjects } from "../data/BestProjectsData"
-import { usePagination } from "../hooks/paginationHook"
+import { BestProjects } from "../../app/hall-of-fame/data/BestProjectsData"
+import { usePagination } from "../../app/hall-of-fame/hooks/paginationHook"
 import clsx from "clsx"
 
 export function BestThesisCategory() {

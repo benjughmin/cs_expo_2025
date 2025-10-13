@@ -1,5 +1,5 @@
-import { AwardeeBlock } from "../ui/AwardeeBlock"
-import { AwardData } from "../data/AwardeeData"
+import { AwardeeBlock } from "../../app/hall-of-fame/ui/AwardeeBlock"
+import { AwardData } from "../../app/hall-of-fame/data/AwardeeData"
 
 export function Awardee() {
   return (

@@ -44,10 +44,9 @@ const HeroSection: React.FC = () => {
                 hueShift={170}
                 twinkleIntensity={0.5}
                 rotationSpeed={0.1}
-                repulsionStrength={1.5}
+                repulsionStrength={1.0}
                 autoCenterRepulsion={0}
                 starSpeed={0.5}
-                animationSpeed={1}
             />
 
             <div
