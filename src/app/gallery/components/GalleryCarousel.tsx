@@ -11,7 +11,9 @@ export function GalleryCarousel({ events }: Props) {
       {/* Map for each event plus buttons*/}
       {events.map((event) => (
         <div key={event.name} className="flex flex-col items-center my-15">
-          <div className="text-white text-8xl mb-10">{event.name}</div>
+          <div className="text-white text-8xl mb-10 font-nhl text-gradient">
+            {event.name}
+          </div>
           <div className="flex flex-row items-center">
             <img className="cursor-pointer" src={"/gallery/arrowLeft.png"} />
             {/* Map for each images to display*/}
