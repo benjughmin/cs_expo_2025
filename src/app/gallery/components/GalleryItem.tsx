@@ -14,7 +14,7 @@ export function GalleryItem({ photo }: ImageProps) {
       />
 
       <img
-        src="/gallery/image-container.png"
+        src="/gallery/images/image-container.png"
         alt="Container"
         className="absolute inset-0 w-full h-full pointer-events-none"
       />

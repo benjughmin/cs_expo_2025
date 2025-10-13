@@ -15,12 +15,18 @@ export function GalleryCarousel({ events }: Props) {
             {event.name}
           </div>
           <div className="flex flex-row items-center">
-            <img className="cursor-pointer" src={"/gallery/arrowLeft.png"} />
+            <img
+              className="cursor-pointer"
+              src={"/gallery/images/arrowLeft.png"}
+            />
             {/* Map for each images to display*/}
             {event.images.map((image, index) => (
               <GalleryItem key={index} photo={image} />
             ))}
-            <img className="cursor-pointer" src={"/gallery/arrowRight.png"} />
+            <img
+              className="cursor-pointer"
+              src={"/gallery/images/arrowRight.png"}
+            />
           </div>
         </div>
       ))}
