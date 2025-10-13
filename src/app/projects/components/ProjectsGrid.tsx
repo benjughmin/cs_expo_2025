@@ -1,14 +1,18 @@
-{/* This component represents the grid layout for displaying project cards on the Projects page. */}
-import ProjectsCard from "./ProjectsCard";
+import { projects } from "../data/ProjectsData";
+import ProjectsCard from "../components/ProjectsCard";
 
 export default function ProjectsGrid() {
-  const projectCount = Array.from({ length: 9 });
-
-  {/* 3x3 Grid Layout of cards */}
   return (
+    // Layout Project Cards in 3x3 and pass data 
     <section className="w-full max-w-[1200px] py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto">
-      {projectCount.map((_, index) => (
-        <ProjectsCard key={index} />
+      {projects.map(project => (
+        <ProjectsCard
+          key={project.slug}
+          appTitle={project.appTitle}
+          thesisTitle={project.thesisTitle}
+          poster={project.poster}
+          slug={project.slug}
+        />
       ))}
     </section>
   );
