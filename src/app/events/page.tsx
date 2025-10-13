@@ -1,6 +1,6 @@
 import React from 'react';
-import InfoContainer from '@/components/InfoContainer';
-import Hero from '@/components/Hero';
+import InfoContainer from '@/components/events/InfoContainer';
+import Hero from '@/components/events/Hero';
 
 function EventsPage() {
   return (
