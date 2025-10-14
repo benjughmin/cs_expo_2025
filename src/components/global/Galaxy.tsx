@@ -1,5 +1,8 @@
+"use client";
+
 import { Renderer, Program, Mesh, Color, Triangle } from 'ogl';
 import { useEffect, useRef } from 'react';
+import './Galaxy.css';
 
 const vertexShader = `
 attribute vec2 uv;
@@ -158,44 +161,54 @@ void main() {
     col += StarLayer(uv * scale + i * 453.32) * fade;
   }
 
+
+  //has shadow
+  // if (uTransparent) {
+  //   float alpha = length(col);
+  //   alpha = smoothstep(0.0, 0.3, alpha);
+  //   alpha = min(alpha, 1.0);
+  //   gl_FragColor = vec4(col, alpha);
+  // } else {
+  //   gl_FragColor = vec4(col, 1.0);
+  // }
+
+  //no shadow
   if (uTransparent) {
     float alpha = length(col);
-    alpha = smoothstep(0.0, 0.3, alpha);
-    alpha = min(alpha, 1.0);
-    gl_FragColor = vec4(col, alpha);
+    alpha = smoothstep(0.1, 0.8, alpha);
+
+    vec3 finalColor = normalize(col + 0.0001) * pow(alpha, 0.6);
+
+    if (uSaturation <= 0.0) {
+        finalColor = vec3(1.0);
+    } else {
+        finalColor = mix(vec3(1.0), finalColor, uSaturation);
+    }
+
+    gl_FragColor = vec4(finalColor, alpha);
   } else {
-    gl_FragColor = vec4(col, 1.0);
+      // Non-transparent mode
+      vec3 finalColor = col;
+
+      if (uSaturation <= 0.0) {
+          finalColor = vec3(1.0);
+      } else {
+          finalColor = mix(vec3(1.0), finalColor, uSaturation);
+      }
+
+      gl_FragColor = vec4(finalColor, 1.0);
   }
 }
 `;
 
-interface GalaxyProps {
-  focal?: [number, number];
-  rotation?: [number, number];
-  starSpeed?: number;
-  density?: number;
-  hueShift?: number;
-  disableAnimation?: boolean;
-  speed?: number;
-  mouseInteraction?: boolean;
-  glowIntensity?: number;
-  saturation?: number;
-  mouseRepulsion?: boolean;
-  twinkleIntensity?: number;
-  rotationSpeed?: number;
-  repulsionStrength?: number;
-  autoCenterRepulsion?: number;
-  transparent?: boolean;
-}
-
 export default function Galaxy({
   focal = [0.5, 0.5],
   rotation = [1.0, 0.0],
-  starSpeed = 1,
+  starSpeed = 0.5,
   density = 1,
   hueShift = 140,
   disableAnimation = false,
-  speed = 0.5,
+  speed = 1.0,
   mouseInteraction = true,
   glowIntensity = 0.3,
   saturation = 0.0,
@@ -206,7 +219,7 @@ export default function Galaxy({
   autoCenterRepulsion = 0,
   transparent = true,
   ...rest
-}: GalaxyProps) {
+}) {
   const ctnDom = useRef<HTMLDivElement>(null);
   const targetMousePos = useRef({ x: 0.5, y: 0.5 });
   const smoothMousePos = useRef({ x: 0.5, y: 0.5 });
@@ -224,13 +237,13 @@ export default function Galaxy({
 
     if (transparent) {
       gl.enable(gl.BLEND);
-      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+      gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
       gl.clearColor(0, 0, 0, 0);
     } else {
       gl.clearColor(0, 0, 0, 1);
     }
 
-    let program: Program;
+    let program: Program | undefined;
 
     function resize() {
       const scale = 1;
@@ -281,22 +294,24 @@ export default function Galaxy({
 
     function update(t: number) {
       animateId = requestAnimationFrame(update);
-      if (!disableAnimation) {
-        program.uniforms.uTime.value = t * 0.002;
-        program.uniforms.uStarSpeed.value = (t * 0.002 * starSpeed) / 10.0;
+      if (program) {
+        if (!disableAnimation) {
+          program.uniforms.uTime.value = t * 0.001;
+          program.uniforms.uStarSpeed.value = (t * 0.001 * starSpeed) / 10.0;
+        }
+
+        const lerpFactor = 0.08;
+        smoothMousePos.current.x += (targetMousePos.current.x - smoothMousePos.current.x) * lerpFactor;
+        smoothMousePos.current.y += (targetMousePos.current.y - smoothMousePos.current.y) * lerpFactor;
+
+        smoothMouseActive.current += (targetMouseActive.current - smoothMouseActive.current) * lerpFactor;
+
+        program.uniforms.uMouse.value[0] = smoothMousePos.current.x;
+        program.uniforms.uMouse.value[1] = smoothMousePos.current.y;
+        program.uniforms.uMouseActiveFactor.value = smoothMouseActive.current;
+
+        renderer.render({ scene: mesh });
       }
-
-      const lerpFactor = 0.05;
-      smoothMousePos.current.x += (targetMousePos.current.x - smoothMousePos.current.x) * lerpFactor;
-      smoothMousePos.current.y += (targetMousePos.current.y - smoothMousePos.current.y) * lerpFactor;
-
-      smoothMouseActive.current += (targetMouseActive.current - smoothMouseActive.current) * lerpFactor;
-
-      program.uniforms.uMouse.value[0] = smoothMousePos.current.x;
-      program.uniforms.uMouse.value[1] = smoothMousePos.current.y;
-      program.uniforms.uMouseActiveFactor.value = smoothMouseActive.current;
-
-      renderer.render({ scene: mesh });
     }
     animateId = requestAnimationFrame(update);
     ctn.appendChild(gl.canvas);
@@ -347,5 +362,5 @@ export default function Galaxy({
     transparent
   ]);
 
-  return <div ref={ctnDom} className="w-full h-full relative" {...rest} />;
+  return <div ref={ctnDom} className="galaxy-container" {...rest} />;
 }

@@ -1,5 +1,5 @@
-import { GalleryItem } from "../components/GalleryItem";
-import { Event } from "../data/events";
+import { GalleryItem } from "@/components/gallery/GalleryItem";
+import { Event } from "@/app/gallery/data/events";
 
 type Props = {
   events: Event[];

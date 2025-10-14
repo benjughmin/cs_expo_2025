@@ -1,7 +1,7 @@
-import { GalleryHeader } from "./components/GalleryHeader";
-import { GalleryCarousel } from "./components/GalleryCarousel";
+import { GalleryHeader } from "@/components/gallery/GalleryHeader";
+import { GalleryCarousel } from "@/components/gallery/GalleryCarousel";
 import { events } from "./data/events";
-import { GalaxyBackground } from "./components/GalaxyBackground";
+import { GalaxyBackground } from "@/components/gallery/GalaxyBackground";
 
 export default function Gallery() {
   return (

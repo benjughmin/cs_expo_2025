@@ -1,4 +1,4 @@
-import Galaxy from "../../../components/Galaxy";
+import Galaxy from "@/components/global/Galaxy";
 
 export function GalaxyBackground() {
   return (

@@ -1,5 +1,5 @@
-import { projects } from "../data/ProjectsData";
-import ProjectsCard from "../components/ProjectsCard";
+import { projects } from "@/app/projects/data/ProjectsData";
+import ProjectsCard from "@/components/projects/ProjectsCard";
 
 export default function ProjectsGrid() {
   return (

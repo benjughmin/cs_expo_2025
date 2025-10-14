@@ -4,6 +4,20 @@
 @custom-variant dark (&:is(.dark *));
 
 @font-face {
+  font-family: "Helvetica Now Display";
+  src: url("/fonts/HelveticaNowDisplay-Black.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("/fonts/HelveticaNowDisplay-Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: "Monster Racing";
   src: url("/fonts/Monster Racing.otf") format("opentype");
   font-weight: normal;
@@ -17,9 +31,18 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Dreamer TM";
+  src: url("/fonts/DreamerTM-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @theme {
   --font-monster: "Monster Racing", sans-serif;
   --font-nhl: "NHL Ducks", sans-serif;
+  --font-helvetica: "Helvetica Now Display", sans-serif;
+  --font-dreamer: "Dreamer TM", sans-serif;
 }
 
 @theme inline {

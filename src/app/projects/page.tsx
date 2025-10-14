@@ -1,6 +1,6 @@
-import ProjectsHero from "./components/ProjectsHero";
-import CategoryFilters from "./components/CategoryFilters";
-import ProjectsGrid from "./components/ProjectsGrid";
+import ProjectsHero from "@/components/projects/ProjectsHero";
+import CategoryFilters from "@/components/projects/CategoryFilters";
+import ProjectsGrid from "@/components/projects/ProjectsGrid";
 
 export default function ProjectsPage() {
   return (

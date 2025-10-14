@@ -1,4 +1,4 @@
-import { Event } from "../data/events";
+import { Event } from "@/app/gallery/data/events";
 
 type ImageProps = {
   photo: string;
