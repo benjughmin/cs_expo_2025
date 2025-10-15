@@ -25,37 +25,37 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center gap-3 md:gap-4">
           <Link 
-            href="events" 
+            href="/events" 
             className="px-4 md:px-6 py-2 text-sm md:text-base border border-white rounded-full hover:bg-white hover:text-black transition-colors"
           >
             Events
           </Link>
           <Link 
-            href="projects" 
+            href="/projects" 
             className="px-4 md:px-6 py-2 text-sm md:text-base border border-white rounded-full hover:bg-white hover:text-black transition-colors"
           >
             Projects
           </Link>
           <Link 
-            href="partners" 
+            href="/partners" 
             className="px-4 md:px-6 py-2 text-sm md:text-base border border-white rounded-full hover:bg-white hover:text-black transition-colors"
           >
             Partners
           </Link>
           <Link 
-            href="gallery" 
+            href="/gallery" 
             className="px-4 md:px-6 py-2 text-sm md:text-base border border-white rounded-full hover:bg-white hover:text-black transition-colors"
           >
             Gallery
           </Link>
           <Link 
-            href="hall-of-fame" 
+            href="/hall-of-fame" 
             className="px-4 md:px-6 py-2 text-sm md:text-base border border-white rounded-full hover:bg-white hover:text-black transition-colors"
           >
             Hall of Fame
           </Link>
           <Link 
-            href="register" 
+            href="/register" 
             className="px-4 md:px-6 py-2 text-sm md:text-base bg-[#a0178e] text-white rounded-full hover:bg-[#FF00DC] hover:text-black transition-colors font-semibold"
           >
             Register Now
