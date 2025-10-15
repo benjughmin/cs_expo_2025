@@ -24,8 +24,8 @@ export default function ProjectsCard({ appTitle, thesisTitle, poster, slug }: Pr
 
         {/* Text content */}
         <div className="flex flex-col">
-          <h3 className="text-[#FF00FF] font-bold tracking-widest text-sm mb-2">{appTitle}</h3>
-          <p className="text-white text-sm leading-relaxed">{thesisTitle}</p>
+          <h3 className="text-[#FF00FF] font-monster tracking-widest text-sm mb-2">{appTitle}</h3>
+          <p className="text-white text-sm leading-relaxed font-helvetica">{thesisTitle}</p>
         </div>
       </div>
     </Link>
