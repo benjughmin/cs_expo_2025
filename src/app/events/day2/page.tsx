@@ -2,7 +2,9 @@ import React from 'react';
 import InfoContainer from '@/components/events/InfoContainer';
 import Hero from '@/components/events/Hero';
 import SpeakersCarousel from '@/components/events/SpeakersCarousel';
-import { testSpeakers } from '../data/testSpeakers';
+import PanelistsCarousel from '@/components/events/PanelistsCarousel';
+import { testSpeakers } from '@/app/events/data/testSpeakers';
+import { testPanelists } from '@/app/events/data/testPanelists';
 
 function Day2Page() {
   return (
@@ -42,6 +44,8 @@ function Day2Page() {
 
       {/* Speakers Carousel - Testing */}
       <SpeakersCarousel speakers={testSpeakers} />
+
+      <PanelistsCarousel panelists={testPanelists} />
 
       {/* Footer Placeholder */}
       <footer className="border-t border-purple-700/50 py-8">

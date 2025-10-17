@@ -1,6 +1,6 @@
 // For testing purposes only
 
-export const testSpeakers = [
+export const testPanelists = [
   {
     name: "DR. SARAH CHEN",
     title: "Chief AI Research Scientist",

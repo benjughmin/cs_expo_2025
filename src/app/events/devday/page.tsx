@@ -1,6 +1,8 @@
 import React from 'react';
 import InfoContainer from '@/components/events/InfoContainer';
 import Hero from '@/components/events/Hero';
+import SpeakersCarousel from '@/components/events/SpeakersCarousel';
+import { testSpeakers } from '@/app/events/data/testSpeakers';
 
 function DevDayPage() {
   return (
@@ -14,7 +16,7 @@ function DevDayPage() {
       <Hero
         title="CS EXPO"
         year="2025"
-        description="Developer Day - Workshops, hands-on sessions, and developer activities"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         tabs={[
           { label: "CS EXPO DAY 1", href: "/events" },
           { label: "CS EXPO DAY 2", href: "/events/day2" },
@@ -22,23 +24,24 @@ function DevDayPage() {
         ]}
       />
 
-      {/* Dev Day Component */}
+      {/* DEV DAY Component */}
       <InfoContainer
         title="DEV DAY"
         date="MM/DD/YYYY"
         time="00:00 AM - 00:00 PM"
-        description="Developer Day content goes here. Add workshops, hands-on sessions, coding challenges, and developer activities."
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       />
 
-      {/* Workshops Component */}
+      {/* Keynote Talks Component */}
       <InfoContainer
-        title="WORKSHOPS"
+        title="KEYNOTE TALKS"
         date="MM/DD/YYYY"
         time="00:00 AM - 00:00 PM"
-        description="Information about workshops and hands-on sessions."
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
       />
 
-      {/* Add more sections as needed for Dev Day */}
+      {/* Speakers Carousel - Testing */}
+      <SpeakersCarousel speakers={testSpeakers} />
 
       {/* Footer Placeholder */}
       <footer className="border-t border-purple-700/50 py-8">
