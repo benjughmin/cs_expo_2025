@@ -4,25 +4,26 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/global/nav-bar";
 import Footer from "@/components/global/footer";
 import Image from "next/image"
-
+import ProjectInfo from "@/components/projects/ProjectInfo";
 
 type ProjectPageProps = {
-    params: {
-        groupdetails: string; //slug
-    };
+  params: {
+    groupdetails: string; //slug
+  };
 };
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-    const { groupdetails } = await params;
-    const project = projects.find((p) => p.slug === groupdetails);
+  const { groupdetails } = await params;
+  const project = projects.find((p) => p.slug === groupdetails);
 
-    if (!project) {
-        return notFound();
-    }
+  if (!project) {
+    return notFound();
+  }
 
-    const { appTitle, thesisTitle, poster, details } = project;
+  const { appTitle, thesisTitle, poster, details } = project;
 
-   return (
+  return (
+
     <main className="bg-black text-white">
       {/* Hero section with background image */}
       <section className="relative flex h-[110vh] flex-col">
@@ -40,17 +41,28 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           {/* Hero content */}
           <div className="mx-auto flex max-w-6xl translate-y-20 flex-col items-center justify-center px-4 text-center z-20">
             <h1
-              className="text-8xl font-monster mb-4 text-center bg-clip-text text-transparent"
+              className="text-9xl font-monster mb-4 text-center bg-clip-text text-transparent"
               style={{
                 backgroundImage:
                   "linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 25%, rgba(255,0,220,1) 55%, rgba(72,12,168,1) 100%)",
                 WebkitTextFillColor: "transparent",
+                filter: `
+      drop-shadow(1.5px 1.5px 0px #FFF)
+      drop-shadow(-1.5px -1.5px 0px #FFF)
+    `
               }}
             >
               {appTitle}
             </h1>
-            <h2 className="text-xl mb-6 text-center">By {details.groupName}</h2>
-          </div>
+            <h2
+              className="text-xl mb-6 text-center font-monster text-transparent"
+              style={{
+                WebkitTextStroke: "2px white",
+
+              }}
+            >
+              By {details.groupName}
+            </h2>          </div>
         </div>
 
         {/* Bottom section with vector image */}
@@ -67,7 +79,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
       </section>
 
+      {/* Project Info Section */}
+      <ProjectInfo thesisTitle={project.thesisTitle} poster={project.poster} details={project.details} />
+
+
+
       <Footer />
     </main>
   );
 }
+
