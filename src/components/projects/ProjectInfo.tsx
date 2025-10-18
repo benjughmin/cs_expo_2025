@@ -17,7 +17,7 @@ type ProjectInfoProps = {
 
 export default function ProjectInfo({ thesisTitle, poster, details }: ProjectInfoProps) {
     return (
-        <section className="relative w-full mx-auto px-4 -mt-[42vh] z-10 pb-10">
+        <section className="relative w-full mx-auto px-4 -mt-[42vh] z-10">
 
             {/* Main flex container for the two-column layout */}
             <div className="flex flex-col lg:flex-row gap-4 lg:justify-center">
