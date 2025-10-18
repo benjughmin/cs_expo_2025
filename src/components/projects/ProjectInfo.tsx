@@ -10,12 +10,14 @@ type ProjectInfoProps = {
         mentor: string;
         category: string[];
         videoLink?: string;
+        groupName: string;
+        photoshoot: string[];
     };
 };
 
 export default function ProjectInfo({ thesisTitle, poster, details }: ProjectInfoProps) {
     return (
-        <section className="relative w-full mx-auto px-4 -mt-[42vh] z-10 pb-20">
+        <section className="relative w-full mx-auto px-4 -mt-[42vh] z-10 pb-10">
 
             {/* Main flex container for the two-column layout */}
             <div className="flex flex-col lg:flex-row gap-4 lg:justify-center">
@@ -23,8 +25,7 @@ export default function ProjectInfo({ thesisTitle, poster, details }: ProjectInf
                 {/* LEFT COLUMN: Poster Image */}
                 <div className="lg:w-[650px] lg:h-[900px]">
                     <Image
-                        src="/projects/white-placeholder.png"
-                        //src={poster} 
+                        src={poster} 
                         alt={`${thesisTitle} Poster`}
                         width={602}
                         height={853}
@@ -79,27 +80,7 @@ export default function ProjectInfo({ thesisTitle, poster, details }: ProjectInf
                         </div>
                     </div>
                 </div>
-            </div>
-
-            {/* Video Section */}
-
-            {details.videoLink && (
-                <div className="mt-12 flex justify-center">
-                    <div className="w-full max-w-[1366px]"> {/* Set max-width to match content above */}
-                        <div className="aspect-video w-full rounded-lg overflow-hidden border-2 border-[#000000]">
-                            <iframe
-                                src={details.videoLink} // Use the videoLink from your data
-                                title="Project Video Showcase"
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                className="w-full h-full"
-                            ></iframe>
-                        </div>
-                    </div>
-                </div>
-            )}
-            
+            </div>            
         </section>
     );
 }

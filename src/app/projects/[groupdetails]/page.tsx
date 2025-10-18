@@ -5,6 +5,7 @@ import Navbar from "@/components/global/nav-bar";
 import Footer from "@/components/global/footer";
 import Image from "next/image"
 import ProjectInfo from "@/components/projects/ProjectInfo";
+import GroupGallery from "@/components/projects/GroupGallery";
 
 type ProjectPageProps = {
   params: {
@@ -20,7 +21,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     return notFound();
   }
 
-  const { appTitle, thesisTitle, poster, details } = project;
+  const { appTitle, details } = project;
 
   return (
 
@@ -82,7 +83,39 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       {/* Project Info Section */}
       <ProjectInfo thesisTitle={project.thesisTitle} poster={project.poster} details={project.details} />
 
+      {/* Video Section and Group Gallery with Background. I separated the video section from the projectinfo
+      so that I can group it with the groupgallery to have the same background */}
+      <div
+        className="mt-12"
+        style={{
+          backgroundImage: "url('/projects/background2.png')",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* Video Section */}
+        {details.videoLink && (
+          <div className="flex justify-center py-10">
+            <div className="w-full max-w-[1366px]">
+              <div className="aspect-video w-full rounded-lg overflow-hidden border-2 border-[#000000]">
+                <iframe
+                  src={details.videoLink}
+                  title="Project Video Showcase"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        )}
 
+        {/* Group Gallery Section */}
+        <GroupGallery details={details} />
+
+      </div>
 
       <Footer />
     </main>
