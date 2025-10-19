@@ -30,7 +30,7 @@ export default function SpeakersCarousel({ speakers }: SpeakersCarouselProps) {
   return (
     <section className="py-16 px-4">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-6xl font-bold text-white mb-16 text-center italic">
+        <h2 className="font-monster text-6xl text-white mb-16 text-center italic">
           SPEAKERS
         </h2>
         
