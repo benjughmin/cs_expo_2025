@@ -10,6 +10,10 @@ export default function ProjectsGrid() {
           key={project.slug}
           appTitle={project.appTitle}
           thesisTitle={project.thesisTitle}
+          groupName={project.details.groupName}
+          members={project.details.groupMembers}
+          mentor={project.details.mentor}
+          category={project.details.category}
           poster={project.poster}
           slug={project.slug}
         />
