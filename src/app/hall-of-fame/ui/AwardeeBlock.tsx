@@ -5,11 +5,19 @@ import { AwardeeCard } from "./AwardeeCard"
 export function AwardeeBlock({ award, alt }: { award: AwardProps; alt: boolean }) {
   return (
     <>
-      <section className="flex flex-col items-center gap-6 bg-black p-4 pt-10 text-white">
+      <section className="flex w-full flex-col items-center gap-6 bg-black p-4 pt-10 text-white">
         {/* Title */}
-        <h1 className="bg-gradient-to-b from-white from-35% via-[#FF00DC] via-50% to-white to-70% bg-clip-text text-[40px] leading-[50px] font-black text-transparent uppercase italic">
-          {award.title}
-        </h1>
+        {/* I made 2 layers for shadow and gradients since gradients require the `text-transparent` and the shadow to be behind it so I created the same text layer but with a non-transparent color */}
+        <div className="relative mb-10 w-full">
+          {/* Shadow layer */}
+          <h1 className="font-monster relative z-0 w-full text-center text-[40px] leading-[50px] font-black uppercase text-shadow-[#FF00DC] text-shadow-lg">
+            {award.title}
+          </h1>
+          {/* Gradient layer */}
+          <h1 className="font-monster absolute inset-0 z-10 w-full bg-gradient-to-b from-white from-35% via-[#FF00DC] via-50% to-white to-75% bg-clip-text text-center text-[40px] leading-[50px] font-black text-transparent uppercase">
+            {award.title}
+          </h1>
+        </div>
 
         <div className="flex w-full max-w-6xl flex-col items-stretch gap-4 sm:flex-row">
           {/* Top1 */}

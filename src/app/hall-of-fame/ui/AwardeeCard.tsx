@@ -1,6 +1,7 @@
 import { AwardeeProps } from "../types/hof.types"
 import clsx from "clsx"
 import Image from "next/image"
+import { LiaLongArrowAltRightSolid } from "react-icons/lia"
 
 // accepts award parameter of type AwardProps
 export function AwardeeCard({
@@ -17,17 +18,34 @@ export function AwardeeCard({
       <div
         className={clsx(
           "group relative flex min-h-[550px] flex-1 flex-col items-center rounded-lg bg-gradient-to-t from-black from-75% p-6 pt-12 pb-7 transition-all duration-300 hover:-translate-y-2 hover:shadow-md",
-          alt ? "to-[#FF00DC] hover:shadow-[#FF00DC]" : "to-[#450CA2] hover:shadow-[#8A38F5]"
+          alt ? "to-[#6E005F] hover:shadow-[#FF00DC]" : "to-[#450CA2] hover:shadow-[#8A38F5]"
         )}
       >
         {/* Rank */}
-        <span
-          className={clsx(
-            "absolute top-4 -translate-y-12 text-[40px] text-white italic group-hover:text-shadow-lg",
-            alt ? "group-hover:text-shadow-[#FF00DC]" : "group-hover:text-shadow-[#8A38F5]"
-          )}
-        >
-          {rank}
+        {/* I made 2 layers for shadow/border and gradients since gradients require the `text-transparent` and the shadow to be behind it so I created the same text layer but with a non-transparent color; also if i apply text stroke directly in the gradient it messes up the design */}
+        <span className="absolute top-4 -translate-y-11">
+          {/* Shadow/Border layer */}
+          <span
+            className={clsx(
+              "font-monster relative z-0 px-2 text-[40px] leading-[50px] text-black transition-all duration-300 group-hover:text-shadow-lg"
+              // alt ? "group-hover:text-shadow-[#FF00DC]" : "group-hover:text-shadow-[#8A38F5]", // Still figuring out how to properly apply text-shadow cause the textstroke is blocking it
+            )}
+            style={{ WebkitTextStroke: "10px black" }} // used 10px instead of 5px (figma val) to better match the prototype, since i made a separate layer for it
+          >
+            {rank}
+          </span>
+
+          {/* Gradient layer */}
+          <span
+            className={clsx(
+              "font-monster absolute inset-0 z-10 bg-gradient-to-b from-white from-2% to-white to-80% bg-clip-text px-2 text-[40px] leading-[50px] text-transparent",
+              rank === "1ST" && "via-[#FFBB00] via-30%",
+              rank === "2ND" && "via-[#958888] via-50%",
+              rank === "3RD" && "via-[#E55F37] via-50%"
+            )}
+          >
+            {rank}
+          </span>
         </span>
 
         {/* Image container */}
@@ -45,7 +63,7 @@ export function AwardeeCard({
 
         {/* Text contents */}
         <div className="mt-10 flex w-full flex-1 flex-col">
-          <div className="flex text-[24px] leading-[50px]">
+          <div className="font-monster flex text-[24px] leading-[50px]">
             <p>{awardee.groupName}</p>
           </div>
 
@@ -63,9 +81,9 @@ export function AwardeeCard({
               href={awardee.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-auto block w-full rounded-full border py-2 text-center hover:bg-white hover:text-black"
+              className="font-helvetica mt-auto block w-full rounded-full border-2 py-2 text-center font-light hover:bg-white hover:text-black"
             >
-              Learn More
+              Learn More <LiaLongArrowAltRightSolid className="mb-1 inline-block text-2xl" />
             </a>
           </div>
         </div>
