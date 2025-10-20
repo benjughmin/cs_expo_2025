@@ -38,7 +38,7 @@ function Hero({title, year, description, tabs}: HeroProps) {
             {year}
           </span>
         </p>
-        <p className="text-white/80 max-w-3xl mx-auto mb-8">
+        <p className="text-white/100 max-w-3xl mx-auto mb-8 font-helvetica text-sm">
           {description}
         </p>
         
@@ -50,17 +50,16 @@ function Hero({title, year, description, tabs}: HeroProps) {
               <Link 
                 key={index} 
                 href={tab.href}
-                className={`px-6 py-2 transition-all ${
-                  isActive 
-                    ? 'border-b-2 border-white' 
-                    : 'hover:border-b-2 hover:border-white/50'
-                }`}
+                className={`font-helvetica text-base px-6 py-2 transition-all`}
               >
                 {tab.label}
               </Link>
             );
           })}
         </div>
+        
+        {/* Horizontal Line */}
+        <div className="border-t border-white/100 mt-4 max-w-6xl mx-auto border-1"></div>
       </div>
     </section>
   );

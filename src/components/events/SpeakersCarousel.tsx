@@ -46,9 +46,9 @@ export default function SpeakersCarousel({ speakers }: SpeakersCarouselProps) {
           </button>
           
           {/* Speaker Content */}
-          <div className="flex-1 flex items-center gap-8 bg-purple-900/30 p-8 rounded-lg">
+          <div className="w-[1219px] h-[695px] flex-1 flex items-center gap-8 bg-purple-900/30 p-8 rounded-lg">
             {/* Speaker Image */}
-            <div className="w-64 h-64 bg-gray-400 rounded-lg flex-shrink-0 overflow-hidden">
+            <div className="w-[503px] h-[495px] bg-gray-400 rounded-lg flex-shrink-0 overflow-hidden">
               <img 
                 src={currentSpeaker.image} 
                 alt={currentSpeaker.name}
@@ -58,7 +58,7 @@ export default function SpeakersCarousel({ speakers }: SpeakersCarouselProps) {
             
             {/* Speaker Info */}
             <div className="text-white">
-              <h3 className="text-3xl font-bold mb-2 italic">{currentSpeaker.name}</h3>
+              <h3 className="text-3xl mb-2 italic font-monster">{currentSpeaker.name}</h3>
               <p className="text-pink-500 mb-4">{currentSpeaker.title}</p>
               <p className="text-white/80">{currentSpeaker.bio}</p>
             </div>

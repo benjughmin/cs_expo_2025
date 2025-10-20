@@ -46,9 +46,9 @@ function PanelistsCarousel({ panelists }: PanelistCarouselProps) {
           </button>
           
           {/* Panelist Content */}
-          <div className="flex-1 flex items-center gap-8 bg-purple-900/30 p-8 rounded-lg">
+          <div className="flex-1 flex items-center gap-8 bg-purple-900/30 p-8 rounded-lg"  style={{ maxWidth: '1219px', height: '695px', margin: '0 auto' }}>
             {/* Panelist Image */}
-            <div className="w-64 h-64 bg-gray-400 rounded-lg flex-shrink-0 overflow-hidden">
+            <div className="w-[503px] h-[495px] bg-gray-400 rounded-lg flex-shrink-0 overflow-hidden">
               <img 
                 src={currentPanelist.image} 
                 alt={currentPanelist.name}
