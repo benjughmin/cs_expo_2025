@@ -10,10 +10,11 @@ interface PanelistProps {
 }
 
 interface PanelistCarouselProps {
-    panelists: PanelistProps[]
+    panelists: PanelistProps[];
+    titleColor?: string;
 }
 
-function PanelistsCarousel({ panelists }: PanelistCarouselProps) {
+function PanelistsCarousel({ panelists, titleColor = '#FF00DC' }: PanelistCarouselProps) {
   // NOTE: This is a placeholder. Will be replaced when database is integrated.
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -52,7 +53,7 @@ function PanelistsCarousel({ panelists }: PanelistCarouselProps) {
             {/* Panelist Info */}
             <div className="text-white flex-1">
               <h3 className="font-monster mb-2 italic text-[36px]">{currentPanelist.name}</h3>
-              <p className="font-helvetica text-[22px] text-[#FF00DC] mb-4">{currentPanelist.title}</p>
+              <p className="font-helvetica text-[22px] mb-4" style={{ color: titleColor }}>{currentPanelist.title}</p>
               <p className="font-helvetica text-white text-[22px] leading-[20px]" style={{ fontWeight: 300 }}>{currentPanelist.bio}</p>
             </div>
             

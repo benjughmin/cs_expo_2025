@@ -11,9 +11,10 @@ interface SpeakerProps {
 
 interface SpeakersCarouselProps {
   speakers: SpeakerProps[];
+  titleColor?: string;
 }
 
-export default function SpeakersCarousel({ speakers }: SpeakersCarouselProps) {
+export default function SpeakersCarousel({ speakers, titleColor = '#FF00DC' }: SpeakersCarouselProps) {
   // NOTE: This is a placeholder. Will be replaced when database is integrated.
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -59,7 +60,7 @@ export default function SpeakersCarousel({ speakers }: SpeakersCarouselProps) {
             {/* Speaker Info */}
             <div className="text-white flex-1 ml-[50px]">
               <h3 className="font-monster mb-2 italic text-[36px]">{currentSpeaker.name}</h3>
-              <p className="font-helvetica text-[22px] text-[#FF00DC] mb-4">{currentSpeaker.title}</p>
+              <p className="font-helvetica text-[22px] mb-4" style={{ color: titleColor }}>{currentSpeaker.title}</p>
               <p className="font-helvetica text-white text-[22px] leading-[20px]" style={{ fontWeight: 300 }}>{currentSpeaker.bio}</p>
             </div>
           </div>
