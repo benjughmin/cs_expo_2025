@@ -30,12 +30,12 @@ function PanelistsCarousel({ panelists }: PanelistCarouselProps) {
   return (
     <section className="py-16 px-4">
       <div className="max-w-7xl mx-auto">
-        <h2 className="font-monster text-6xl text-white mb-16 text-center italic">
+        <h2 className="font-monster text-[66px] text-white mb-16 text-center italic">
           PANELISTS
         </h2>
         
         {/* Panelist Container */}
-        <div className="flex items-center gap-8 mb-12">
+        <div className="flex items-center justify-center gap-8 mb-12">
           {/* Previous Button */}
           <button 
             onClick={prevSlide}
@@ -46,21 +46,23 @@ function PanelistsCarousel({ panelists }: PanelistCarouselProps) {
           </button>
           
           {/* Panelist Content */}
-          <div className="flex-1 flex items-center gap-8 bg-purple-900/30 p-8 rounded-lg"  style={{ maxWidth: '1219px', height: '695px', margin: '0 auto' }}>
+          <div 
+            className="w-[1225px] h-[695px] flex flex-none items-center justify-between bg-black rounded-[20px] border border-white pt-[100px] pb-[100px] pl-[50px] pr-[50px]"  
+          >
+            {/* Panelist Info */}
+            <div className="text-white flex-1">
+              <h3 className="font-monster mb-2 italic text-[36px]">{currentPanelist.name}</h3>
+              <p className="font-helvetica text-[22px] text-[#FF00DC] mb-4">{currentPanelist.title}</p>
+              <p className="font-helvetica text-white text-[22px] leading-[20px]" style={{ fontWeight: 300 }}>{currentPanelist.bio}</p>
+            </div>
+            
             {/* Panelist Image */}
-            <div className="w-[503px] h-[495px] bg-gray-400 rounded-lg flex-shrink-0 overflow-hidden">
+            <div className="w-[503px] h-[495px] bg-gray-400 rounded-[16px] flex-shrink-0 overflow-hidden ml-[50px]">
               <img 
                 src={currentPanelist.image} 
                 alt={currentPanelist.name}
                 className="w-full h-full object-cover"
               />
-            </div>
-            
-            {/* Panelist Info */}
-            <div className="text-white">
-              <h3 className="text-3xl font-bold mb-2 italic">{currentPanelist.name}</h3>
-              <p className="text-pink-500 mb-4">{currentPanelist.title}</p>
-              <p className="text-white/80">{currentPanelist.bio}</p>
             </div>
           </div>
 
@@ -72,20 +74,6 @@ function PanelistsCarousel({ panelists }: PanelistCarouselProps) {
           >
             ›
           </button>
-        </div>
-
-        {/* Dots Indicator */}
-        <div className="flex justify-center gap-2">
-          {panelists.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                index === currentIndex ? 'bg-white' : 'bg-white/30'
-              }`}
-              aria-label={`Go to panelist ${index + 1}`}
-            />
-          ))}
         </div>
       </div>
     </section>

@@ -11,48 +11,59 @@ import Footer from '@/components/global/footer';
 
 function EventsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-900 via-purple-800 to-black">
-      {/* Navbar */}
-      <Navbar />
-
-      {/* Hero Component */}
-      <Hero
-        title="CS EXPO"
-        year="2025"
-        description="Join the first day of CS EXPO, as bright fourth-year students present their innovative theses with topics regarding data analytics, health, and natural language processing. Under the data analytics category are groups Agatha, LMNTRX, and Strawhats. For the health category, Code Geass, Hurtz, Lorem Ipsum, and Samsan. Lastly, for the natural language processing category are the thesis groups Codex, Ctrl Alt Delete, EnSys, Jathro's Matrix, and LMDIFY."
-        tabs={[
-          { label: "CS EXPO DAY 1", href: "/events" },
-          { label: "CS EXPO DAY 2", href: "/events/day2" },
-          { label: "DEV DAY", href: "/events/devday" }
-        ]}
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Background Gradient Vector */}
+      <div 
+        className="absolute top-0 left-0 w-[1400px] h-[1400px] pointer-events-none z-0"
+        style={{
+          background: 'radial-gradient(circle at top left, rgba(255, 182, 193, 0.4) 0%, rgba(218, 112, 214, 0.3) 25%, rgba(147, 112, 219, 0.2) 50%, transparent 70%)'
+        }}
       />
+      
+      {/* Content wrapper with higher z-index */}
+      <div className="relative z-10">
+        {/* Navbar */}
+        <Navbar />
 
-      {/* CS Expo Day Component */}
-      <InfoContainer
-        title="CS EXPO DAY 1"
-        date="MM/DD/YYYY"
-        time="00:00 AM - 00:00 PM"
-        description="Join the first day of CS EXPO, as bright fourth-year students present their innovative theses with topics regarding data analytics, health, and natural language processing. Under the data analytics category are groups Agatha, LMNTRX, and Strawhats. For the health category, Code Geass, Hurtz, Lorem Ipsum, and Samsan. Lastly, for the natural language processing category are the thesis groups Codex, Ctrl Alt Delete, EnSys, Jathro's Matrix, and LMDIFY."
-      />
+        {/* Hero Component */}
+        <Hero
+          title="CS EXPO"
+          year="2025"
+          description="Join the first day of CS EXPO, as bright fourth-year students present their innovative theses with topics regarding data analytics, health, and natural language processing. Under the data analytics category are groups Agatha, LMNTRX, and Strawhats. For the health category, Code Geass, Hurtz, Lorem Ipsum, and Samsan. Lastly, for the natural language processing category are the thesis groups Codex, Ctrl Alt Delete, EnSys, Jathro's Matrix, and LMDIFY."
+          tabs={[
+            { label: "CS EXPO DAY 1", href: "/events" },
+            { label: "CS EXPO DAY 2", href: "/events/day2" },
+            { label: "DEV DAY", href: "/events/devday" }
+          ]}
+        />
 
-      {/* Keynote Talks Component */}
-      <InfoContainer
-        title="KEYNOTE TALKS"
-        date="MM/DD/YYYY"
-        time="00:00 AM - 00:00 PM"
-        description="Join the first day of CS EXPO, as bright fourth-year students present their innovative theses with topics regarding data analytics, health, and natural language processing. Under the data analytics category are groups Agatha, I-MNTRX, and Shrawnals. For the health category, Code Geass, Hurtz, Lorem Ipsum, and Samsan Lastly, for the natural language processing category are the thesis groups Codex, Ctrl Alt Delete, EnSys, Jatin's Matrix, and LMDFY."
-      />
+        {/* CS Expo Day Component */}
+        <InfoContainer
+          title="CS EXPO DAY 1"
+          date="MM/DD/YYYY"
+          time="00:00 AM - 00:00 PM"
+          description="Join the first day of CS EXPO, as bright fourth-year students present their innovative theses with topics regarding data analytics, health, and natural language processing. Under the data analytics category are groups Agatha, LMNTRX, and Strawhats. For the health category, Code Geass, Hurtz, Lorem Ipsum, and Samsan. Lastly, for the natural language processing category are the thesis groups Codex, Ctrl Alt Delete, EnSys, Jathro's Matrix, and LMDIFY."
+        />
 
-      {/* Speakers Carousel */}
-      <SpeakersCarousel speakers={testSpeakers} />
+        {/* Keynote Talks Component */}
+        <InfoContainer
+          title="KEYNOTE TALKS"
+          date="MM/DD/YYYY"
+          time="00:00 AM - 00:00 PM"
+          description="Join the first day of CS EXPO, as bright fourth-year students present their innovative theses with topics regarding data analytics, health, and natural language processing. Under the data analytics category are groups Agatha, I-MNTRX, and Shrawnals. For the health category, Code Geass, Hurtz, Lorem Ipsum, and Samsan Lastly, for the natural language processing category are the thesis groups Codex, Ctrl Alt Delete, EnSys, Jatin's Matrix, and LMDFY."
+        />
 
-      {/* Panelist Component */}
-      <PanelistsCarousel panelists={testPanelists} />
+        {/* Speakers Carousel */}
+        <SpeakersCarousel speakers={testSpeakers} />
 
-      {/* Footer Placeholder */}
-      <footer className="border-t border-purple-700/50 py-8">
-        <Footer />
-      </footer>
+        {/* Panelist Component */}
+        <PanelistsCarousel panelists={testPanelists} />
+
+        {/* Footer Placeholder */}
+        <footer>
+          <Footer />
+        </footer>
+      </div>
     </div>
   );
 }

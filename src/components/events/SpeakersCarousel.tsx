@@ -30,12 +30,12 @@ export default function SpeakersCarousel({ speakers }: SpeakersCarouselProps) {
   return (
     <section className="py-16 px-4">
       <div className="max-w-7xl mx-auto">
-        <h2 className="font-monster text-6xl text-white mb-16 text-center italic">
+        <h2 className="font-monster text-[66px] text-white mb-16 text-center italic">
           SPEAKERS
         </h2>
         
         {/* Speaker Container */}
-        <div className="flex items-center gap-8 mb-12">
+        <div className="flex items-center justify-center gap-8 mb-12">
           {/* Previous Button */}
           <button 
             onClick={prevSlide}
@@ -46,9 +46,9 @@ export default function SpeakersCarousel({ speakers }: SpeakersCarouselProps) {
           </button>
           
           {/* Speaker Content */}
-          <div className="w-[1219px] h-[695px] flex-1 flex items-center gap-8 bg-purple-900/30 p-8 rounded-lg">
+          <div className="w-[1225px] h-[695px] flex flex-none items-center justify-between rounded-[20px] pt-[100px] pb-[100px] pl-[50px] pr-[50px]">
             {/* Speaker Image */}
-            <div className="w-[503px] h-[495px] bg-gray-400 rounded-lg flex-shrink-0 overflow-hidden">
+            <div className="w-[503px] h-[495px] bg-gray-400 rounded-[16px] flex-shrink-0 overflow-hidden">
               <img 
                 src={currentSpeaker.image} 
                 alt={currentSpeaker.name}
@@ -57,10 +57,10 @@ export default function SpeakersCarousel({ speakers }: SpeakersCarouselProps) {
             </div>
             
             {/* Speaker Info */}
-            <div className="text-white">
-              <h3 className="text-3xl mb-2 italic font-monster">{currentSpeaker.name}</h3>
-              <p className="text-pink-500 mb-4">{currentSpeaker.title}</p>
-              <p className="text-white/80">{currentSpeaker.bio}</p>
+            <div className="text-white flex-1 ml-[50px]">
+              <h3 className="font-monster mb-2 italic text-[36px]">{currentSpeaker.name}</h3>
+              <p className="font-helvetica text-[22px] text-[#FF00DC] mb-4">{currentSpeaker.title}</p>
+              <p className="font-helvetica text-white text-[22px] leading-[20px]" style={{ fontWeight: 300 }}>{currentSpeaker.bio}</p>
             </div>
           </div>
 
@@ -72,20 +72,6 @@ export default function SpeakersCarousel({ speakers }: SpeakersCarouselProps) {
           >
             ›
           </button>
-        </div>
-
-        {/* Dots Indicator */}
-        <div className="flex justify-center gap-2">
-          {speakers.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                index === currentIndex ? 'bg-white' : 'bg-white/30'
-              }`}
-              aria-label={`Go to speaker ${index + 1}`}
-            />
-          ))}
         </div>
       </div>
     </section>

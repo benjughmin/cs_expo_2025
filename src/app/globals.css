@@ -43,6 +43,7 @@
   --font-nhl: "NHL Ducks", sans-serif;
   --font-helvetica: "Helvetica Now Display", sans-serif;
   --font-dreamer: "Dreamer TM", sans-serif;
+  --font-chivo-mono: var(--font-chivo-mono);
 }
 
 @theme inline {
