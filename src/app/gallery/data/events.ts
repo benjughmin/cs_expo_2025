@@ -13,14 +13,30 @@ export const events: Event[] = [
       "/gallery/images/placeholder2.jpg",
       "/gallery/images/placeholder.jpg",
       "/gallery/images/placeholder2.jpg",
+      "/gallery/images/placeholder.jpg",
+      "/gallery/images/placeholder2.jpg",
     ],
   },
   {
     name: "Event 2",
-    images: ["None for now", "None for now", "None for now", "None for now"],
+    images: [
+      "/gallery/images/placeholder.jpg",
+      "/gallery/images/placeholder2.jpg",
+      "/gallery/images/placeholder.jpg",
+      "/gallery/images/placeholder2.jpg",
+      "/gallery/images/placeholder.jpg",
+      "/gallery/images/placeholder2.jpg",
+    ],
   },
   {
     name: "Event 3",
-    images: ["None for now", "None for now", "None for now", "None for now"],
+    images: [
+      "/gallery/images/placeholder.jpg",
+      "/gallery/images/placeholder2.jpg",
+      "/gallery/images/placeholder.jpg",
+      "/gallery/images/placeholder2.jpg",
+      "/gallery/images/placeholder.jpg",
+      "/gallery/images/placeholder2.jpg",
+    ],
   },
 ]
