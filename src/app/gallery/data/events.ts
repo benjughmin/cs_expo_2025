@@ -11,9 +11,9 @@ export const events: Event[] = [
     images: [
       "/gallery/images/placeholder.jpg",
       "/gallery/images/placeholder2.jpg",
-      "/gallery/images/placeholder.jpg",
       "/gallery/images/placeholder2.jpg",
-      "/gallery/images/placeholder.jpg",
+      "/gallery/images/placeholder2.jpg",
+      "/gallery/images/placeholder2.jpg",
       "/gallery/images/placeholder2.jpg",
     ],
   },

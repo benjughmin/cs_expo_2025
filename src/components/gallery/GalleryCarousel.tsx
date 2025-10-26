@@ -23,6 +23,9 @@ function CarouselSection({ event }: { event: Event }) {
 
   const duplicatedImages = [...event.images, ...event.images]
 
+  //speed scaling (about SOMETHING seconds per original image)
+  const durationSec = Math.max(10, Math.min(120, event.images.length * 15))
+
   // Detect when carousel is visible in viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -63,8 +66,8 @@ function CarouselSection({ event }: { event: Event }) {
           onMouseLeave={() => setIsPaused(false)}
         >
           <div
-            className={`animate-slide-left flex ${shouldPause ? "animation-pause" : ""}`}
-            style={{ ["--slide-duration" as any]: `20s` }}
+            className={`animate-slide-left inline-flex w-max ${shouldPause ? "animation-pause" : ""}`}
+            style={{ ["--slide-duration" as any]: `${durationSec}s` }}
           >
             {duplicatedImages.map((image, index) => (
               <div key={index} className="flex-shrink-0">
