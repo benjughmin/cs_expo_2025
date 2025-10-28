@@ -56,14 +56,14 @@ function CarouselSection({ event }: { event: Event }) {
         {event.name}
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-[1600px] items-center gap-2 px-2 sm:gap-4 sm:px-4">
+      <div className="relative mx-auto flex w-full items-center gap-2 px-2 sm:gap-4 sm:px-4">
         <button
           aria-label="Previous"
-          className="shrink-0 rounded-md p-1 transition hover:opacity-90 focus:ring-2 focus:ring-white/40 focus:outline-none active:scale-95 sm:p-2"
+          className="inline-flex items-center justify-center p-0 leading-none transition active:scale-90"
         >
           <img
             src="/gallery/images/arrowLeft.png"
-            className="h-10 w-10 sm:h-14 sm:w-14 md:h-16 md:w-16 lg:h-20 lg:w-20"
+            className="m-0 block h-10 w-10 p-0 sm:h-14 sm:w-14 md:h-16 md:w-16 lg:h-20 lg:w-20"
             alt=""
             aria-hidden="true"
             draggable={false}
@@ -72,10 +72,8 @@ function CarouselSection({ event }: { event: Event }) {
 
         <div
           ref={containerRef}
-          role="region"
-          aria-roledescription="carousel"
           aria-label={`${event.name} carousel`}
-          className="group relative mx-auto w-full overflow-hidden"
+          className="group relative mx-auto w-full overflow-hidden p-2.5"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
@@ -84,7 +82,7 @@ function CarouselSection({ event }: { event: Event }) {
             style={{ ["--slide-duration" as any]: `${durationSec}s` }}
           >
             {duplicatedImages.map((image, index) => (
-              <div key={index} className="flex-shrink-0">
+              <div key={index} className="flex-shrink-0 transition-transform hover:scale-105">
                 <GalleryItem photo={image} />
               </div>
             ))}
@@ -93,11 +91,11 @@ function CarouselSection({ event }: { event: Event }) {
 
         <button
           aria-label="Next"
-          className="shrink-0 rounded-md p-1 transition hover:opacity-90 focus:ring-2 focus:ring-white/40 focus:outline-none active:scale-95 sm:p-2"
+          className="inline-flex items-center justify-center p-0 leading-none transition active:scale-90"
         >
           <img
             src="/gallery/images/arrowRight.png"
-            className="h-10 w-10 sm:h-14 sm:w-14 md:h-16 md:w-16 lg:h-20 lg:w-20"
+            className="m-0 block h-10 w-10 p-0 sm:h-14 sm:w-14 md:h-16 md:w-16 lg:h-20 lg:w-20"
             alt=""
             aria-hidden="true"
             draggable={false}
