@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Chivo_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -10,6 +11,23 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const chivoMono = Chivo_Mono({
+  subsets: ["latin"],
+  variable: "--font-chivo-mono",
+});
+
+const dreamerTM = localFont({
+  src: "../../public/fonts/DreamerTM-Regular.ttf",
+  variable: "--font-dreamer",
+  weight: "400",
+});
+
+const monsterRacing = localFont({
+  src: "../../public/fonts/Monster Racing.otf",
+  variable: "--font-monster-racing",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${chivoMono.variable} ${dreamerTM.variable} ${monsterRacing.variable} antialiased`}
       >
         {children}
       </body>

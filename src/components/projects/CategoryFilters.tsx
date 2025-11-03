@@ -16,7 +16,7 @@ return (
       {categories.map((category, index) => (
         <button
           key={index}
-          className="w-[176px] h-[56px] text-lg text-white border border-white/50 rounded-full hover:bg-white/10 transition-colors"
+          className="w-[176px] font-bold h-[56px] text-lg text-white border-2 border-white/50 rounded-full hover:bg-white/10 transition-colors"
         >
           {category}
         </button>

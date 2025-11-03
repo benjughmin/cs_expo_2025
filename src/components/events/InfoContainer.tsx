@@ -9,13 +9,13 @@ function EventDay({ title, date, time, description }: EventDayProps) {
   return (
     <section className="py-16 px-4">
       <div className="max-w-6xl mx-auto">
-        <p className="text-5xl font-bold text-white mb-8" style={{ fontFamily: 'monospace' }}>
+        <p className="text-6xl text-white mb-2 font-dreamer">
           {title}
         </p>
-        <p className="text-white/80 mb-4">
+        <p className="mb-4 font-chivo-mono text-base" style={{ color: '#FF00DC' }}>
           {date} | {time}
         </p>
-        <div className="text-white/80 space-y-4">
+        <div className="text-white/100 space-y-4 leading-[32px] text-[32px] font-light">
           <p>{description}</p>
         </div>
       </div>
