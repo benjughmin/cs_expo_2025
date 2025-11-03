@@ -24,20 +24,19 @@ export default function ProjectsCard({
 }: ProjectsCardProps) {
   return (
     <Link href={`/projects/${slug}`} className="block w-full max-w-[400px]">
-      <div className="relative group cursor-pointer h-[580px]">
-        <div className="bg-gradient-to-b from-[#FF00DC] via-black via-32% to-black p-6 rounded-[24px] w-full h-full flex flex-col transition-all duration-300 ease-in-out group-hover:[background-image:linear-gradient(to_bottom,var(--tw-gradient-from),black_80%)]">
-          {/* Poster 
+      <div className="relative group cursor-pointer h-[720px]">
+<div className="bg-[#FF00DC]/10 p-4 rounded-[24px] w-full h-full flex flex-col transition-all duration-300 ease-in-out border-1 border-[#A2108D]">          {/* Poster 
           <div
             className="w-full max-w-[332px] h-[300px] sm:h-[406px] rounded-[16px] mb-4 mx-auto bg-cover bg-center"
             style={{ backgroundImage: `url(${poster})` }}
           ></div> */}
 
-          <div className="bg-[#D9D9D9] w-full max-w-[332px] h-[300px] sm:h-[406px] rounded-[16px] mb-4 mx-auto"></div>
+          <div className="bg-[#D9D9D9] w-full max-w-[380px] h-[300px] sm:h-[564px] rounded-[16px] mb-4 mx-auto"></div>
 
           {/* Text content */}
           <div className="flex flex-col flex-grow">
-            <h3 className="text-[#FF00FF] font-monster tracking-widest text-sm mb-2">{appTitle}</h3>
-            <p className="text-white text-sm leading-relaxed font-helvetica">{thesisTitle}</p>
+            <h3 className="text-[#FF00FF] font-avolta text-tracking-widest text-2xl mb-2">{appTitle}</h3>
+            <p className="text-white text-base leading-relaxed font-helvetica">{thesisTitle}</p>
           </div>
         </div>
 

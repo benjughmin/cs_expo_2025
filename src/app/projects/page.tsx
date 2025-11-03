@@ -13,6 +13,7 @@ export default function ProjectsPage() {
         pageDesc="Join the first day of CS EXPO, as bright fourth-year students present their innovative theses with topics regarding data analytics, health, and natural language processing. Under the data analytics category are groups Agatha, LMNTRX, and Strawhats. For the health category, Code Geass, Hurtz, Lorem Ipsum, and Samsan. Lastly, for the natural language processing category are the thesis groups Codex, Ctrl Alt Delete, EnSys, Jathro's Matrix, and LMDIFY."
       />
       <CategoryFilters />
+      <div className="w-full max-w-6xl mx-auto border-t border-white mb-6"></div>
       <ProjectsGrid />
       <Footer />
     </main>

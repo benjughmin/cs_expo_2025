@@ -38,11 +38,19 @@
   font-style: normal;
 }
 
+@font-face{
+  font-family: "Avolta";
+  src: url("/fonts/Avolta.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @theme {
   --font-monster: "Monster Racing", sans-serif;
   --font-nhl: "NHL Ducks", sans-serif;
   --font-helvetica: "Helvetica Now Display", sans-serif;
   --font-dreamer: "Dreamer TM", sans-serif;
+  --font-avolta: "Avolta", sans-serif;
 }
 
 @theme inline {
