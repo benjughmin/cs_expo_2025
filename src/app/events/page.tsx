@@ -1,10 +1,11 @@
 import React from 'react';
-import InfoContainer from '@/components/events/InfoContainer';
 import Hero from '@/components/events/Hero';
 import SpeakersCarousel from '@/components/events/SpeakersCarousel';
 import PanelistsCarousel from '@/components/events/PanelistsCarousel';
+import EventDaySection from '@/components/events/EventDaySection';
 import { testSpeakers } from '@/app/events/data/testSpeakers';
 import { testPanelists } from '@/app/events/data/testPanelists';
+import { box1, box2 } from '@/app/events/data/boxData';
 import Navbar from '@/components/global/nav-bar';
 import Footer from '@/components/global/footer';
 
@@ -27,36 +28,47 @@ function EventsPage() {
 
         {/* Hero Component */}
         <Hero
-          title="CS EXPO"
-          year="2025"
-          description="Join the first day of CS EXPO, as bright fourth-year students present their innovative theses with topics regarding data analytics, health, and natural language processing. Under the data analytics category are groups Agatha, LMNTRX, and Strawhats. For the health category, Code Geass, Hurtz, Lorem Ipsum, and Samsan. Lastly, for the natural language processing category are the thesis groups Codex, Ctrl Alt Delete, EnSys, Jathro's Matrix, and LMDIFY."
-          tabs={[
-            { label: "CS EXPO DAY 1", href: "/events" },
-            { label: "CS EXPO DAY 2", href: "/events/day2" },
-            { label: "DEV DAY", href: "/events/devday" }
-          ]}
+          title={['CS', 'EXPO']}
+          description="A two-day event showcasing student projects to a group of panelists composed of faculty members and industry professionals. Current tech trends will be discussed by industry leaders."
         />
 
-        {/* CS Expo Day Component */}
-        <InfoContainer
-          title="CS EXPO DAY 1"
-          date="MM/DD/YYYY"
-          time="00:00 AM - 00:00 PM"
-          description="Join the first day of CS EXPO, as bright fourth-year students present their innovative theses with topics regarding data analytics, health, and natural language processing. Under the data analytics category are groups Agatha, LMNTRX, and Strawhats. For the health category, Code Geass, Hurtz, Lorem Ipsum, and Samsan. Lastly, for the natural language processing category are the thesis groups Codex, Ctrl Alt Delete, EnSys, Jathro's Matrix, and LMDIFY."
+        {/* CS Expo Day 1 Section */}
+        <EventDaySection
+          title='CS Expo Day 1'
+          date='November 10, 2025'
+          time='9:00 AM - 5:00 PM'
+          description='Join us on the first day of CS Expo as bright fourth-year students present their innovative theses with topics regarding Medicine & Health and Natural Language Processing.'
+          keynoteTitle='Keynote Talk'
+          keynoteSubtitle='Digital Transformation in the Philippines: Opportunities and Challenges'
+          keynoteDescription='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas enim neque, lobortis quis massa sit amet, convallis tincidunt enim. Suspendisse congue felis sapien, eu finibus ante pretium eget. Vestibulum aliquam viverra lorem vitae maximus.'
+          categories={box1.categories}
+          teams={box1.teams}
         />
 
-        {/* Keynote Talks Component */}
-        <InfoContainer
-          title="KEYNOTE TALKS"
-          date="MM/DD/YYYY"
-          time="00:00 AM - 00:00 PM"
-          description="Join the first day of CS EXPO, as bright fourth-year students present their innovative theses with topics regarding data analytics, health, and natural language processing. Under the data analytics category are groups Agatha, I-MNTRX, and Shrawnals. For the health category, Code Geass, Hurtz, Lorem Ipsum, and Samsan Lastly, for the natural language processing category are the thesis groups Codex, Ctrl Alt Delete, EnSys, Jatin's Matrix, and LMDFY."
+        {/* CS Expo Day 2 Section */}
+        <EventDaySection
+          title='CS Expo Day 2'
+          date='November 11, 2025'
+          time='9:00 AM - 5:00 PM'
+          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas enim neque, lobortis quis massa sit amet, convallis tincidunt enim. Suspendisse congue felis sapien, eu finibus ante pretium eget. Vestibulum aliquam viverra lorem vitae maximus.'
+          keynoteTitle='Keynote Talks'
+          keynoteSubtitle='Ethics in Emerging Technologies: Where Should We Draw the Line?'
+          keynoteDescription='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas enim neque, lobortis quis massa sit amet, convallis tincidunt enim. Suspendisse congue felis sapien, eu finibus ante pretium eget. Vestibulum aliquam viverra lorem vitae maximus.'
+          categories={box2.categories}
+          teams={box2.teams}
+          boxOnLeft={true}
         />
 
-        {/* Speakers Carousel */}
+        {/* Speakers Carousel for Day 1 */}
         <SpeakersCarousel speakers={testSpeakers} />
 
-        {/* Panelist Component */}
+        {/* Panelist Component for Day 1 */}
+        <PanelistsCarousel panelists={testPanelists} />
+
+        {/* Speakers Carousel for Day 2 */}
+        <SpeakersCarousel speakers={testSpeakers} />
+
+        {/* Panelist Component for Day 2 */}
         <PanelistsCarousel panelists={testPanelists} />
 
         {/* Footer Placeholder */}

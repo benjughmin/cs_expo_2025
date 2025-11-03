@@ -3,72 +3,47 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-interface Tab {
-  label: string;
-  href: string;
-}
-
 interface HeroProps {
-  title: string;
-  year: string;
+  title: string[];
   description: string;
-  tabs: Tab[];
 }
 
-function Hero({title, year, description, tabs}: HeroProps) {
+function Hero({title, description}: HeroProps) {
   const pathname = usePathname();
   
   return(
-    <section className="relative py-20 px-4 text-center">
-      <div className="max-w-6xl mx-auto">
+    <section className="relative py-20 px-4 text-center overflow-hidden">
+      {/* SVG Background */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+        <img 
+          src="/events/shape-306.svg" 
+          alt="" 
+          className="w-auto h-full object-contain opacity-60"
+        />
+      </div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
         <p 
-          className="font-monster text-6xl md:text-8xl text-white mb-4 tracking-wider"
+          className="font-monster text-[110px] leading-[85px] tracking-[0.09em] text-white mb-4"
           style={{
             WebkitTextStroke: '4px black',
             letterSpacing: '-0.02em'
           }}
         >
-          {title}
-          <span 
-            className="block font-monster tracking-tighter" 
-            style={{
-              background: 'linear-gradient(to bottom, #FF00DC, #FFFFFF)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              WebkitTextStroke: '4px black',
-              paintOrder: 'stroke fill',
-              letterSpacing: '-0.05em'
-            }}
-          >
-            {year}
-          </span>
+          {title[0]}
+        </p>
+        <p 
+          className="font-monster text-[110px] leading-[50px] tracking-[0.09em] text-[#FF00DC] mb-4 drop-shadow-[0_0_80px_rgba(255,0,220,0.8)] [text-shadow:0_2px_7.2px_rgba(255,255,255,1)]"
+          style={{
+            WebkitTextStroke: '1px black',
+          }}
+        >
+          {title[1]}
         </p>
         <p className="text-white/100 max-w-6xl mx-auto mb-20 font-helvetica text-sm">
           {description}
         </p>
-        
-        {/* Day Tabs */}
-        <div className="flex justify-center gap-20 text-white">
-          {tabs.map((tab, index) => {
-            const isActive = pathname === tab.href;
-            return (
-              <Link 
-                key={index} 
-                href={tab.href}
-                className={`font-helvetica text-base px-6 py-2 transition-all hover:text-[#FF00DC] hover:scale-110 ${
-                  isActive ? 'font-bold' : 'font-normal'
-                }`}
-              >
-                {tab.label}
-              </Link>
-            );
-          })}
-        </div>
       </div>
-      
-      {/* Horizontal Line */}
-      <div className="border-t border-white/100 mt-4 w-[1400px] mx-auto border-1"></div>
     </section>
   );
 }
