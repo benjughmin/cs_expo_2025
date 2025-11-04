@@ -2,7 +2,7 @@ import { projects } from "../data/ProjectsData";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/global/nav-bar";
 import Footer from "@/components/global/footer";
-import ProjectInfo from "@/components/projects/ProjectInfo";
+import ProjectInfo from "@/components/projects/GroupInfo";
 import GroupGallery from "@/components/projects/GroupGallery";
 import GroupHero from "@/components/projects/GroupHero";
 
@@ -46,7 +46,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         {/* Video Section */}
 
-        <h1 className="font-monster text-center text-gradient-group text-2xl mt-20 leading-[100px] -tracking-[2px] md:text-8xl lg:text-[96px] px-6 overflow-visible">
+        <h1 className="font-monster text-center text-gradient text-2xl mt-20 leading-[100px] -tracking-[2px] md:text-8xl lg:text-[96px] px-6 overflow-visible"
+          style={{
+            '--gradient-stop': '35%',
+            '--gradient-pink': '60%'
+          } as React.CSSProperties}
+        >
           AVP
         </h1>
         <div className="w-full max-w-6xl mx-auto border-t border-white mt-6"></div>

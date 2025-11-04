@@ -51,7 +51,12 @@ export default function GroupHero({ appTitle, groupName, logo }: GroupHeroProps)
             */}
           </div>
 
-          <h1 className="font-monster text-gradient-group mb-0 text-2xl leading-[100px] -tracking-[2px] md:text-8xl lg:text-[96px] px-6 overflow-visible">
+          <h1 className="font-monster text-gradient mb-0 text-2xl leading-[100px] -tracking-[2px] md:text-8xl lg:text-[96px] px-6 overflow-visible"
+            style={{
+              '--gradient-stop': '20%',
+              '--gradient-pink': '40%'
+            } as React.CSSProperties}
+          >
             {appTitle}
           </h1>
 
