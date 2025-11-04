@@ -6,6 +6,7 @@ export const projects = [
     thesisTitle:
       "Employing Knowledge-Based Recommendations in Crime Mapping for Manila City using ARIMA Forecasting Algorithm",
     poster: "/images/agila-poster.jpg",
+    logo: "/images/agila-logo.png",
     details: {
       groupName: "Agila Team",
       groupMembers: ["Ana", "Leo", "Mika"],
@@ -26,6 +27,7 @@ export const projects = [
     appTitle: "Lumina",
     thesisTitle: "Lumina: Smart Lighting System for Energy Efficiency",
     poster: "/images/lumina-poster.jpg",
+    logo: "/images/lumina-logo.png",
     details: {
       groupName: "Lumina Team",
       groupMembers: ["Ben", "Clara", "David"],
@@ -42,6 +44,7 @@ export const projects = [
     appTitle: "Aurora",
     thesisTitle: "Aurora: AI-Based Weather Prediction System",
     poster: "/images/aurora-poster.jpg",
+    logo: "/images/aurora-logo.png",
     details: {
       groupName: "Aurora Team",
       groupMembers: ["Ella", "James", "Nina"],
@@ -62,6 +65,7 @@ export const projects = [
     appTitle: "Nova",
     thesisTitle: "Nova: Renewable Energy Optimization for Smart Homes",
     poster: "/images/nova-poster.jpg",
+    logo: "/images/nova-logo.png",
     details: {
       groupName: "Nova Team",
       groupMembers: ["Sam", "Tina", "Milo"],
@@ -78,6 +82,7 @@ export const projects = [
     appTitle: "Orion",
     thesisTitle: "Orion: Intelligent Traffic Flow Management System",
     poster: "/images/orion-poster.jpg",
+    logo: "/images/orion-logo.png",
     details: {
       groupName: "Orion Team",
       groupMembers: ["Lara", "Noah", "Ethan"],
@@ -94,6 +99,7 @@ export const projects = [
     appTitle: "Vortex",
     thesisTitle: "Vortex: AI-Powered Health Monitoring Wearables",
     poster: "/images/vortex-poster.jpg",
+    logo: "/images/vortex-logo.png",
     details: {
       groupName: "Vortex Team",
       groupMembers: ["Ivy", "Alex", "Jonas"],
@@ -110,6 +116,7 @@ export const projects = [
     appTitle: "Zephyr",
     thesisTitle: "Zephyr: Smart Air Quality Monitoring System",
     poster: "/images/zephyr-poster.jpg",
+    logo: "/images/zephyr-logo.png",
     details: {
       groupName: "Zephyr Team",
       groupMembers: ["Maya", "Felix", "Cleo"],
@@ -126,6 +133,7 @@ export const projects = [
     appTitle: "Eclipse",
     thesisTitle: "Eclipse: Virtual Reality Learning Platform",
     poster: "/images/eclipse-poster.jpg",
+    logo: "/images/eclipse-logo.png",
     details: {
       groupName: "Eclipse Team",
       groupMembers: ["Liam", "Sophia", "Rina"],
@@ -142,6 +150,7 @@ export const projects = [
     appTitle: "Phoenix",
     thesisTitle: "Phoenix: Disaster Response AI System",
     poster: "/images/phoenix-poster.jpg",
+    logo: "/images/phoenix-logo.png",
     details: {
       groupName: "Phoenix Team",
       groupMembers: ["Oscar", "Lily", "Vince"],

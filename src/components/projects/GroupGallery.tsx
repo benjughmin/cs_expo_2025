@@ -1,71 +1,85 @@
-import ImageContainer from "./ImageContainer";
+import Image from "next/image";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 type GroupGalleryProps = {
-    details: {
-        groupName: string;
-        groupMembers: string[];
-        photoshoot: string[];
-    };
+  details: {
+    groupName: string;
+    groupMembers: string[];
+    photoshoot: string[];
+  };
 };
 
+const shimmer =
+  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxIDEnPjxyZWN0IHdpZHRoPScxJyBoZWlnaHQ9JzEnIGZpbGw9JyNFNUU3RUInLz48L3N2Zz4=";
+
 export default function GroupGallery({ details }: GroupGalleryProps) {
-    return (
-        //  gallery
-        <div className="flex flex-col items-center justify-center text-center">
-            <h1 className="font-monster text-9xl text-transparent [-webkit-text-stroke:1px_white] pb-2">
-                GALLERY
-            </h1>
-
-            {/*group name with star circle background*/}
-            <div className="relative flex items-center justify-center">
-                <img
-                    src="/projects/circlestar.png"
-                    alt="Star circle background"
-                    className="absolute top-1/2 left-1/2 h-auto w-[700px] -translate-x-1/2 -translate-y-1/2"
-                />
-
-                <h2 className="relative font-nhl text-8xl bg-gradient-to-b from-white from-40% to-[#FF00DC] 
-                bg-clip-text text-transparent [-webkit-text-stroke:1px_black] [filter:drop-shadow(1.5px_1.5px_0px_black)_drop-shadow(-1.5px_-1.5px_0px_black)]">                      {details.groupName}
-                </h2>
-            </div>
-
-            {/* --- Two Group Photos Section --- */}
-            <div className="mt-20 flex w-full max-w-[1366px] flex-col items-center gap-4">
-
-                {/* First Big Photo */}
-                {details.photoshoot[0] && (
-                    <ImageContainer
-                        src={details.photoshoot[0]}
-                        alt={`${details.groupName} Photoshoot Image 1`}
-                        caption=""
+  return (
+    // Gallery Header
+    <div className="flex flex-col items-center justify-center text-center">
+      <h1
+        className="font-monster text-center text-gradient text-2xl mt-20 leading-[100px] -tracking-[2px] md:text-8xl lg:text-[96px] px-6 overflow-visible"
+        style={
+          {
+            "--gradient-stop": "35%",
+            "--gradient-pink": "60%",
+          } as React.CSSProperties
+        }
+      >
+        Gallery
+      </h1>
+      <div className="w-full max-w-6xl mx-auto border-t border-white mt-6"></div>
+      <div className="w-full max-w-4xl px-24 mt-12 mb-12">
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-full"
+        >
+          {/* Image PlaceHolder */}
+          <div className="rounded-lg overflow-hidden relative">
+            <CarouselContent>
+              {details.photoshoot.map((photoUrl, index) => (
+                <CarouselItem key={index}>
+                  <div className="aspect-[3/2] relative">
+                    <Image
+                      src={'/projects/placeholderheader.png'} // To be replaced by actual values
+                      alt={`${details.groupName} gallery image ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      placeholder="blur"
+                      blurDataURL={shimmer}
                     />
-                )}
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </div>
 
-                {/* Second Big Photo */}
-                {details.photoshoot[1] && (
-                    <ImageContainer
-                        src={details.photoshoot[1]}
-                        alt={`${details.groupName} Photoshoot Image 2`}
-                        caption=""
-                    />
-                )}
+          {/* Navigation buttons */}
+          <CarouselPrevious className="-left-20" />
+          <CarouselNext className="-right-20" />
+        </Carousel>
 
-            </div>
-            {/* --- Group Members Grid Section --- */}
-            <div className="mt-5 mb-60 w-full max-w-7xl justify-evenly">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {details.groupMembers.map((memberName, index) => (
-                        <ImageContainer
-                            key={index}
-                            src={`https://via.placeholder.com/400x400.png?text=${memberName.replace(' ', '+')}`}
-                            alt={`Photo of ${memberName}`}
-                            // Pass the member's name as the caption to create the nameplate
-                            caption={memberName}
-                        />
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-
+        {/* Caption */}
+        <h2
+          className="text-2xl mb-6 mt-6 text-center font-avolta z-10"
+          style={{
+            letterSpacing: "4px",
+            color: "#ffffff",
+            textShadow: "0 0 6px rgba(255, 255, 255, 0.8)",
+          }}
+        >
+          Caption
+        </h2>
+      </div>
+    </div>
+  );
 }
