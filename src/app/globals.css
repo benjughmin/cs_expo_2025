@@ -38,7 +38,7 @@
   font-style: normal;
 }
 
-@font-face{
+@font-face {
   font-family: "Avolta";
   src: url("/fonts/Avolta.otf");
   font-weight: normal;
@@ -166,6 +166,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -179,5 +180,53 @@
     -webkit-text-stroke: 2px black;
     letter-spacing: 6px;
     filter: drop-shadow(0 0 2px #ff00dc);
+  }
+
+  /* Neon text styles */
+  .neon-text-pink {
+    @apply text-[#FF37E3] font-avolta tracking-widest;
+    text-shadow: 0 0 2px rgba(255, 0, 220, 0.7), 0 0 10px rgba(255, 0, 220, 0.5);
+  }
+
+
+  .neon-text-magenta {
+    @apply text-[#FF37E3] font-avolta tracking-widest;
+    text-shadow: 0 0 5px rgba(255, 0, 220, 0.7), 0 0 10px rgba(255, 0, 220, 0.5);
+    -webkit-text-stroke: 0.5px black;
+  }
+
+  .neon-text-magenta-hover-fade {
+    @apply text-[#FF37E3] font-avolta tracking-widest;
+    text-shadow: 0 0 5px rgba(255, 0, 220, 0.7), 0 0 10px rgba(255, 0, 220, 0.5);
+    -webkit-text-stroke: 0.5px black;
+    transition: all 0.3s;
+  }
+
+  .neon-text-magenta-hover-fade:hover,
+  .group:hover .neon-text-magenta-hover-fade {
+    text-shadow: none;
+    -webkit-text-stroke: 0;
+  }
+
+  /* Text styles */
+  .text-body-white {
+    @apply text-white text-sm leading-relaxed font-helvetica;
+  }
+
+  .text-body-white-base {
+    @apply text-white text-base leading-relaxed font-helvetica;
+  }
+
+  /* Card styles */
+  .project-card-bg {
+    @apply bg-[#FF00DC]/10 rounded-[24px] border border-[#A2108D];
+  }
+
+  .project-card-overlay {
+    @apply absolute inset-0 bg-[#FF00DC]/10 rounded-[24px] border border-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out;
+  }
+
+  .hover-fade {
+    @apply group-hover:opacity-40 group-hover:text-white transition-all duration-300;
   }
 }

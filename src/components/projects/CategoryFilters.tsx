@@ -23,7 +23,7 @@ export default function CategoryFilters() {
             key={index}
             onClick={() => setActiveIndex(isActive ? null : index)}
             className={`
-              min-w-[141px] px-2 font-helvetica font-bold h-[30px] text-xs rounded-[8px] transition-all whitespace-nowrap
+              min-w-[100px] px-2 font-helvetica font-bold h-[30px] text-xs rounded-[8px] transition-all whitespace-nowrap
               ${isActive
                 ? 'bg-transparent text-[#ff00dc] border border-[#ff00dc]'
                 : 'text-white border border-white hover:bg-[#ff00dc] hover:text-white hover:border-[#ff00dc]'
