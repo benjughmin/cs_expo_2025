@@ -15,7 +15,6 @@ type GroupGalleryProps = {
   };
 };
 
-
 const shimmer =
   "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxIDEnPjxyZWN0IHdpZHRoPScxJyBoZWlnaHQ9JzEnIGZpbGw9JyNFNUU3RUInLz48L3N2Zz4=";
 
@@ -35,9 +34,7 @@ export default function GroupGallery({ details }: GroupGalleryProps) {
         Gallery
       </h1>
       <div className="w-full max-w-6xl mx-auto border-t border-white mt-6"></div>
-
-      {/* --- CAROUSEL --- */}
-      <div className="w-full max-w-4xl px-4 md:px-10 mt-12 mb-12">
+      <div className="w-full max-w-4xl px-24 mt-12 mb-12">
         <Carousel
           opts={{
             align: "start",
@@ -50,7 +47,6 @@ export default function GroupGallery({ details }: GroupGalleryProps) {
             <CarouselContent>
               {details.photoshoot.map((photoUrl, index) => (
                 <CarouselItem key={index}>
-
                   <div className="aspect-[3/2] relative bg-gray-200">
                     <Image
                       src={photoUrl}
@@ -58,7 +54,6 @@ export default function GroupGallery({ details }: GroupGalleryProps) {
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-
                       placeholder="blur"
                       blurDataURL={shimmer}
                     />
@@ -77,9 +72,9 @@ export default function GroupGallery({ details }: GroupGalleryProps) {
         <h2
           className="text-2xl mb-6 mt-6 text-center font-avolta z-10"
           style={{
-            letterSpacing: '4px',
-            color: '#ffffff',
-            textShadow: '0 0 6px rgba(255, 255, 255, 0.8)'
+            letterSpacing: "4px",
+            color: "#ffffff",
+            textShadow: "0 0 6px rgba(255, 255, 255, 0.8)",
           }}
         >
           Caption
