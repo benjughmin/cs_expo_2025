@@ -14,7 +14,7 @@ export default function ProjectsPage() {
       />
       <div className="bg-gradient-to-b from-[#0D0D0D] from-[2%] to-[#0F0019] to-[12%] pb-16">
         <CategoryFilters />
-        <div className="w-full max-w-6xl mx-auto border-t border-white mb-6"></div>
+        <div className="w-full max-w-6xl mx-auto border-t border-white mb-2"></div>
         <ProjectsGrid />
       </div>
       <Footer />

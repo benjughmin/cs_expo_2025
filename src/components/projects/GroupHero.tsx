@@ -10,7 +10,7 @@ export default function GroupHero({ appTitle, groupName, logo }: GroupHeroProps)
   return (
     <section className="relative flex flex-col">
       <div
-        className="relative flex h-[95vh] flex-col items-center justify-center text-white bg-cover bg-center"
+        className="relative flex h-[100vh] flex-col items-center justify-center text-white bg-cover bg-center"
         style={{
           backgroundImage: `
             linear-gradient(to bottom, 

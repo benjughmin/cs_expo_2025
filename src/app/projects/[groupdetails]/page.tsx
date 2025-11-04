@@ -57,7 +57,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <div className="w-full max-w-6xl mx-auto border-t border-white mt-6"></div>
 
         {details.videoLink && (
-          <div className="flex justify-center py-10">
+          <div className="flex justify-center pt-10 pb-0">
             <div className="w-full max-w-[1366px]">
               <div className="aspect-video w-full overflow-hidden border-2 border-[#000000]">
                 <iframe

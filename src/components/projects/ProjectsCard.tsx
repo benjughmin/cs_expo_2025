@@ -47,20 +47,36 @@ export default function ProjectsCard({
         <div className="project-card-overlay p-8 flex flex-col justify-start items-start text-left text-white">
           <div className="w-full">
             {/* App Name */}
-            <p className="neon-text-pink text-2xl">{appTitle}</p>
+            <p
+              className="neon-text-pink text-2xl"
+              style={{
+                "--webkit-stroke-color": "white",
+                "--webkit-stroke-width": "0.1px"
+              } as React.CSSProperties}
+            >
+              {appTitle}
+            </p>
 
             {/* Thesis Title */}
             <p className="text-body-white-base mb-4">{thesisTitle}</p>
 
             {/* Group Name */}
             <div className="mb-4">
-              <h4 className="neon-text-pink text-xl">Group Name</h4>
+              <h4 className="neon-text-pink text-xl"
+                style={{
+                  "--webkit-stroke-color": "white",
+                  "--webkit-stroke-width": "0.1px"
+                } as React.CSSProperties}>Group Name</h4>
               <p className="text-body-white">{groupName}</p>
             </div>
 
             {/* Members List */}
             <div className="mb-4">
-              <h4 className="neon-text-pink text-xl">Members</h4>
+              <h4 className="neon-text-pink text-xl"
+                style={{
+                  "--webkit-stroke-color": "white",
+                  "--webkit-stroke-width": "0.1px"
+                } as React.CSSProperties}>Members</h4>
               {members.map((member) => (
                 <p key={member} className="text-body-white">{member}</p>
               ))}
@@ -68,13 +84,21 @@ export default function ProjectsCard({
 
             {/* Mentor */}
             <div className="mb-4">
-              <h4 className="neon-text-pink text-xl">Mentor</h4>
+              <h4 className="neon-text-pink text-xl"
+                style={{
+                  "--webkit-stroke-color": "white",
+                  "--webkit-stroke-width": "0.1px"
+                } as React.CSSProperties}>Mentor</h4>
               <p className="text-body-white">{mentor}</p>
             </div>
 
             {/* Category List */}
             <div>
-              <h4 className="neon-text-pink text-xl">Topics</h4>
+              <h4 className="neon-text-pink text-xl"
+                style={{
+                  "--webkit-stroke-color": "white",
+                  "--webkit-stroke-width": "0.1px"
+                } as React.CSSProperties}>Topics</h4>
               {category.map((cat) => (
                 <p key={cat} className="text-body-white">{cat}</p>
               ))}

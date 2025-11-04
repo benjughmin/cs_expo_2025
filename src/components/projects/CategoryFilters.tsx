@@ -14,7 +14,7 @@ export default function CategoryFilters() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
   return (
-    <section className="w-full pb-8 flex flex-wrap items-center justify-center gap-10 mb-6 -mt-8 relative z-10">
+    <section className="w-full pb-8 flex flex-wrap items-center justify-center gap-10 mb-2 -mt-8 relative z-10">
       {categories.map((category, index) => {
         const isActive = activeIndex === index
 
