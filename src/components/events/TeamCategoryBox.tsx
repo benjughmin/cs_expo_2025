@@ -12,35 +12,27 @@ interface TeamCategoryBoxProps {
 
 function TeamCategoryBox({ categories, teams }: TeamCategoryBoxProps) {
   return (
-    <div 
-      className="border border-white/30 rounded-3xl p-6 md:p-8 backdrop-blur-sm"
-      style={{
-        background: 'rgba(255, 255, 255, 0.05)'
-      }}
-    >
-      {/* Category Tags */}
-      <div className="flex flex-wrap gap-2 md:gap-3 mb-6">
+    <div className="border border-white rounded-[20px] p-6 md:p-8 px-[24px] py-[18px]">
+      {/* Category Pills at Top */}
+      <div className="flex flex-wrap justify-center gap-[10px] mb-6">
         {categories.map((category, index) => (
           <span 
             key={index}
-            className="px-4 py-2 border border-white/50 rounded-full text-white text-xs md:text-sm font-helvetica"
+            className="h-[30px] px-[15px] py-[5px] border border-white rounded-[8px] text-white text-[12px] font-helvetica font-semibold flex items-center justify-center whitespace-nowrap"
           >
             {category}
           </span>
         ))}
       </div>
 
-      {/* Divider Line */}
-      <div className="w-full h-px bg-white/30 mb-6"></div>
+      {/* Horizontal Divider */}
+      <div className="w-full h-px bg-white mb-6"></div>
 
-      {/* Teams Grid */}
-      <div className="grid grid-cols-2 gap-4">
+      {/* Teams Grid - 2 columns */}
+      <div className="grid grid-cols-2 gap-x-8 gap-y-4">
         {teams.map((team, index) => (
-          <div 
-            key={index}
-            className="text-center py-4"
-          >
-            <p className="text-white text-base md:text-lg font-helvetica">
+          <div key={index} className="text-center">
+            <p className="text-white text-[24px] font-helvetica">
               {team.name}
             </p>
           </div>

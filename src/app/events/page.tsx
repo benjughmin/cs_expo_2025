@@ -65,12 +65,6 @@ function EventsPage() {
         {/* Panelist Component for Day 1 */}
         <PanelistsCarousel panelists={testPanelists} />
 
-        {/* Speakers Carousel for Day 2 */}
-        <SpeakersCarousel speakers={testSpeakers} />
-
-        {/* Panelist Component for Day 2 */}
-        <PanelistsCarousel panelists={testPanelists} />
-
         {/* Footer Placeholder */}
         <footer>
           <Footer />
