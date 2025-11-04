@@ -7,9 +7,9 @@ export type Event = {
 
 export const events: Event[] = [
   {
-    name: "Event 1",
+    name: "Day 1",
     images: [
-      "/gallery/images/placeholder.jpg",
+      "/gallery/images/placeholder2.jpg",
       "/gallery/images/placeholder2.jpg",
       "/gallery/images/placeholder2.jpg",
       "/gallery/images/placeholder2.jpg",
@@ -18,18 +18,18 @@ export const events: Event[] = [
     ],
   },
   {
-    name: "Event 2",
+    name: "Day 2",
     images: [
       "/gallery/images/placeholder.jpg",
-      "/gallery/images/placeholder2.jpg",
       "/gallery/images/placeholder.jpg",
-      "/gallery/images/placeholder2.jpg",
       "/gallery/images/placeholder.jpg",
-      "/gallery/images/placeholder2.jpg",
+      "/gallery/images/placeholder.jpg",
+      "/gallery/images/placeholder.jpg",
+      "/gallery/images/placeholder.jpg",
     ],
   },
   {
-    name: "Event 3",
+    name: "Dev Day",
     images: [
       "/gallery/images/placeholder.jpg",
       "/gallery/images/placeholder2.jpg",
