@@ -27,7 +27,6 @@ export function BestThesisCategory() {
             alt={BestProjects[currentPage].title}
             fill
             className="object-cover"
-            quality={100}
             priority
             sizes="40vw"
           />
@@ -48,7 +47,6 @@ export function BestThesisCategory() {
                   currentPage === 0 && "invisible"
                 )}
                 onClick={handlePrev}
-                quality={100}
                 priority
               />
             </div>
@@ -100,7 +98,6 @@ export function BestThesisCategory() {
                   BestProjects.length - 1 === currentPage && "invisible"
                 )}
                 onClick={handleNext}
-                quality={100}
                 priority
               />
             </div>

@@ -5,7 +5,7 @@ import { AwardeeCard } from "./AwardeeCard"
 export function AwardeeBlock({ award, alt }: { award: AwardProps; alt: boolean }) {
   return (
     <>
-      <section className="flex w-full flex-col items-center gap-6 bg-gradient-to-b from-[#0D0D0D] from-[2%] to-[#0F0019] to-[4%] p-4 pt-10 text-white">
+      <section className="flex w-full flex-col items-center gap-6 bg-[#0f0019] to-[4%] p-4 pt-10 text-white">
         {/* Title */}
         {/* I made 2 layers for shadow and gradients since gradients require the `text-transparent` and the shadow to be behind it so I created the same text layer but with a non-transparent color */}
         <div className="relative mb-10 w-full">
