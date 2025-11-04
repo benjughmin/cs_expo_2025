@@ -1,10 +1,11 @@
 "use client"
 
+// Import useState
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import Image from "next/image"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -173,19 +174,17 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
 
 function CarouselPrevious({
   className,
-  variant = "outline",
-  size = "icon",
   ...props
 }: React.ComponentProps<typeof Button>) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel()
+  const [isHovered, setIsHovered] = React.useState(false)
 
   return (
     <Button
       data-slot="carousel-previous"
-      variant={variant}
-      size={size}
+      size="icon"
       className={cn(
-        "absolute size-8 rounded-full",
+        "absolute size-10 rounded-full",
         orientation === "horizontal"
           ? "top-1/2 -left-12 -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -193,9 +192,22 @@ function CarouselPrevious({
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
+      // mouse enter/leave events to update state
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       {...props}
     >
-      <ArrowLeft />
+      <Image
+        src={
+          isHovered
+            ? "/projects/left-hovered.svg"
+            : "/projects/left-arrow.svg"
+        }
+        alt="Previous"
+        width={40}
+        height={40}
+        className="size-10"
+      />
       <span className="sr-only">Previous slide</span>
     </Button>
   )
@@ -203,19 +215,17 @@ function CarouselPrevious({
 
 function CarouselNext({
   className,
-  variant = "outline",
-  size = "icon",
   ...props
 }: React.ComponentProps<typeof Button>) {
   const { orientation, scrollNext, canScrollNext } = useCarousel()
+  const [isHovered, setIsHovered] = React.useState(false)
 
   return (
     <Button
       data-slot="carousel-next"
-      variant={variant}
-      size={size}
+      size="icon"
       className={cn(
-        "absolute size-8 rounded-full",
+        "absolute size-10 rounded-full",
         orientation === "horizontal"
           ? "top-1/2 -right-12 -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -223,9 +233,22 @@ function CarouselNext({
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
+      // mouse enter/leave events to update state
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       {...props}
     >
-      <ArrowRight />
+      <Image
+        src={
+          isHovered
+            ? "/projects/right-hovered.svg"
+            : "/projects/right-arrow.svg"
+        }
+        alt="Next"
+        width={40}
+        height={40}
+        className="size-10"
+      />
       <span className="sr-only">Next slide</span>
     </Button>
   )
