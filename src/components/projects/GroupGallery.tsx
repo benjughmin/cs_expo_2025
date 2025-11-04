@@ -47,9 +47,9 @@ export default function GroupGallery({ details }: GroupGalleryProps) {
             <CarouselContent>
               {details.photoshoot.map((photoUrl, index) => (
                 <CarouselItem key={index}>
-                  <div className="aspect-[3/2] relative bg-gray-200">
+                  <div className="aspect-[3/2] relative">
                     <Image
-                      src={photoUrl}
+                      src={'/projects/placeholderheader.png'} // To be replaced by actual values
                       alt={`${details.groupName} gallery image ${index + 1}`}
                       fill
                       className="object-cover"

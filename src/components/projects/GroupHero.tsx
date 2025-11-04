@@ -17,7 +17,7 @@ export default function GroupHero({ appTitle, groupName, logo }: GroupHeroProps)
               transparent 0%, 
               #0F0019 95%
             ),
-            url('/projects/placeholderheader.png')
+            url('/projects/placeholderheader.png') 
           `,
         }}
       >
@@ -33,22 +33,23 @@ export default function GroupHero({ appTitle, groupName, logo }: GroupHeroProps)
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-center px-4 gap-12 text-center">
           {/* Group Logo */}
           <div className="relative w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48">
-            {/* Placeholder box - uncomment Image component below when logo is ready */}
+            {/* Placeholder box 
+           
             <div className="w-full h-full bg-white flex items-center justify-center">
               <span className="text-gray-300 text-sm font-semibold">LOGO</span>
             </div>
 
-            {/* Uncomment when ready to use actual logo
+             */}
+
             {logo && (
               <Image
-                src={logo}
+                src={'/projects/Agile_ThesisLogo.png'} //To be replaced by actual values
                 alt={`${groupName} logo`}
                 fill
                 className="object-contain drop-shadow-[0_0_10px_rgba(255,0,204,0.5)]"
                 priority
               />
             )}
-            */}
           </div>
 
           <h1 className="font-monster text-gradient mb-0 text-2xl leading-[100px] -tracking-[2px] md:text-8xl lg:text-[96px] px-6 overflow-visible"

@@ -22,19 +22,18 @@ export default function ProjectInfo({ thesisTitle, poster, details }: ProjectInf
             {/* Main flex container for the two-column layout */}
             <div className="flex flex-col lg:flex-row gap-6 lg:justify-center">
 
-                {/* LEFT COLUMN: Poster Image */}
-                <div className="lg:w-[650px] lg:h-[900px]">
+                <div className="lg:w-[650px] aspect-[602/853]">
                     <Image
-                        src={poster}
+                        src={'/projects/Agile_Poster.png'} //To be replaced by actual values
                         alt={`${thesisTitle} Poster`}
                         width={602}
                         height={853}
-                        className="rounded-lg object-cover w-full h-full shadow-lg bg-white"
+                        className="rounded-[20px] object-cover w-full h-full shadow-lg"
                     />
                 </div>
 
                 {/* RIGHT COLUMN: Two stacked boxes of equal height */}
-                <div className="lg:w-[750px] lg:h-[900px] flex flex-col gap-6">
+                <div className="lg:w-[750px] flex flex-col gap-6">
 
                     {/* Box 1: Thesis Title & Description */}
                     <div
@@ -72,7 +71,7 @@ export default function ProjectInfo({ thesisTitle, poster, details }: ProjectInf
                             <h4 className="text-xl font-avonta neon-text-pink mb-4 ">Topics</h4>
                             <div className="flex flex-wrap gap-4 justify-center">
                                 {details.category.map((cat, index) => (
-                                    <InfoPill key={index} text={cat} size='sm'/>
+                                    <InfoPill key={index} text={cat} size='sm' />
                                 ))}
                             </div>
                         </div>

@@ -21,16 +21,19 @@ export default function ProjectsCard({
   slug,
 }: ProjectsCardProps) {
   return (
-    <Link href={`/projects/${slug}`} className="block w-full max-w-[400px]">
-      <div className="relative group cursor-pointer h-[720px]">
+    <Link href={`/projects/${slug}`} className="block w-full max-w-[400px] h-full">
+      <div className="relative group cursor-pointer h-full">
         <div className="project-card-bg p-4 w-full h-full flex flex-col transition-all duration-300 ease-in-out">
-          {/* Poster 
           <div
-            className="w-full max-w-[332px] h-[300px] sm:h-[406px] rounded-[16px] mb-4 mx-auto bg-cover bg-center"
-            style={{ backgroundImage: `url(${poster})` }}
-          ></div> */}
+            className="w-full max-w-[380px] aspect-[420/594] rounded-[16px] mb-4 mx-auto bg-center bg-cover
+             group-hover:opacity-15 transition-opacity duration-300 ease-in-out"
+            style={{ backgroundImage: `url(${'projects/Agile_Poster.png'})` }} //To be replaced by actual values
+          ></div>
 
-          <div className="bg-[#D9D9D9] w-full max-w-[380px] h-[300px] sm:h-[564px] rounded-[16px] mb-4 mx-auto"></div>
+          {/*  
+                   <div className="bg-[#D9D9D9] w-full max-w-[380px] h-[300px] sm:h-[564px] rounded-[16px] mb-4 mx-auto"></div>
+
+         */}
 
           {/* Text content */}
           <div className="flex flex-col flex-grow">
