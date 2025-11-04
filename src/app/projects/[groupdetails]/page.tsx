@@ -1,11 +1,10 @@
-
 import { projects } from "../data/ProjectsData";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/global/nav-bar";
 import Footer from "@/components/global/footer";
-import Image from "next/image"
-import ProjectInfo from "@/components/projects/ProjectInfo";
+import ProjectInfo from "@/components/projects/GroupInfo";
 import GroupGallery from "@/components/projects/GroupGallery";
+import GroupHero from "@/components/projects/GroupHero";
 
 type ProjectPageProps = {
   params: {
@@ -21,86 +20,48 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     return notFound();
   }
 
-  const { appTitle, details } = project;
+  const { appTitle, logo, details } = project;
 
   return (
-
     <main className="bg-black text-white">
-      {/* Hero section with background image */}
-      <section className="relative flex h-[110vh] flex-col">
-        <div
-          className="relative flex h-[65%] flex-col items-center justify-center text-white bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/projects/placeholderheader.png')",
-          }}
-        >
-          {/* Navbar positioned at the top */}
-          <div className="absolute top-0 left-0 w-full z-10">
-            <Navbar />
-          </div>
+      {/* Navbar Section */}
+      <Navbar />
 
-          {/* Hero content */}
-          <div className="mx-auto flex max-w-6xl translate-y-20 flex-col items-center justify-center px-4 text-center z-20">
-            <h1
-              className="text-9xl font-monster mb-4 text-center bg-clip-text text-transparent"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 25%, rgba(255,0,220,1) 55%, rgba(72,12,168,1) 100%)",
-                WebkitTextFillColor: "transparent",
-                filter: `
-      drop-shadow(1.5px 1.5px 0px #FFF)
-      drop-shadow(-1.5px -1.5px 0px #FFF)
-    `
-              }}
-            >
-              {appTitle}
-            </h1>
-            <h2
-              className="text-xl mb-6 text-center font-monster text-transparent"
-              style={{
-                WebkitTextStroke: "2px white",
+      {/* Hero Section */}
+      <GroupHero
+        appTitle={appTitle}
+        groupName={details.groupName}
+        logo={logo}
+      />
 
-              }}
-            >
-              By {details.groupName}
-            </h2>          </div>
-        </div>
+      {/* Content section with purple background */}
+      <div className="bg-[#0F0019]">
+        {/* Project Info Section */}
+        <ProjectInfo
+          thesisTitle={project.thesisTitle}
+          poster={project.poster}
+          details={project.details}
+        />
 
-        {/* Bottom section with vector image */}
-        <div className="h-[35%] bg-gradient-to-t from-black from-[15%] via-[#480CA8] via-[85%] to-[#C39EFF] to-[100%]">
-          <div className="relative h-full w-full -translate-y-0.5">
-            <Image
-              src="/HOF/vector.svg"
-              alt="Projects Hero"
-              fill
-              className="object-cover lg:object-fill"
-              quality={100}
-            />
-          </div>
-        </div>
-      </section>
 
-      {/* Project Info Section */}
-      <ProjectInfo thesisTitle={project.thesisTitle} poster={project.poster} details={project.details} />
-
-      {/* Video Section and Group Gallery with Background. I separated the video section from the projectinfo
-      so that I can group it with the groupgallery to have the same background */}
-      <div
-        className="mt-12"
-        style={{
-          backgroundImage: "url('/projects/background2.png')",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-        }}
-      >
         {/* Video Section */}
+
+        <h1 className="font-monster text-center text-gradient text-2xl mt-20 leading-[100px] -tracking-[2px] md:text-8xl lg:text-[96px] px-6 overflow-visible"
+          style={{
+            '--gradient-stop': '35%',
+            '--gradient-pink': '60%'
+          } as React.CSSProperties}
+        >
+          AVP
+        </h1>
+        <div className="w-full max-w-6xl mx-auto border-t border-white mt-6"></div>
+
         {details.videoLink && (
-          <div className="flex justify-center py-10">
-            <div className="w-full max-w-[1366px]">
+          <div className="flex justify-center pt-10 pb-0">
+            <div className="w-full max-w-[1366px] px-4">
               <div className="aspect-video w-full overflow-hidden border-2 border-[#000000]">
                 <iframe
-                  src={details.videoLink}
+                  src={details.videoLink}               
                   title="Project Video Showcase"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -114,11 +75,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         {/* Group Gallery Section */}
         <GroupGallery details={details} />
-
       </div>
 
       <Footer />
     </main>
   );
 }
-
