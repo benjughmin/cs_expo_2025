@@ -1,26 +1,39 @@
-{/* This component represents the category filter buttons. */}
+"use client"
+import { useState } from "react"
 
-//Sample for UI only, still don't know how categories will be handled in the database
 export default function CategoryFilters() {
   const categories = [
-    "Category",
-    "Category",
-    "Category",
-    "Category",
-    "Category",
-    "Category",
-  ];
+    "Natural Language Processing",
+    "Medicine & Health",
+    "Computer Vision",
+    "Environment",
+    "Education",
+    "Agriculture",
+  ]
 
-return (
-    <section className="w-full py-8 flex flex-wrap items-center justify-center gap-10 mb-8">
-      {categories.map((category, index) => (
-        <button
-          key={index}
-          className="w-[176px] font-bold h-[56px] text-lg text-white border-2 border-white/50 rounded-full hover:bg-white/10 transition-colors"
-        >
-          {category}
-        </button>
-      ))}
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+
+  return (
+    <section className="w-full pb-8 flex flex-wrap items-center justify-center gap-10 mb-2 -mt-8 relative z-10">
+      {categories.map((category, index) => {
+        const isActive = activeIndex === index
+
+        return (
+          <button
+            key={index}
+            onClick={() => setActiveIndex(isActive ? null : index)}
+            className={`
+              min-w-[100px] px-2 font-helvetica font-bold h-[30px] text-xs rounded-[8px] transition-all whitespace-nowrap
+              ${isActive
+                ? 'bg-transparent text-[#ff00dc] border border-[#ff00dc]'
+                : 'text-white border border-white hover:bg-[#ff00dc] hover:text-white hover:border-[#ff00dc]'
+              }
+            `}
+          >
+            {category}
+          </button>
+        )
+      })}
     </section>
-  );
+  )
 }
