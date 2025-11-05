@@ -40,6 +40,7 @@
 
 @font-face {
   font-family: "Avolta";
+  src: url("/fonts/avolta [ţёIеģřа₥  – @ałl4dёšíģnёŕ).otf") format("opentype");
   src: url("/fonts/Avolta.otf");
   font-weight: normal;
   font-style: normal;
@@ -51,6 +52,7 @@
   --font-helvetica: "Helvetica Now Display", sans-serif;
   --font-dreamer: "Dreamer TM", sans-serif;
   --font-avolta: "Avolta", sans-serif;
+  --font-chivo-mono: var(--font-chivo-mono);
 }
 
 @theme inline {

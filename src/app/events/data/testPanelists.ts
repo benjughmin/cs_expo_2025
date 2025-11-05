@@ -4,7 +4,7 @@ export const testPanelists = [
   {
     name: "DR. SARAH CHEN",
     title: "Chief AI Research Scientist",
-    bio: "Leading expert in artificial intelligence and machine learning with over 15 years of experience. Published over 100 research papers and developed cutting-edge AI systems used by Fortune 500 companies.",
+    bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, sapien at dapibus luctus, lacus augue egestas erat, vel feugiat orci turpis a libero. Integer vitae sem eget nunc malesuada aliquet. Curabitur at magna non velit interdum interdum. Suspendisse potenti. Vivamus in est non turpis tristique congue. Duis sit amet nisi nec ligula malesuada dignissim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
     image: "/speakers/picture-placeholder.jpg"
   },
   {
