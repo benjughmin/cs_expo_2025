@@ -1,5 +1,6 @@
 import React from 'react';
 import Hero from '@/components/events/Hero';
+import TeamLogos from '@/components/events/TeamLogos';
 import SpeakersCarousel from '@/components/events/SpeakersCarousel';
 import PanelistsCarousel from '@/components/events/PanelistsCarousel';
 import EventDaySection from '@/components/events/EventDaySection';
@@ -12,14 +13,24 @@ import Footer from '@/components/global/footer';
 
 function EventsPage() {
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Background Gradient Vector */}
-      <div 
-        className="absolute top-0 left-0 w-[1400px] h-[1400px] pointer-events-none z-0"
-        style={{
-          background: 'radial-gradient(circle at top left, rgba(255, 182, 193, 0.4) 0%, rgba(218, 112, 214, 0.3) 25%, rgba(147, 112, 219, 0.2) 50%, transparent 70%)'
-        }}
-      />
+    <div className="min-h-screen bg-[rgba(15,0,25,1)] relative overflow-hidden">
+      {/* Background Image with Fade */}
+      <div className="absolute top-0 left-0 w-full h-[600px] md:h-[800px] z-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
+          style={{
+            backgroundImage: 'url(/events/hero-background.png)',
+          }}
+        />
+        {/* Gradient overlay for fade effect */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to bottom, transparent 0%, transparent 10%, rgba(15, 0, 25, 1) 80%)'
+          }}
+        />
+      </div>
+     
       
       {/* Content wrapper with higher z-index */}
       <div className="relative z-10">
@@ -28,9 +39,20 @@ function EventsPage() {
 
         {/* Hero Component */}
         <Hero
-          title={['CS', 'EXPO']}
+          title='CS EXPO'
           description="A two-day event showcasing student projects to a group of panelists composed of faculty members and industry professionals. Current tech trends will be discussed by industry leaders."
         />
+
+        {/* Team Logos Container */}
+        <TeamLogos logos={[
+          '/logo/placeholder/logo1.png',
+          '/logo/placeholder/logo1.png',
+          '/logo/placeholder/logo1.png',
+          '/logo/placeholder/logo1.png',
+          '/logo/placeholder/logo1.png',
+          '/logo/placeholder/logo1.png',
+          '/logo/placeholder/logo1.png',
+        ]} />
 
         {/* CS Expo Day 1 Section */}
         <EventDaySection

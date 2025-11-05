@@ -4,7 +4,7 @@ import TeamCategoryBox from './TeamCategoryBox';
 
 interface Team {
   name: string;
-  category?: string;
+  category: string;
 }
 
 interface EventDaySectionProps {
@@ -27,13 +27,13 @@ function EventDaySection({title, date, time, description, keynoteTitle, keynoteS
         {/* Main Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-30 lg:items-center">
           
-          {/* Teams/Categories Box */}
-          <div className={`w-full ${boxOnLeft ? 'lg:order-1' : 'lg:order-2'}`}>
+          {/* Teams/Categories Box - Order 3 on mobile, Order 1 or 2 on desktop */}
+          <div className={`w-full order-3 ${boxOnLeft ? 'lg:order-1' : 'lg:order-2'}`}>
             <TeamCategoryBox categories={categories} teams={teams} />
           </div>
 
-          {/* Event Info */}
-          <div className={`space-y-6 ${boxOnLeft ? 'lg:order-2' : 'lg:order-1'}`}>
+          {/* Event Info - Order 1 on mobile, Order 1 or 2 on desktop */}
+          <div className={`space-y-6 order-1 ${boxOnLeft ? 'lg:order-2' : 'lg:order-1'}`}>
             {/* Title */}
             <p 
               className="font-avolta font-normal md:text-[48px] text-4xl text-white leading-[40px] tracking-[0.1em] mb-0 align-middle"
