@@ -22,7 +22,7 @@ interface EventDaySectionProps {
 
 function EventDaySection({title, date, time, description, keynoteTitle, keynoteSubtitle, keynoteDescription, categories, teams, boxOnLeft = false}: EventDaySectionProps) {
   return (
-    <section className="py-16 px-4 md:px-8">
+    <section className="pt-0 pb-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Main Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-30 lg:items-center">

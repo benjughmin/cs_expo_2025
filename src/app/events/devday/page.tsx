@@ -1,71 +1,120 @@
 import React from 'react';
-import InfoContainer from '@/components/events/InfoContainer';
 import Hero from '@/components/events/Hero';
 import SpeakersCarousel from '@/components/events/SpeakersCarousel';
+import DevDayScheduleLayout from '@/components/events/DevDayScheduleLayout';
 import { testSpeakers } from '@/app/events/data/testSpeakers';
 import Navbar from '@/components/global/nav-bar';
 import Footer from '@/components/global/footer';
 
+
 function DevDayPage() {
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Purple Gradient - Middle Top Left */}
+    <div className="min-h-screen bg-[rgba(15,0,25,1)] relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute top-0 left-0 w-full h-[600px] md:h-[800px] z-0">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
+          style={{
+            backgroundImage: 'url(/events/devday-hero-background.png)',
+          }}
+        />
+        {/* Gradient overlay */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to bottom, transparent 0%, transparent 10%, rgba(15, 0, 25, 1) 80%)'
+          }}
+        />
+      </div>
+
+      {/* SVG Shape Background 1 - Left Side */}
+      <div className="absolute left-0 top-[25%] -translate-y-1/2 z-0 opacity-70">
+        <img 
+          src="/events/shape-240.svg" 
+          alt="" 
+          className="w-[150px] md:w-[300px] lg:w-[500px]"
+        />
+      </div>
+
+      {/* SVG Shape Background 2 - Right Side */}
+      <div className="absolute right-0 top-[30%] -translate-y-1/2 z-0 opacity-70">
+        <img 
+          src="/events/shape-240-2.svg" 
+          alt="" 
+          className="w-[150px] md:w-[300px] lg:w-[300px]"
+        />
+      </div>
+
+       {/* SVG Shape Background 3 - Left Side */}
       <div 
-        className="absolute top-[15%] -left-[500px] w-[1300px] h-[1300px] pointer-events-none z-0"
+        className="absolute left-[0] top-[50%] -translate-y-1/2 z-0 opacity-70"
         style={{
-          background: 'radial-gradient(circle, rgba(147, 112, 219, 0.4) 0%, rgba(72, 12, 168, 0.3) 30%, transparent 70%)',
-          filter: 'blur(100px)',
+          maskImage: 'linear-gradient(to bottom, black 0%, black 50%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 50%, transparent 100%)'
         }}
-      />
-      
-      {/* Pink Gradient - Middle Bottom Right (Larger) */}
-      <div 
-        className="absolute top-1/3 -right-[800px] w-[2000px] h-[2000px] pointer-events-none z-0"
-        style={{
-          background: 'radial-gradient(circle, rgba(255, 0, 220, 0.4) 0%, rgba(255, 105, 180, 0.3) 30%, transparent 70%)',
-          filter: 'blur(120px)',
-        }}
-      />
-      
-      {/* Content wrapper with higher z-index */}
+      >
+        <img 
+          src="/events/shape-240-3.svg" 
+          alt="" 
+          className="w-[150px] md:w-[300px] lg:w-[300px]"
+        />
+      </div>
+     
       <div className="relative z-10">
-        {/* Header Placeholder */}
-        <header>
-          <Navbar />
-        </header>
+        {/* Navbar */}
+        <Navbar />
 
         {/* Hero Component */}
         <Hero
-          title="CS EXPO"
-          year="2025"
-          description="Join the first day of CS EXPO, as bright fourth-year students present their innovative theses with topics regarding data analytics, health, and natural language processing. Under the data analytics category are groups Agatha, LMNTRX, and Strawhats. For the health category, Code Geass, Hurtz, Lorem Ipsum, and Samsan. Lastly, for the natural language processing category are the thesis groups Codex, Ctrl Alt Delete, EnSys, Jathro's Matrix, and LMDIFY."
-          tabs={[
-            { label: "CS EXPO DAY 1", href: "/events" },
-            { label: "CS EXPO DAY 2", href: "/events/day2" },
-            { label: "DEV DAY", href: "/events/devday" }
+          title='DEV DAY'
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas enim neque, lobortis quis massa sit amet, convallis tincidunt enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas enim neque, lobortis quis massa sit amet, convallis tincidunt enim."
+          variant="devday"
+        />
+
+        {/* Dev Day Info Layout */}
+        <DevDayScheduleLayout
+          variant="devday"
+          devDayInfo={{
+            title: "Dev Day",
+            subtitle: "November 12, 2025  |  9:00 AM - 5:00 PM",
+            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas enim neque, lobortis quis massa sit amet, convallis tincidunt enim. Suspendisse congue felis sapien, eu finibus ante pretium eget. Vestibulum aliquam viverra lorem vitae maximus."
+          }}
+          staticSections={[
+            {
+              title: "Keynote Talk",
+              subtitle: "Digital Transformation in the Philippines: Opportunities and Challenges",
+              description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas enim neque, lobortis quis massa sit amet, convallis tincidunt enim. Suspendisse congue felis sapien, eu finibus ante pretium eget. Vestibulum aliquam viverra lorem vitae maximus."
+            },
+            {
+              title: "Panel Discussion",
+              subtitle: "Digital Transformation in the Philippines: Opportunities and Challenges",
+              description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas enim neque, lobortis quis massa sit amet, convallis tincidunt enim. Suspendisse congue felis sapien, eu finibus ante pretium eget. Vestibulum aliquam viverra lorem vitae maximus."
+            }
+          ]}
+          carouselSections={[
+            {
+              title: "Lightning Talk 1",
+              subtitle: "Automating Processes with No-Code Solutions on Industry Workflows",
+              description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas enim neque, lobortis quis massa sit amet, convallis tincidunt enim. Suspendisse congue felis sapien, eu finibus ante pretium eget. Vestibulum aliquam viverra lorem vitae maximus."
+            },
+            {
+              title: "Lightning Talk 2",
+              subtitle: "Building Scalable Applications with Modern Architecture",
+              description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas enim neque, lobortis quis massa sit amet, convallis tincidunt enim. Suspendisse congue felis sapien, eu finibus ante pretium eget. Vestibulum aliquam viverra lorem vitae maximus."
+            },
+            {
+              title: "Lightning Talk 3",
+              subtitle: "Data-Driven Decision Making in Software Development",
+              description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas enim neque, lobortis quis massa sit amet, convallis tincidunt enim. Suspendisse congue felis sapien, eu finibus ante pretium eget. Vestibulum aliquam viverra lorem vitae maximus."
+            }
           ]}
         />
+        
 
-        {/* DEV DAY Component */}
-        <InfoContainer
-          title="DEV DAY"
-          date="MM/DD/YYYY"
-          time="00:00 AM - 00:00 PM"
-          description="Join the first day of CS EXPO, as bright fourth-year students present their innovative theses with topics regarding data analytics, health, and natural language processing. Under the data analytics category are groups Agatha, LMNTRX, and Strawhats. For the health category, Code Geass, Hurtz, Lorem Ipsum, and Samsan. Lastly, for the natural language processing category are the thesis groups Codex, Ctrl Alt Delete, EnSys, Jathro's Matrix, and LMDIFY."
-        />
-
-        {/* Keynote Talks Component */}
-        <InfoContainer
-          title="KEYNOTE TALKS"
-          date="MM/DD/YYYY"
-          time="00:00 AM - 00:00 PM"
-          description="Join the first day of CS EXPO, as bright fourth-year students present their innovative theses with topics regarding data analytics, health, and natural language processing. Under the data analytics category are groups Agatha, LMNTRX, and Strawhats. For the health category, Code Geass, Hurtz, Lorem Ipsum, and Samsan. Lastly, for the natural language processing category are the thesis groups Codex, Ctrl Alt Delete, EnSys, Jathro's Matrix, and LMDIFY."
-        />
-
-        {/* Speakers Carousel - Testing */}
+        {/* Speakers Carousel for Dev Day */}
         <SpeakersCarousel speakers={testSpeakers} />
 
-        {/* Footer Placeholder */}
+        {/* Footer */}
         <footer>
           <Footer />
         </footer>
