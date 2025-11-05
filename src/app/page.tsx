@@ -1,56 +1,53 @@
 import HeroSection from "@/components/home/hero-section";
 import Footer from "@/components/global/footer";
 import Navbar from "@/components/global/nav-bar";
-import Galaxy from "@/components/global/Galaxy";
+import FaultyTerminal from "@/components/FaultyTerminal";
 import Image from "next/image";
 
 export default function Home() {
+  const assets = [
+    { src: "/logo/expo_logo.png", type: "image" as const },
+    { src: "/HOF/vector.svg", type: "image" as const },
+    // Add more assets as needed
+  ];
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <main
-        className="flex-grow relative pb-14"
-        style={{
-          background: "linear-gradient(180deg, #1A1A1A 0%, #1A1A1A 30%, #480CA8 70%, #AF05C5 85%, #FF00DC 100%)"
-        }}
-      >
-        {/* Galaxy Background Layer */}
-        <div className="absolute inset-0 z-0">
-          <Galaxy
-            mouseInteraction={false}
-            mouseRepulsion={false}
-            density={1.5}
-            glowIntensity={0.5}
-            saturation={0}
-            hueShift={170}
-            twinkleIntensity={0.5}
-            rotationSpeed={0.1}
-            repulsionStrength={1.0}
-            autoCenterRepulsion={0}
-            starSpeed={0.5}
+      <div className="flex flex-col min-h-screen">
+        <main
+          className="flex-grow relative pb-14"
+          style={{
+            background: "linear-gradient(180deg, #1A1A1A 0%, #1A1A1A 30%, #480CA8 70%, #AF05C5 85%, #FF00DC 100%)"
+          }}
+        >
+          <div className="absolute inset-0 z-0">
+            <FaultyTerminal
+            scale={1.5}
+            gridMul={[2, 1]}
+            digitSize={1.2}
+            timeScale={1}
+            pause={false}
+            scanlineIntensity={1}
+            glitchAmount={1}
+            flickerAmount={1}
+            noiseAmp={1}
+            chromaticAberration={0}
+            dither={0}
+            curvature={0.2}
+            tint="#341539"
+            mouseReact={true}
+            mouseStrength={0.5}
+            pageLoadAnimation={false}
+            brightness={1}
           />
-        </div>
+          </div>
 
-        {/* Content Layer */}
-        <div className="relative z-10">
-          <Navbar />
-          <HeroSection />
-        </div>
-      </main>
+          <div className="relative z-10">
+            <Navbar />
+            <HeroSection />
+          </div>
+        </main>
 
-      {/* SVG Section - Below Galaxy/Main */}
-      <div className="h-[200px] sm:h-[300px] md:h-[400px] bg-gradient-to-t from-[black] from-[15%] via-[#480CA8] via-[85%] to-[#C39EFF] to-[100%]">
-        <div className="relative h-full w-full -translate-y-0.5">
-          <Image
-            src="/HOF/vector.svg"
-            alt="Projects Hero"
-            fill
-            className="object-cover lg:object-fill"
-            quality={100}
-          />
-        </div>
+        <Footer />
       </div>
-
-      <Footer />
-    </div>
   );
 }

@@ -31,28 +31,28 @@ const HeroSection: React.FC = () => {
                 <Image
                     src="/logo/expo_logo.png"
                     alt="Logo"
-                    width={836}
-                    height={505}
-                    priority
+                    width={518}
+                    height={374}
+                    priority 
                 />
-                <div className="text-center -mt-18">
+                <div className="text-center -mt-10">
                     <h1
-                        className="font-dreamer text-4xl sm:text-6xl md:text-8xl font-bold text-white"
+                        className="font-dreamer text-2xl sm:text-4xl md:text-6xl text-white"
                         style={{
-                            WebkitTextStroke: "0.1px #FF00DC",
+                            WebkitTextStroke: "1px #FF00DC",
                             textShadow: "0 4px 76.3px #FF00DC, 0 0 40px #FF00DC"
                         } as React.CSSProperties}
                     >
                         Digital Reverie
                     </h1>
 
-                    <p className="font-dreamer mt-4 text-lg sm:text-xl md:text-4xl text-white border-2 border-white border-shadow rounded-full px-6 py-2 inline-block"
+                    <p className="font-dreamer mt-4 text-lg sm:text-xl md:text-4xl text-white border-2 border-white border-shadow rounded-full px-6 py-1 inline-block"
                     style={{
                             WebkitTextStroke: "0.3px #FF00DC",
                             textShadow: "0 4px 76.3px #FF00DC, 0 0 40px #FF00DC",
-                            boxShadow: "0 0 20px #FF00DC, 0 0 40px #FF00DC"
+                            boxShadow: "0 0 10px #FF00DC, 0 0 20px #FF00DC"
                         } as React.CSSProperties}>
-                            rewired recharged released
+                            rewired * recharged * released
                     </p>
                 </div>
 

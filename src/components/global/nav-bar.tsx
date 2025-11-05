@@ -5,58 +5,129 @@ import Link from 'next/link';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [eventsDropdown, setEventsDropdown] = useState(false);
+  const [projectsDropdown, setProjectsDropdown] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="text-white py-4 px-6 md:px-10">
+    <nav className="text-white py-4 px-6 md:px-10 bg-[#0D0D0D]">
       <div className="flex items-center justify-between">
+        
         {/* Logo */}
         <div className="flex-shrink-0">
           <Image
             src="/logo/expo_logo.png"
             alt="CS Expo Logo"
-            width={80}
-            height={80}
-            className="w-16 h-16 md:w-20 md:h-20 object-contain"
+            width={108}
+            height={65}
+            onClick={() => { window.location.href = '/'; }}
+            role="link"
+            tabIndex={0}
+            style={{ cursor: 'pointer' }}
+            className="object-contain"
           />
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-3 md:gap-4">
-          <Link 
-            href="/events" 
-            className="px-4 md:px-6 py-2 text-sm md:text-base border border-white rounded-full hover:bg-white hover:text-black transition-colors"
+        <div className="hidden lg:flex font-helvetica font-bold items-center gap-3 md:gap-4">
+          {/* Events Dropdown */}
+          <div 
+            className="relative"
+            onMouseEnter={() => setEventsDropdown(true)}
+            onMouseLeave={() => setEventsDropdown(false)}
           >
-            Events
-          </Link>
-          <Link 
-            href="/projects" 
-            className="px-4 md:px-6 py-2 text-sm md:text-base border border-white rounded-full hover:bg-white hover:text-black transition-colors"
+            <button className="px-4 md:px-6 py-2 text-sm md:text-base hover:text-[#FF33E1] transition-colors flex items-center gap-1">
+              Events
+              <svg 
+                className={`w-4 h-4 transition-transform ${eventsDropdown ? 'rotate-180' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            {eventsDropdown && (
+              <div className="absolute top-full left-0 pt-2 z-50">
+                <div className="bg-[#1a1a1a] rounded-lg shadow-lg py-2 min-w-[200px]">
+                  <Link 
+                    href="/events/cs-expo" 
+                    className="block px-6 py-3 text-sm hover:text-[#FF33E1] transition-colors"
+                  >
+                    CS Expo
+                  </Link>
+                  <Link 
+                    href="/events/dev-day" 
+                    className="block px-6 py-3 text-sm hover:text-[#FF33E1] transition-colors"
+                  >
+                    Dev Day
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Projects Dropdown */}
+          <div 
+            className="relative"
+            onMouseEnter={() => setProjectsDropdown(true)}
+            onMouseLeave={() => setProjectsDropdown(false)}
           >
-            Projects
-          </Link>
+            <button className="px-4 md:px-6 py-2 text-sm md:text-base hover:text-[#FF33E1] transition-colors flex items-center gap-1">
+              Projects
+              <svg 
+                className={`w-4 h-4 transition-transform ${projectsDropdown ? 'rotate-180' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            {projectsDropdown && (
+              <div className="absolute top-full left-0 pt-2 z-50">
+                <div className="bg-[#1a1a1a] rounded-lg shadow-lg py-2 min-w-[200px]">
+                  <Link 
+                    href="/projects/showcase" 
+                    className="block px-6 py-3 text-sm hover:text-[#FF33E1] transition-colors"
+                  >
+                    Project Showcase
+                  </Link>
+                  <Link 
+                    href="/projects/submit" 
+                    className="block px-6 py-3 text-sm hover:text-[#FF33E1] transition-colors"
+                  >
+                    Submit Project
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+
           <Link 
             href="/partners" 
-            className="px-4 md:px-6 py-2 text-sm md:text-base border border-white rounded-full hover:bg-white hover:text-black transition-colors"
+            className="px-4 md:px-6 py-2 text-sm md:text-base hover:text-[#FF33E1] transition-colors"
           >
             Partners
           </Link>
           <Link 
             href="/gallery" 
-            className="px-4 md:px-6 py-2 text-sm md:text-base border border-white rounded-full hover:bg-white hover:text-black transition-colors"
+            className="px-4 md:px-6 py-2 text-sm md:text-base hover:text-[#FF33E1] transition-colors"
           >
             Gallery
           </Link>
           <Link 
             href="/hall-of-fame" 
-            className="px-4 md:px-6 py-2 text-sm md:text-base border border-white rounded-full hover:bg-white hover:text-black transition-colors"
+            className="px-4 md:px-6 py-2 text-sm md:text-base hover:text-[#FF33E1] transition-colors"
           >
             Hall of Fame
           </Link>
           <Link 
             href="/register" 
-            className="px-4 md:px-6 py-2 text-sm md:text-base bg-[#a0178e] text-white rounded-full hover:bg-[#FF00DC] hover:text-black transition-colors font-semibold"
+            className="px-4 md:px-6 py-2 text-sm md:text-base bg-[#a0178e] text-white rounded-full hover:bg-[#FF00DC] hover:text-[#FF33E1] transition-colors font-semibold"
           >
             Register Now
           </Link>
@@ -80,9 +151,9 @@ export default function Navbar() {
           isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
       >
-        <div className="flex flex-col items-center justify-center h-full gap-5 px-6">
+        <div className="flex flex-col items-center justify-center h-full gap-3 px-6">
           {/* Logo at top of mobile menu */}
-          <div className="mb-6">
+          <div className="mb-4">
             <Image
               src="/logo/expo_logo.png"
               alt="CS Expo Logo"
@@ -92,45 +163,111 @@ export default function Navbar() {
             />
           </div>
 
+          {/* Events Mobile Dropdown */}
+          <div className="w-full max-w-xs">
+            <button
+              onClick={() => setEventsDropdown(!eventsDropdown)}
+              className="w-full text-center px-8 py-3 text-base hover:text-[#FF33E1] transition-all duration-200 flex items-center justify-center gap-2"
+            >
+              Events
+              <svg 
+                className={`w-4 h-4 transition-transform duration-300 ${eventsDropdown ? 'rotate-180' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div 
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                eventsDropdown ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+              }`}
+            >
+              <div className="space-y-1 pt-1">
+                <Link 
+                  href="/events/cs-expo"
+                  onClick={toggleMenu}
+                  className="block text-center px-8 py-2 text-sm text-[#FF33E1] hover:text-white transition-all duration-200"
+                >
+                  CS Expo
+                </Link>
+                <Link 
+                  href="/events/dev-day"
+                  onClick={toggleMenu}
+                  className="block text-center px-8 py-2 text-sm text-[#FF33E1] hover:text-white transition-all duration-200"
+                >
+                  Dev Day
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Projects Mobile Dropdown */}
+          <div className="w-full max-w-xs">
+            <button
+              onClick={() => setProjectsDropdown(!projectsDropdown)}
+              className="w-full text-center px-8 py-3 text-base hover:text-[#FF33E1] transition-all duration-200 flex items-center justify-center gap-2"
+            >
+              Projects
+              <svg 
+                className={`w-4 h-4 transition-transform duration-300 ${projectsDropdown ? 'rotate-180' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div 
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                projectsDropdown ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'
+              }`}
+            >
+              <div className="space-y-1 pt-1">
+                <Link 
+                  href="/projects/showcase"
+                  onClick={toggleMenu}
+                  className="block text-center px-8 py-2 text-sm text-[#FF33E1] hover:text-white transition-all duration-200"
+                >
+                  Project Showcase
+                </Link>
+                <Link 
+                  href="/projects/submit"
+                  onClick={toggleMenu}
+                  className="block text-center px-8 py-2 text-sm text-[#FF33E1] hover:text-white transition-all duration-200"
+                >
+                  Submit Project
+                </Link>
+              </div>
+            </div>
+          </div>
+
           <Link 
-            href="events"
+            href="/partners"
             onClick={toggleMenu}
-            className="w-full max-w-xs text-center px-8 py-3 text-base border border-white rounded-full hover:bg-white hover:text-black transition-all duration-200"
-          >
-            Events
-          </Link>
-          <Link 
-            href="projects"
-            onClick={toggleMenu}
-            className="w-full max-w-xs text-center px-8 py-3 text-base border border-white rounded-full hover:bg-white hover:text-black transition-all duration-200"
-          >
-            Projects
-          </Link>
-          <Link 
-            href="partners"
-            onClick={toggleMenu}
-            className="w-full max-w-xs text-center px-8 py-3 text-base border border-white rounded-full hover:bg-white hover:text-black transition-all duration-200"
+            className="w-full max-w-xs text-center px-8 py-3 text-base hover:text-[#FF33E1] transition-all duration-200"
           >
             Partners
           </Link>
           <Link 
-            href="gallery"
+            href="/gallery"
             onClick={toggleMenu}
-            className="w-full max-w-xs text-center px-8 py-3 text-base border border-white rounded-full hover:bg-white hover:text-black transition-all duration-200"
+            className="w-full max-w-xs text-center px-8 py-3 text-base hover:text-[#FF33E1] transition-all duration-200"
           >
             Gallery
           </Link>
           <Link 
-            href="hall-of-fame"
+            href="/hall-of-fame"
             onClick={toggleMenu}
-            className="w-full max-w-xs text-center px-8 py-3 text-base border border-white rounded-full hover:bg-white hover:text-black transition-all duration-200"
+            className="w-full max-w-xs text-center px-8 py-3 text-base hover:text-[#FF33E1] transition-all duration-200"
           >
             Hall of Fame
           </Link>
           <Link 
-            href="register"
+            href="/register"
             onClick={toggleMenu}
-            className="w-full max-w-xs text-center px-8 py-3 text-base bg-[#a0178e] text-white rounded-full hover:bg-[#FF00DC] hover:text-black transition-all duration-200 font-semibold mt-2"
+            className="w-full max-w-xs text-center px-8 py-3 text-base bg-[#a0178e] text-white rounded-full hover:bg-[#FF00DC] hover:text-[#FF33E1] transition-all duration-200 font-semibold mt-2"
           >
             Register Now
           </Link>

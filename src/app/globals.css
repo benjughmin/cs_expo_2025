@@ -4,8 +4,15 @@
 @custom-variant dark (&:is(.dark *));
 
 @font-face {
-  font-family: "Helvetica Now Display";
+  font-family: "Helvetica Now Display Black";
   src: url("/fonts/HelveticaNowDisplay-Black.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica Now Display";
+  src: url("/fonts/HelveticaNowDisplay-Bold.ttf") format("truetype");
   font-weight: bold;
   font-style: normal;
 }
@@ -50,6 +57,7 @@
   --font-monster: "Monster Racing", sans-serif;
   --font-nhl: "NHL Ducks", sans-serif;
   --font-helvetica: "Helvetica Now Display", sans-serif;
+  --font-helvetica-black: "Helvetica Now Display Black", sans-serif;
   --font-dreamer: "Dreamer TM", sans-serif;
   --font-avolta: "Avolta", sans-serif;
   --font-chivo-mono: var(--font-chivo-mono);
