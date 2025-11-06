@@ -4,9 +4,9 @@ import PixelBlast from "@/components/global/PixelBlast"
 
 export function ProjectsHero({ pageTitle, pageDesc }: { pageTitle: string; pageDesc: string }) {
   return (
-    <section className="relative isolate mx-auto flex h-screen flex-col items-center justify-center overflow-hidden text-center">
+    <section className="relative isolate mx-auto flex h-[85vh] flex-col items-center justify-center text-center">
       {/* Pixel background */}
-      <div className="absolute inset-0 z-0 cursor-pointer">
+      <div className="absolute inset-0 -bottom-40 z-0 cursor-pointer">
         <PixelBlast
           variant="circle"
           pixelSize={9}
