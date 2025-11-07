@@ -53,13 +53,13 @@ export default function Navbar() {
               <div className="absolute top-full left-0 pt-2 z-50">
                 <div className="bg-[#1a1a1a] rounded-lg shadow-lg py-2 min-w-[200px]">
                   <Link 
-                    href="/events/cs-expo" 
+                    href="/events/expo" 
                     className="block px-6 py-3 text-sm hover:text-[#FF33E1] transition-colors"
                   >
                     CS Expo
                   </Link>
                   <Link 
-                    href="/events/dev-day" 
+                    href="/events/devday" 
                     className="block px-6 py-3 text-sm hover:text-[#FF33E1] transition-colors"
                   >
                     Dev Day
@@ -91,16 +91,10 @@ export default function Navbar() {
               <div className="absolute top-full left-0 pt-2 z-50">
                 <div className="bg-[#1a1a1a] rounded-lg shadow-lg py-2 min-w-[200px]">
                   <Link 
-                    href="/projects/showcase" 
+                    href="/projects" 
                     className="block px-6 py-3 text-sm hover:text-[#FF33E1] transition-colors"
                   >
-                    Project Showcase
-                  </Link>
-                  <Link 
-                    href="/projects/submit" 
-                    className="block px-6 py-3 text-sm hover:text-[#FF33E1] transition-colors"
-                  >
-                    Submit Project
+                    Collections
                   </Link>
                 </div>
               </div>

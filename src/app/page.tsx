@@ -3,6 +3,10 @@ import Footer from "@/components/global/footer";
 import Navbar from "@/components/global/nav-bar";
 import FaultyTerminal from "@/components/FaultyTerminal";
 import Image from "next/image";
+import Hero from "@/components/global/Hero";
+import SponsorCarousel from "@/components/home/sponsor-carousel";
+import { TextSyncProvider } from "@/hooks/useTextSync";
+
 
 export default function Home() {
   const assets = [
@@ -12,15 +16,12 @@ export default function Home() {
   ];
 
   return (
-      <div className="flex flex-col min-h-screen">
-        <main
-          className="flex-grow relative pb-14"
-          style={{
-            background: "linear-gradient(180deg, #1A1A1A 0%, #1A1A1A 30%, #480CA8 70%, #AF05C5 85%, #FF00DC 100%)"
-          }}
-        >
-          <div className="absolute inset-0 z-0">
-            <FaultyTerminal
+    <div className="flex flex-col min-h-screen ">
+      <main
+        className="flex-grow relative overflow-hidden"
+      >
+        <div className="absolute inset-0 z-0 background-[#0D0D0D]">
+          <FaultyTerminal
             scale={1.5}
             gridMul={[2, 1]}
             digitSize={1.2}
@@ -39,15 +40,38 @@ export default function Home() {
             pageLoadAnimation={false}
             brightness={1}
           />
+        </div>
+        <div className="relative z-10 bg-gradient-to-b from-transparent via-transparent to-[#0F0019]">
+          <Navbar />
+          <HeroSection />
+          <div className="text-center text-white">
+            <p className="text-sm md:text-base lg:text-lg tracking-wide mb-3">
+              In Partnerships with
+            </p>
+            <SponsorCarousel />
           </div>
+        </div>
 
-          <div className="relative z-10">
-            <Navbar />
-            <HeroSection />
-          </div>
-        </main>
-
-        <Footer />
+      </main>
+      <div className="bg-[#0F0019]">
+        <TextSyncProvider>
+        <Hero
+          title="CS EXPO"
+          description="A two-day event held on November 10-11, 2025 where students showcase their projects to faculty and industry experts, with awards for top innovations. Talks by tech leaders will explore current trends and insights."
+          variant="expo"
+          textDirection="horizontal-right"
+        />
+        </TextSyncProvider>
+        <TextSyncProvider>
+          <Hero
+            title="Dev Day"
+            description="Following the last day of CS Expo 2025, Dev Day brings together industry experts to share insights on staying current with tech skills and innovation in a fast-evolving field."
+            variant="devday"
+            textDirection="horizontal-left"
+          />
+        </TextSyncProvider>
       </div>
+      <Footer />
+    </div>
   );
 }

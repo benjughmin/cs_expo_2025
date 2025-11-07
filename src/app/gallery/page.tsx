@@ -1,7 +1,7 @@
 "use client"
 import { GalleryColumn } from "@/components/gallery/GalleryColumn"
 import { events } from "./data/events"
-import Footer from "@/components/global/footer"
+import Footer from "@/components/global/F]ooter"
 import { ProjectsHero } from "../hall-of-fame/ui/ProjectsHero"
 import Navbar from "@/components/global/nav-bar"
 
