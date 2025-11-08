@@ -2,82 +2,102 @@ import Image from "next/image";
 import InfoPill from "@/components/projects/InfoPill";
 
 type ProjectInfoProps = {
-    poster: string;
-    thesisTitle: string;
-    details: {
-        thesisDescription: string;
-        groupMembers: string[];
-        mentor: string;
-        category: string[];
-        videoLink?: string;
-        groupName: string;
-        photoshoot: string[];
-    };
+  poster: string;
+  thesisTitle: string;
+  details: {
+    thesisDescription: string;
+    groupMembers: string[];
+    mentor: string;
+    category: string[];
+    videoLink?: string;
+    groupName: string;
+    photoshoot: string[];
+  };
 };
 
-export default function ProjectInfo({ thesisTitle, poster, details }: ProjectInfoProps) {
-    return (
-        <section className="relative w-full mx-auto px-4 -mt-[10vh]">
+export default function ProjectInfo({
+  thesisTitle,
+  poster,
+  details,
+}: ProjectInfoProps) {
+  return (
+    <section className="relative w-full mx-auto px-4 lg:px-6 -mt-[5vh] sm:-mt-[8vh] md:-mt-[10vh]">
+      <div className="flex flex-col lg:flex-row gap-8 lg:justify-center items-center lg:items-start">
+        {/* LEFT COLUMN — Poster */}
+        <div className="w-[85%] sm:w-[70%] md:w-[60%] lg:w-[650px] aspect-[542/768] mt-8 sm:mt-20 md:mt-0 flex justify-center">
+          <Image
+            src={
+              poster && poster.length > 0
+                ? poster
+                : "/projects/default_poster.jpg"
+            }
+            alt={`${thesisTitle} Poster`}
+            width={542}
+            height={768}
+            className="rounded-[20px] object-cover w-full h-auto shadow-lg border border-white/20"
+            priority
+          />
+        </div>
 
-            {/* Main flex container for the two-column layout */}
-            <div className="flex flex-col lg:flex-row gap-6 lg:justify-center">
+        {/* RIGHT COLUMN — Details */}
+        <div className="w-full lg:w-[750px] flex flex-col gap-6 relative mt-8 lg:mt-0 px-2">
+          {/* Title */}
+          <h3 className="text-2xl sm:text-3xl font-avolta neon-text-pink mb-3 text-center lg:text-left">
+            {thesisTitle}
+          </h3>
 
-                <div className="lg:w-[650px] aspect-[602/853]">
-                    <Image
-                        src={'/projects/Agile_Poster.png'} //To be replaced by actual values
-                        alt={`${thesisTitle} Poster`}
-                        width={602}
-                        height={853}
-                        className="rounded-[20px] object-cover w-full h-full shadow-lg"
-                    />
-                </div>
+          {/* Description */}
+          <div className="relative flex-1 flex items-center justify-center">
+            <p
+              className="text-sm sm:text-base font-mono text-white leading-relaxed text-opacity-90 tracking-wide text-center lg:text-left"
+              style={{
+                lineHeight: "2",
+                letterSpacing: "0.02em",
+                textShadow: "0 0 6px rgba(255, 255, 255, 0.15)",
+              }}
+            >
+              {details.thesisDescription}
+            </p>
+          </div>
 
-                {/* RIGHT COLUMN: Two stacked boxes of equal height */}
-                <div className="lg:w-[750px] flex flex-col gap-6">
-
-                    {/* Box 1: Thesis Title & Description */}
-                    <div
-                        className="flex-1 flex flex-col overflow-y-auto "
-
-                    >
-                        <h3 className="text-2xl font-avolta mb-3 neon-text-pink">
-                            {thesisTitle}
-                        </h3>
-                        <p className="text-base font-helvetica text-white">
-                            {details.thesisDescription}
-                        </p>
-                    </div>
-
-                    {/* Box 2: Members, Mentor, & Category */}
-                    <div className="flex-1 rounded-[20px] p-10 flex flex-col gap-10 overflow-y-hidden border-2 border-[#f8f8f8] justify-center">
-                        {/* Members Section */}
-                        <div className="flex flex-col items-center">
-                            <h4 className="text-2xl font-avonta neon-text-pink mb-4 ">Group Members</h4>
-                            <div className="flex flex-wrap gap-4 justify-center">
-                                {details.groupMembers.map((member, index) => (
-                                    <InfoPill key={index} text={member} size='md' />
-                                ))}
-                            </div>
-                        </div>
-                        {/* Mentor Section */}
-                        <div className="flex flex-col items-center">
-                            <h4 className="text-xl font-avonta neon-text-pink mb-4 ">Mentor</h4>
-                            <div className="flex flex-wrap gap-4 justify-center">
-                                <InfoPill text={details.mentor} size='sm' />
-                            </div>
-                        </div>
-                        {/* Category Section */}
-                        <div className="flex flex-col items-center">
-                            <h4 className="text-xl font-avonta neon-text-pink mb-4 ">Topics</h4>
-                            <div className="flex flex-wrap gap-4 justify-center">
-                                {details.category.map((cat, index) => (
-                                    <InfoPill key={index} text={cat} size='sm' />
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          {/* Details Box */}
+          <div className="rounded-[20px] p-6 sm:p-8 flex flex-col gap-10 border-2 border-[#f8f8f8]/60 justify-center">
+            {/* Members */}
+            <div className="flex flex-col items-center text-center">
+              <h4 className="text-xl sm:text-2xl font-avolta neon-text-pink mb-4">
+                Group Members
+              </h4>
+              <div className="flex flex-wrap gap-3 justify-center">
+                {details.groupMembers.map((member, index) => (
+                  <InfoPill key={index} text={member} size="md" />
+                ))}
+              </div>
             </div>
-        </section>
-    );
+
+            {/* Mentor */}
+            <div className="flex flex-col items-center text-center">
+              <h4 className="text-lg sm:text-xl font-avolta neon-text-pink mb-4">
+                Mentor
+              </h4>
+              <div className="flex flex-wrap gap-3 justify-center">
+                <InfoPill text={details.mentor} size="sm" />
+              </div>
+            </div>
+
+            {/* Topics */}
+            <div className="flex flex-col items-center text-center">
+              <h4 className="text-lg sm:text-xl font-avolta neon-text-pink mb-4">
+                Topics
+              </h4>
+              <div className="flex flex-wrap gap-3 justify-center">
+                {details.category.map((cat, index) => (
+                  <InfoPill key={index} text={cat} size="sm" />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

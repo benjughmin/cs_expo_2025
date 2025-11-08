@@ -1,7 +1,7 @@
 "use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface Team {
   logo_url: string;
@@ -11,85 +11,110 @@ interface Team {
 interface HeroProps {
   title: string;
   description: string;
-  variant?: 'expo' | 'devday';
+  variant?: "expo" | "devday";
   teams?: Team[];
 }
 
-function Hero({ title, description, variant = 'expo', teams = [] }: HeroProps) {
+export default function Hero({
+  title,
+  description,
+  variant = "expo",
+  teams = [],
+}: HeroProps) {
   const pathname = usePathname();
 
   // Variant-specific configurations
   const config = {
     expo: {
-      backgroundText: 'CS EXPO',
-      accentColor: '#FF37E3',
+      backgroundText: "CS EXPO",
+      accentColor: "#FF37E3",
       titleGradient:
-        'linear-gradient(180deg, #FFFFFF 10%, #FFFFFF 0%, #FF37E3 30%, #FF00DC 70%, #FF00DC 100%)',
-      titleGlow: 'drop-shadow(0px 0px 4px rgba(255, 55, 227, 0.8))',
+        "linear-gradient(180deg, #FFFFFF 10%, #FFFFFF 0%, #FF37E3 30%, #FF00DC 70%, #FF00DC 100%)",
+      titleGlow: "drop-shadow(0px 0px 4px rgba(255, 55, 227, 0.8))",
       svgFlipped: false,
-      svgTranslateY: '-25px',
-      svgTranslateX: '0px',
+      svgTranslateY: "-25px",
+      svgTranslateX: "0px",
     },
     devday: {
-      backgroundText: 'DEV DAY',
-      accentColor: '#5C0BDE',
+      backgroundText: "DEV DAY",
+      accentColor: "#5C0BDE",
       titleGradient:
-        'linear-gradient(180deg, #FFFFFF 10%, #FFFFFF 0%, #5C0BDE 30%, #5C0BDE 70%, #5C0BDE 100%)',
-      titleGlow: 'drop-shadow(0px 0px 4px rgba(92, 11, 222, 0.8))',
+        "linear-gradient(180deg, #FFFFFF 10%, #FFFFFF 0%, #5C0BDE 30%, #5C0BDE 70%, #5C0BDE 100%)",
+      titleGlow: "drop-shadow(0px 0px 4px rgba(92, 11, 222, 0.8))",
       svgFlipped: true,
-      svgTranslateY: '-50px',
-      svgTranslateX: '0px',
+      svgTranslateY: "-50px",
+      svgTranslateX: "0px",
     },
   };
 
   const currentConfig = config[variant];
 
-  function logoPosition(index: number) {
-    const presets = [
-      // 🔹 Upper Left (more scattered)
-      { left: '6%', top: '6%', size: 80, rotate: -8, opacity: 0.8 },
-      { left: '18%', top: '14%', size: 85, rotate: -3, opacity: 0.75 },
-      { left: '10%', top: '28%', size: 90, rotate: 6, opacity: 0.78 },
-      { left: '30%', top: '20%', size: 85, rotate: 4, opacity: 0.8 }, // near mid, limited top
+  // Responsive logo positioning
+  function logoPosition(index: number, isMobile: boolean) {
+    // Adjusted size and spread for smaller screens
+    const presets = isMobile
+  ? [
+      // 🔸 Upper Row
+      { left: "10%", top: "8%", size: 45, rotate: -6, opacity: 0.8 },
+      { left: "28%", top: "10%", size: 50, rotate: 4, opacity: 0.78 },
+      { left: "60%", top: "8%", size: 48, rotate: -3, opacity: 0.75 },
+      { left: "82%", top: "12%", size: 52, rotate: 5, opacity: 0.8 },
 
-      // 🔹 Upper Right
-      { left: '72%', top: '10%', size: 90, rotate: 5, opacity: 0.8 },
-      { left: '80%', top: '18%', size: 95, rotate: -6, opacity: 0.78 },
-      { left: '92%', top: '24%', size: 85, rotate: 8, opacity: 0.8 },
+      // 🔸 Upper-Mid Row
+      { left: "16%", top: "28%", size: 50, rotate: 3, opacity: 0.78 },
+      { left: "25%", top: "30%", size: 55, rotate: -4, opacity: 0.8 },
+      { left: "70%", top: "32%", size: 50, rotate: 2, opacity: 0.75 },
+      { left: "86%", top: "28%", size: 48, rotate: -2, opacity: 0.8 },
 
-      // 🔹 Mid Left
-      { left: '8%', top: '44%', size: 95, rotate: 3, opacity: 0.75 },
-      { left: '22%', top: '52%', size: 85, rotate: -5, opacity: 0.8 },
+      // 🔸 Mid Row
+      { left: "12%", top: "50%", size: 50, rotate: -3, opacity: 0.78 },
+      { left: "28%", top: "52%", size: 55, rotate: 5, opacity: 0.8 },
+      { left: "75%", top: "54%", size: 52, rotate: -2, opacity: 0.78 },
+      { left: "88%", top: "50%", size: 50, rotate: 4, opacity: 0.75 },
 
-      // 🔹 Mid Right
-      { left: '82%', top: '46%', size: 95, rotate: 5, opacity: 0.8 },
-      { left: '94%', top: '48%', size: 90, rotate: -6, opacity: 0.78 },
+      // 🔸 Lower Row
+      { left: "14%", top: "69%", size: 50, rotate: 3, opacity: 0.8 },
+      { left: "42%", top: "66%", size: 55, rotate: -5, opacity: 0.78 },
+      { left: "67%", top: "67%", size: 50, rotate: 4, opacity: 0.8 },
+      { left: "88%", top: "69%", size: 48, rotate: -3, opacity: 0.75 },
+    ]
 
-      // 🔹 Lower Left
-      { left: '10%', top: '68%', size: 95, rotate: 6, opacity: 0.78 },
-      { left: '20%', top: '78%', size: 90, rotate: -7, opacity: 0.8 },
-      { left: '8%', top: '88%', size: 85, rotate: 4, opacity: 0.75 },
-
-      // 🔹 Lower Right
-      { left: '74%', top: '64%', size: 90, rotate: -4, opacity: 0.8 },
-      { left: '86%', top: '76%', size: 85, rotate: 6, opacity: 0.78 },
-      { left: '92%', top: '88%', size: 90, rotate: -5, opacity: 0.8 },
-    ];
-
+      : [
+          // Desktop positioning
+          { left: "6%", top: "6%", size: 80, rotate: -8, opacity: 0.8 },
+          { left: "18%", top: "14%", size: 85, rotate: -3, opacity: 0.75 },
+          { left: "10%", top: "28%", size: 90, rotate: 6, opacity: 0.78 },
+          { left: "30%", top: "20%", size: 85, rotate: 4, opacity: 0.8 },
+          { left: "72%", top: "10%", size: 90, rotate: 5, opacity: 0.8 },
+          { left: "80%", top: "18%", size: 95, rotate: -6, opacity: 0.78 },
+          { left: "92%", top: "24%", size: 85, rotate: 8, opacity: 0.8 },
+          { left: "8%", top: "44%", size: 95, rotate: 3, opacity: 0.75 },
+          { left: "22%", top: "52%", size: 85, rotate: -5, opacity: 0.8 },
+          { left: "82%", top: "46%", size: 95, rotate: 5, opacity: 0.8 },
+          { left: "94%", top: "48%", size: 90, rotate: -6, opacity: 0.78 },
+          { left: "10%", top: "68%", size: 95, rotate: 6, opacity: 0.78 },
+          { left: "20%", top: "78%", size: 90, rotate: -7, opacity: 0.8 },
+          { left: "8%", top: "88%", size: 85, rotate: 4, opacity: 0.75 },
+          { left: "74%", top: "64%", size: 90, rotate: -4, opacity: 0.8 },
+          { left: "86%", top: "76%", size: 85, rotate: 6, opacity: 0.78 },
+          { left: "92%", top: "88%", size: 90, rotate: -5, opacity: 0.8 },
+        ];
 
     return presets[index % presets.length];
   }
 
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   return (
     <section className="relative pt-20 md:pt-20 lg:pt-20 pb-12 px-4 text-center overflow-hidden old-tv">
-      {/* Repeating text background */}
+      {/* 🔹 Background text pattern */}
       <div
         className="absolute top-[-100px] md:top-[-150px] lg:top-[-200px] left-0 right-0 flex flex-col items-center pointer-events-none z-0"
         style={{
           maskImage:
-            'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%, transparent 100%)',
+            "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%, transparent 100%)",
           WebkitMaskImage:
-            'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%, transparent 100%)',
+            "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%, transparent 100%)",
         }}
       >
         {[...Array(10)].map((_, i) => (
@@ -98,8 +123,8 @@ function Hero({ title, description, variant = 'expo', teams = [] }: HeroProps) {
             className="font-monster text-[40px] md:text-[60px] lg:text-[80px] whitespace-nowrap tracking-widest leading-[30px] md:leading-[45px] lg:leading-[60px] opacity-30"
             style={{
               WebkitTextStroke: `1px ${currentConfig.accentColor}`,
-              color: 'transparent',
-              letterSpacing: '0em',
+              color: "transparent",
+              letterSpacing: "0em",
             }}
           >
             {currentConfig.backgroundText}
@@ -107,55 +132,51 @@ function Hero({ title, description, variant = 'expo', teams = [] }: HeroProps) {
         ))}
       </div>
 
-      {/* SVG background */}
+      {/* 🔹 SVG Background */}
       <div
         className="absolute inset-[-50px] md:inset-[-75px] lg:inset-[-100px] flex items-center justify-center pointer-events-none z-0"
         style={{
-          transform: `translate(${currentConfig.svgTranslateX}, calc(${currentConfig.svgTranslateY} - 20px)) ${currentConfig.svgFlipped ? 'scaleX(-1)' : 'scaleX(1)'}`,
+          transform: `translate(${currentConfig.svgTranslateX}, calc(${currentConfig.svgTranslateY} - 20px)) ${
+            currentConfig.svgFlipped ? "scaleX(-1)" : "scaleX(1)"
+          }`,
         }}
       >
         <img
           src="/backgrounds/3.png"
           alt=""
-          className="w-[600px] h-full object-contain"
+          className="w-[300px] md:w-[500px] lg:w-[600px] h-full object-contain"
         />
       </div>
 
-
-      {/* 🔹 Background Logos (static, instant update) */}
+      {/* 🔹 Floating Team Logos */}
       <div className="absolute inset-0 pointer-events-none z-[25]">
         {teams.slice(0, 16).map((team, i) => {
-          const pos = logoPosition(i);
-          const style: React.CSSProperties = {
-            position: "absolute",
-            left: pos.left,
-            top: pos.top,
-            width: pos.size,
-            height: pos.size,
-            transform: `translate(-50%, -50%) rotate(${pos.rotate}deg)`,
-            objectFit: "contain",
-            opacity: pos.opacity,
-            filter:
-              "sepia(0.45) contrast(1.08) saturate(0.68) brightness(0.86) blur(0.4px)",
-            mixBlendMode: "screen",
-            pointerEvents: "none",
-          };
+          const pos = logoPosition(i, isMobile);
           return (
             <img
               key={team.logo_url + i}
               src={team.logo_url}
               alt={team.group_name}
+              className="absolute transition-all duration-500 ease-in-out"
               style={{
-                ...style,
+                left: pos.left,
+                top: pos.top,
+                width: `${pos.size}px`,
+                height: `${pos.size}px`,
+                transform: `translate(-50%, -50%) rotate(${pos.rotate}deg)`,
+                opacity: pos.opacity,
+                objectFit: "contain",
+                filter:
+                  "sepia(0.45) contrast(1.08) saturate(0.68) brightness(0.86) blur(0.4px)",
+                mixBlendMode: "screen",
                 animation: `flickerg ${2 + Math.random() * 3}s infinite ease-in-out`,
               }}
             />
-
           );
         })}
       </div>
 
-      {/* Hero title and description */}
+      {/* 🔹 Hero Title & Description */}
       <div className="max-w-6xl mx-auto relative z-20 flex flex-col items-center gap-6">
         <div className="flex items-center justify-center gap-6 flex-wrap">
           <div
@@ -171,21 +192,20 @@ function Hero({ title, description, variant = 'expo', teams = [] }: HeroProps) {
             }}
           >
             <p
-              className="text-[60px] md:text-[85px] lg:text-[110px] leading-[50px] md:leading-[70px] lg:leading-[85px] mb-0"
+              className="text-[48px] md:text-[85px] lg:text-[110px] leading-[50px] md:leading-[70px] lg:leading-[85px] mb-0"
               style={{ letterSpacing: "-0.02em", whiteSpace: "pre-line" }}
             >
               {title.replace(" ", "\n")}
             </p>
-
           </div>
         </div>
 
-        <p className="text-white/100 max-w-[754px] mx-auto font-helvetica text-[14px] md:text-[16px] lg:text-[20px] px-4 mt-16">
+        <p
+          className={`text-white/100 max-w-[754px] mx-auto font-helvetica text-[14px] md:text-[16px] lg:text-[20px] px-4 ${isMobile ? "mt-24" : "mt-16"}`}
+        >
           {description}
         </p>
       </div>
     </section>
   );
 }
-
-export default Hero;

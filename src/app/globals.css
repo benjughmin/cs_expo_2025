@@ -150,7 +150,6 @@
   80% { opacity: 0.9; }
 }
 
-
 .old-tv {
   position: relative;
   filter: contrast(1.1) saturate(1.2) brightness(0.9);
@@ -224,6 +223,60 @@
     transform: translateX(-50%);
   }
 }
+
+/* 🔹 Base background */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #0F0019; /* your dark site background */
+  overflow-x: hidden;
+  color-scheme: dark; /* Tells Chrome to use dark scrollbars */
+}
+
+/* 🔹 Desktop scrollbar styling */
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #0F0019; /* ✅ match your page background */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 55, 227, 0.4);
+    border-radius: 10px;
+    border: 2px solid #0F0019; /* ✅ ensures no white outline */
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 55, 227, 0.7);
+  }
+
+  /* Firefox */
+  body {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 55, 227, 0.5) #0F0019;
+  }
+}
+
+/* 🔹 Mobile (hide scrollbar completely) */
+@media (max-width: 1023px) {
+  html, body {
+    -ms-overflow-style: none;  /* IE/Edge */
+    scrollbar-width: none;     /* Firefox */
+  }
+
+  ::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Edge */
+  }
+}
+
+/* Example: for blurred or gradient layers */
+.bg-blur, .bg-gradient, .hero-section {
+  will-change: transform, opacity;
+}
+
 
 @layer utilities {
   .text-gradient {

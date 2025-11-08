@@ -102,25 +102,21 @@ export default function Navbar() {
           </div>
 
           <Link 
-            href="/partners" 
+            href="#" 
             className="px-4 md:px-6 py-2 text-sm md:text-base hover:text-[#FF33E1] transition-colors"
           >
             Partners
           </Link>
           <Link 
-            href="/gallery" 
+            href="#" 
             className="px-4 md:px-6 py-2 text-sm md:text-base hover:text-[#FF33E1] transition-colors"
           >
-            Gallery
+            About
           </Link>
           <Link 
-            href="/hall-of-fame" 
-            className="px-4 md:px-6 py-2 text-sm md:text-base hover:text-[#FF33E1] transition-colors"
-          >
-            Hall of Fame
-          </Link>
-          <Link 
-            href="/register" 
+            href="https://bit.ly/CE25RegistrationForm"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-4 md:px-6 py-2 text-sm md:text-base bg-[#a0178e] text-white rounded-full hover:bg-[#FF00DC] hover:text-[#FF33E1] transition-colors font-semibold"
           >
             Register Now
@@ -180,14 +176,14 @@ export default function Navbar() {
             >
               <div className="space-y-1 pt-1">
                 <Link 
-                  href="/events/cs-expo"
+                  href="/events/expo"
                   onClick={toggleMenu}
                   className="block text-center px-8 py-2 text-sm text-[#FF33E1] hover:text-white transition-all duration-200"
                 >
                   CS Expo
                 </Link>
                 <Link 
-                  href="/events/dev-day"
+                  href="/events/devday"
                   onClick={toggleMenu}
                   className="block text-center px-8 py-2 text-sm text-[#FF33E1] hover:text-white transition-all duration-200"
                 >
@@ -220,43 +216,28 @@ export default function Navbar() {
             >
               <div className="space-y-1 pt-1">
                 <Link 
-                  href="/projects/showcase"
-                  onClick={toggleMenu}
-                  className="block text-center px-8 py-2 text-sm text-[#FF33E1] hover:text-white transition-all duration-200"
-                >
-                  Project Showcase
-                </Link>
-                <Link 
-                  href="/projects/submit"
-                  onClick={toggleMenu}
-                  className="block text-center px-8 py-2 text-sm text-[#FF33E1] hover:text-white transition-all duration-200"
-                >
-                  Submit Project
-                </Link>
+                    href="/projects" 
+                    className="block text-center px-6 py-3 text-sm hover:text-[#FF33E1] transition-colors"
+                  >
+                    Collections
+                  </Link>
               </div>
             </div>
           </div>
 
           <Link 
-            href="/partners"
+            href="#"
             onClick={toggleMenu}
             className="w-full max-w-xs text-center px-8 py-3 text-base hover:text-[#FF33E1] transition-all duration-200"
           >
             Partners
           </Link>
           <Link 
-            href="/gallery"
+            href="#"
             onClick={toggleMenu}
             className="w-full max-w-xs text-center px-8 py-3 text-base hover:text-[#FF33E1] transition-all duration-200"
           >
-            Gallery
-          </Link>
-          <Link 
-            href="/hall-of-fame"
-            onClick={toggleMenu}
-            className="w-full max-w-xs text-center px-8 py-3 text-base hover:text-[#FF33E1] transition-all duration-200"
-          >
-            Hall of Fame
+            About
           </Link>
           <Link 
             href="/register"

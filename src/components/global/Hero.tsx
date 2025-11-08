@@ -283,7 +283,7 @@ function Hero({
                     />
                   </div>
                   <Link
-                    href="/events"
+                    href="/events/expo"
                     className="text-white font-semibold text-xs py-2 px-4 rounded-md transition-all hover:brightness-110 inline-block"
                     style={{ backgroundColor: currentConfig.buttonColor }}
                   >

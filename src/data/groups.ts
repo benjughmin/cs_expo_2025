@@ -64,7 +64,7 @@ const groupsData = [
             "https://rwatggvmjanptoxqwdqu.supabase.co/storage/v1/object/public/CSExpo%20Assets/solo_pictures/ABRA/IMG_5982.jpg",
             "https://rwatggvmjanptoxqwdqu.supabase.co/storage/v1/object/public/CSExpo%20Assets/solo_pictures/ABRA/IMG_6015.jpg"
         ],
-        "category": "Environment and Agriculture",
+        "category": "Agriculture",
         "group_picture_url": [
             "https://rwatggvmjanptoxqwdqu.supabase.co/storage/v1/object/public/CSExpo%20Assets/group_picture/abra1.jpg",
             "https://rwatggvmjanptoxqwdqu.supabase.co/storage/v1/object/public/CSExpo%20Assets/group_picture/abra2.jpg"
@@ -600,7 +600,7 @@ const groupsData = [
     {
         "id": 23,
         "group_name": "GGS(S)",
-        "thesis_poster_url": "https://rwatggvmjanptoxqwdqu.supabase.co/storage/v1/object/public/CSExpo%20Assets/posters/GGS(S)_Poster.png",
+        "thesis_poster_url": "https://rwatggvmjanptoxqwdqu.supabase.co/storage/v1/object/public/CSExpo%20Assets/posters/GGS_Poster.png",
         "avp_url": null,
         "member_picture": [
             "https://rwatggvmjanptoxqwdqu.supabase.co/storage/v1/object/public/CSExpo%20Assets/solo_pictures/GGS(S)/IMG_9580.jpg",
@@ -1100,7 +1100,7 @@ const groupsData = [
     {
         "id": 41,
         "group_name": "Trailblazing Analysts",
-        "thesis_poster_url": "https://rwatggvmjanptoxqwdqu.supabase.co/storage/v1/object/public/CSExpo%20Assets/group-logo/TrailBlazing%20Analysts_ThesisLogo.png",
+        "thesis_poster_url": "https://rwatggvmjanptoxqwdqu.supabase.co/storage/v1/object/public/CSExpo%20Assets/posters/TrailBlazing%20Analysts_Poster.png",
         "avp_url": null,
         "member_picture": [
             "https://rwatggvmjanptoxqwdqu.supabase.co/storage/v1/object/public/CSExpo%20Assets/solo_pictures/TrailBlazing%20Analysts/IMG_0263.jpg",

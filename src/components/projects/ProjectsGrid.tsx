@@ -1,11 +1,22 @@
+"use client";
 import { projects } from "@/app/projects/data/ProjectsData";
 import ProjectsCard from "@/components/projects/ProjectsCard";
 
-export default function ProjectsGrid() {
+interface ProjectsGridProps {
+  selectedCategory?: string | null;
+}
+
+export default function ProjectsGrid({ selectedCategory }: ProjectsGridProps) {
+  // Filter projects by category
+  const filteredProjects = selectedCategory
+    ? projects.filter((project) =>
+        project.details.category.includes(selectedCategory)
+      )
+    : projects;
+
   return (
-    // Layout Project Cards in 3x3 and pass data 
-    <section className="w-full max-w-[1200px] py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto">
-      {projects.map(project => (
+    <section className="w-full max-w-[1200px] py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start mx-auto">
+      {filteredProjects.map((project) => (
         <ProjectsCard
           key={project.slug}
           appTitle={project.appTitle}
