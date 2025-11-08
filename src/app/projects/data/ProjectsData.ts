@@ -21,7 +21,9 @@ export const projects = groupsData.map((group) => ({
     mentor: group.thesis_mentor,
     category: Array.isArray(group.category)
       ? group.category
-      : group.category.split(" and ").map((cat) => cat.trim()),
+      : group.category
+      ? [group.category]
+      : [],
     thesisDescription: group.thesis_description,
     videoLink: group.avp_url || undefined,
     photoshoot: group.group_picture_url,  // background / hero images
