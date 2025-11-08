@@ -3,7 +3,7 @@ import { BestThesisMentor } from "../../components/hall-of-fame/BestThesisMentor
 import { Awardee } from "../../components/hall-of-fame/Awardee"
 import { ProjectsHero } from "./ui/ProjectsHero"
 import Navbar from "@/components/global/nav-bar"
-import Footer from "@/components/global/F]ooter"
+import Footer from "@/components/global/footer"
 import Image from "next/image"
 export default function HallOfFamePage() {
   return (
