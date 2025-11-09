@@ -1,7 +1,7 @@
 import HeroSection from "@/components/home/hero-section";
 import Footer from "@/components/global/footer";
 import Navbar from "@/components/global/nav-bar";
-import FaultyTerminal from "@/components/FaultyTerminal";
+import PrismaticBurst from "@/components/PrismaticBurst";
 import Image from "next/image";
 import Hero from "@/components/global/Hero";
 import SponsorCarousel from "@/components/home/sponsor-carousel";
@@ -16,42 +16,28 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen ">
-      <main
-        className="flex-grow relative overflow-hidden"
-      >
-        <div className="absolute inset-0 z-0 background-[#0D0D0D]">
-          <FaultyTerminal
-            scale={1.5}
-            gridMul={[2, 1]}
-            digitSize={1.2}
-            timeScale={1}
-            pause={false}
-            scanlineIntensity={1}
-            glitchAmount={1}
-            flickerAmount={1}
-            noiseAmp={1}
-            chromaticAberration={0}
-            dither={0}
-            curvature={0.2}
-            tint="#341539"
-            mouseReact={true}
-            mouseStrength={0.5}
-            pageLoadAnimation={false}
-            brightness={1}
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <main className="flex-grow relative overflow-hidden">
+        <div className="absolute inset-0 z-0 bg-[#0D0D0D]">
+          <PrismaticBurst
+            intensity={2}
+            speed={0.3}
+            animationType="rotate3d"
+            colors={["#8B5CF6", "#EC4899", "#F59E0B", "#10B981", "#3B82F6"]}
+            distort={5}
+            mixBlendMode="lighten"
           />
         </div>
         <div className="relative z-10 bg-gradient-to-b from-transparent via-transparent to-[#0F0019]">
-          <Navbar />
           <HeroSection />
-          <div className="text-center text-white">
-            <p className="text-sm md:text-base lg:text-lg tracking-wide mb-3">
+          <div className="text-center text-white px-4">
+            <p className="text-xs sm:text-sm md:text-base lg:text-lg tracking-wide mb-2 sm:mb-3">
               In Partnerships with
             </p>
             <SponsorCarousel />
           </div>
         </div>
-
       </main>
       <div className="bg-[#0F0019]">
         <TextSyncProvider>

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -7,27 +7,48 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [eventsDropdown, setEventsDropdown] = useState(false);
   const [projectsDropdown, setProjectsDropdown] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="text-white py-4 px-6 md:px-10 bg-[#0D0D0D]">
-      <div className="flex items-center justify-between">
-        
-        {/* Logo */}
-        <div className="flex-shrink-0">
-          <Image
-            src="/logo/expo_logo.png"
-            alt="CS Expo Logo"
-            width={108}
-            height={65}
-            onClick={() => { window.location.href = '/'; }}
-            role="link"
-            tabIndex={0}
-            style={{ cursor: 'pointer' }}
-            className="object-contain"
-          />
-        </div>
+    <nav className={`
+      fixed top-4 left-4 right-4 z-50 text-white transition-all duration-500 ease-in-out rounded-2xl
+      ${isScrolled
+        ? 'py-2 md:py-3 backdrop-blur-xl bg-black/30 shadow-lg'
+        : 'py-4 md:py-6 bg-transparent'
+      }
+    `}>
+      <div className="container mx-auto px-6 md:px-10">
+        <div className="flex items-center justify-between">
+
+          {/* Logo */}
+          <div className="flex-shrink-0 transition-all duration-500">
+            <Image
+              src="/logo/expo_logo.png"
+              alt="CS Expo Logo"
+              width={isScrolled ? 90 : 108}
+              height={isScrolled ? 54 : 65}
+              onClick={() => { window.location.href = '/'; }}
+              role="link"
+              tabIndex={0}
+              style={{ cursor: 'pointer' }}
+              className="object-contain transition-all duration-500"
+            />
+          </div>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex font-helvetica font-bold items-center gap-3 md:gap-4">
@@ -51,16 +72,16 @@ export default function Navbar() {
             
             {eventsDropdown && (
               <div className="absolute top-full left-0 pt-2 z-50">
-                <div className="bg-[#1a1a1a] rounded-lg shadow-lg py-2 min-w-[200px]">
-                  <Link 
-                    href="/events/expo" 
-                    className="block px-6 py-3 text-sm hover:text-[#FF33E1] transition-colors"
+                <div className="backdrop-blur-xl bg-black/40 border border-white/10 rounded-xl shadow-2xl py-2 min-w-[200px]">
+                  <Link
+                    href="/events/expo"
+                    className="block px-6 py-3 text-sm hover:text-[#FF33E1] hover:bg-white/5 transition-all duration-200 rounded-lg mx-2"
                   >
                     CS Expo
                   </Link>
-                  <Link 
-                    href="/events/devday" 
-                    className="block px-6 py-3 text-sm hover:text-[#FF33E1] transition-colors"
+                  <Link
+                    href="/events/devday"
+                    className="block px-6 py-3 text-sm hover:text-[#FF33E1] hover:bg-white/5 transition-all duration-200 rounded-lg mx-2"
                   >
                     Dev Day
                   </Link>
@@ -89,10 +110,10 @@ export default function Navbar() {
             
             {projectsDropdown && (
               <div className="absolute top-full left-0 pt-2 z-50">
-                <div className="bg-[#1a1a1a] rounded-lg shadow-lg py-2 min-w-[200px]">
-                  <Link 
-                    href="/projects" 
-                    className="block px-6 py-3 text-sm hover:text-[#FF33E1] transition-colors"
+                <div className="backdrop-blur-xl bg-black/40 border border-white/10 rounded-xl shadow-2xl py-2 min-w-[200px]">
+                  <Link
+                    href="/projects"
+                    className="block px-6 py-3 text-sm hover:text-[#FF33E1] hover:bg-white/5 transition-all duration-200 rounded-lg mx-2"
                   >
                     Collections
                   </Link>
@@ -133,11 +154,12 @@ export default function Navbar() {
           <span className={`w-7 h-0.5 bg-white transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
           <span className={`w-7 h-0.5 bg-white transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
         </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed inset-0 bg-black bg-opacity-98 z-40 transition-all duration-300 ${
+        className={`lg:hidden fixed inset-0 backdrop-blur-2xl bg-black/95 z-40 transition-all duration-300 ${
           isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
       >
