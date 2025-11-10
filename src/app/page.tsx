@@ -11,6 +11,9 @@ import SponsorCarousel from "@/components/home/sponsor-carousel";
 export default function Home() {
   const [scale, setScale] = useState(1.5);
   const [dsize, setDsize] = useState(1.2);
+  const [grid, setGrid] = useState(2);
+
+  console.log(scale, dsize);
 
   useEffect(() => {
     const handleResize = () => {
@@ -18,9 +21,11 @@ export default function Home() {
       if (window.innerWidth <= 768) {
         setScale(1);
         setDsize(1);
+        setGrid(1);
       } else {
         setScale(1.5);
         setDsize(1.2);
+        setGrid(2);
       }
     };
 
@@ -42,7 +47,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0 bg-[#0D0D0D]">
           <FaultyTerminal
             scale={scale} // 👈 Responsive scale
-            gridMul={[1, 1]}
+            gridMul={[grid, 1]}
             digitSize={dsize}
             timeScale={1}
             pause={false}
@@ -68,11 +73,11 @@ export default function Home() {
             <p className="text-sm md:text-base lg:text-lg tracking-wide mb-3">
               In Partnerships with
             </p>
-            <SponsorCarousel />
+            <SponsorCarousel 
+              scale={typeof window !== "undefined" && window.innerWidth <= 768 ? 75 : 125} />
           </div>
         </div>
       </main>
-
       <div className="bg-[#0F0019]">
         <Hero
           title="CS EXPO"

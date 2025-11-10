@@ -5,7 +5,8 @@ import AutoScroll from "embla-carousel-auto-scroll";
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
-export default function SponsorCarousel() {
+export default function SponsorCarousel({ scale }: { scale: number }) {
+  console.log("SponsorCarousel scale prop:", scale);
   const [logos, setLogos] = useState<string[]>([]);
   const [imageErrors, setImageErrors] = useState<Set<number>>(new Set());
   const supabase = createClient();
@@ -66,10 +67,10 @@ export default function SponsorCarousel() {
             <div
               key={index}
               className="flex-shrink-0 flex items-center justify-center"
-              style={{ height: "125px" }}
+              style={{ height: `${scale}px` }}
             >
               {imageErrors.has(index) ? (
-                <div className="w-[250px] h-full flex items-center justify-center bg-slate-200 rounded-lg">
+                <div className={`w-[${scale}] h-full flex items-center justify-center bg-slate-200 rounded-lg`}>
                   <span className="text-slate-400 text-xs">Logo</span>
                 </div>
               ) : (

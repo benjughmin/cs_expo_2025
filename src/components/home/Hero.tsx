@@ -141,7 +141,7 @@ function Hero({
           <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-8 md:gap-12 lg:gap-16 relative">
             {/* SVG Background - Behind title - Mobile: centered, Desktop: positioned */}
             <div
-              className={`absolute inset-0 flex items-center justify-center md:justify-${isLeft ? 'end' : 'start'} pointer-events-none z-0`}
+              className={`absolute inset-0 flex items-center pointer-events-none z-0 ${isLeft ? 'lg:justify-end' : 'lg:justify-start'} md:justify-${isLeft ? 'end' : 'start'}`}
               style={{ pointerEvents: 'none' }}
             >
               <img
