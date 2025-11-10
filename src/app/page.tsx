@@ -1,13 +1,35 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import HeroSection from "@/components/home/hero-section";
 import Footer from "@/components/global/footer";
 import Navbar from "@/components/global/nav-bar";
 import FaultyTerminal from "@/components/FaultyTerminal";
 import Hero from "@/components/home/Hero";
 import SponsorCarousel from "@/components/home/sponsor-carousel";
-import PrismaticBurst from "@/components/PrismaticBurst";
-
 
 export default function Home() {
+  const [scale, setScale] = useState(1.5);
+  const [dsize, setDsize] = useState(1.2);
+
+  useEffect(() => {
+    const handleResize = () => {
+      // If screen width <= 768px (typical mobile breakpoint)
+      if (window.innerWidth <= 768) {
+        setScale(1);
+        setDsize(1);
+      } else {
+        setScale(1.5);
+        setDsize(1.2);
+      }
+    };
+
+    handleResize(); // Run once on mount
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const assets = [
     { src: "/logo/expo_logo.png", type: "image" as const },
     { src: "/HOF/vector.svg", type: "image" as const },
@@ -15,15 +37,13 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen ">
-      <main
-        className="flex-grow relative overflow-hidden"
-      >
+    <div className="flex flex-col min-h-screen">
+      <main className="flex-grow relative overflow-hidden">
         <div className="absolute inset-0 z-0 bg-[#0D0D0D]">
           <FaultyTerminal
-            scale={1.5}
-            gridMul={[2, 1]}
-            digitSize={1.2}
+            scale={scale} // 👈 Responsive scale
+            gridMul={[1, 1]}
+            digitSize={dsize}
             timeScale={1}
             pause={false}
             scanlineIntensity={1}
@@ -40,6 +60,7 @@ export default function Home() {
             brightness={1}
           />
         </div>
+
         <div className="relative z-10 bg-gradient-to-b from-transparent via-transparent to-[#0F0019]">
           <Navbar />
           <HeroSection />
@@ -50,8 +71,8 @@ export default function Home() {
             <SponsorCarousel />
           </div>
         </div>
-
       </main>
+
       <div className="bg-[#0F0019]">
         <Hero
           title="CS EXPO"
@@ -66,6 +87,7 @@ export default function Home() {
           textDirection="horizontal-left"
         />
       </div>
+
       <Footer />
     </div>
   );
