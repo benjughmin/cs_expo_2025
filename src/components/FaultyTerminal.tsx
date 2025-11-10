@@ -24,6 +24,8 @@ export interface FaultyTerminalProps extends React.HTMLAttributes<HTMLDivElement
   dpr?: number;
   pageLoadAnimation?: boolean;
   brightness?: number;
+  // optional fallback image to show on very low-end devices if desired
+  fallbackImage?: string;
 }
 
 const vertexShader = `
@@ -36,6 +38,7 @@ void main() {
 }
 `;
 
+/* Keep your original fragment shader unchanged (only pasted for completeness) */
 const fragmentShader = `
 precision mediump float;
 
@@ -259,16 +262,19 @@ export default function FaultyTerminal({
   tint = '#ffffff',
   mouseReact = true,
   mouseStrength = 0.2,
-  dpr = typeof window !== 'undefined' ? Math.min(window.devicePixelRatio || 1, 2) : 1,
+  dpr: dprProp,
   pageLoadAnimation = true,
   brightness = 1,
+  fallbackImage,
   className,
   style,
   ...rest
 }: FaultyTerminalProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const programRef = useRef<Program>(null);
-  const rendererRef = useRef<Renderer>(null);
+  const programRef = useRef<Program | null>(null);
+  const rendererRef = useRef<Renderer | null>(null);
+  const meshRef = useRef<Mesh | null>(null);
+
   const mouseRef = useRef({ x: 0.5, y: 0.5 });
   const smoothMouseRef = useRef({ x: 0.5, y: 0.5 });
   const frozenTimeRef = useRef(0);
@@ -276,9 +282,41 @@ export default function FaultyTerminal({
   const loadAnimationStartRef = useRef<number>(0);
   const timeOffsetRef = useRef<number>(Math.random() * 100);
 
-  const tintVec = useMemo(() => hexToRgb(tint), [tint]);
+  const isVisibleRef = useRef(true);
+  const lastFrameRef = useRef(0);
 
+  // Detect mobile user agents (simple heuristic)
+  const isMobile = typeof window !== 'undefined' && /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  // Respect explicit dpr prop but clamp otherwise
+  const dpr = typeof dprProp === 'number'
+    ? dprProp
+    : typeof window !== 'undefined'
+      ? Math.min(window.devicePixelRatio || 1, isMobile ? 1 : 2)
+      : 1;
+
+  const tintVec = useMemo(() => hexToRgb(tint), [tint]);
   const ditherValue = useMemo(() => (typeof dither === 'boolean' ? (dither ? 1 : 0) : dither), [dither]);
+
+  // Adjust "heavy" effects down on mobile to save GPU
+  const adjustedScale = isMobile ? Math.max(0.6, scale * 0.7) : scale;
+  const adjustedNoiseAmp = isMobile ? noiseAmp * 0.6 : noiseAmp;
+  const adjustedGlitch = isMobile ? glitchAmount * 0.6 : glitchAmount;
+  const adjustedChromatic = isMobile ? Math.min(chromaticAberration, 0.6) : chromaticAberration;
+  const adjustedScanline = isMobile ? Math.min(scanlineIntensity, 0.6) : scanlineIntensity;
+  // Disable mouse reaction on mobile (no meaningful mouse)
+  const useMouseReact = mouseReact && !isMobile;
+
+  // Throttle helper for resize observer
+  function throttle(fn: () => void, limit = 250) {
+    let inThrottle = false;
+    return () => {
+      if (!inThrottle) {
+        fn();
+        inThrottle = true;
+        setTimeout(() => (inThrottle = false), limit);
+      }
+    };
+  }
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     const ctn = containerRef.current;
@@ -293,6 +331,8 @@ export default function FaultyTerminal({
     const ctn = containerRef.current;
     if (!ctn) return;
 
+    // If fallbackImage is provided and device is mobile, optionally show background and proceed with light canvas
+    // We'll still attempt to create the canvas but at low DPR/resolution.
     const renderer = new Renderer({ dpr });
     rendererRef.current = renderer;
     const gl = renderer.gl;
@@ -300,23 +340,24 @@ export default function FaultyTerminal({
 
     const geometry = new Triangle(gl);
 
+    // Create program with uniforms; we'll update some of them dynamically
     const program = new Program(gl, {
       vertex: vertexShader,
       fragment: fragmentShader,
       uniforms: {
         iTime: { value: 0 },
         iResolution: {
-          value: new Color(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height)
+          value: new Color(gl.canvas.width, gl.canvas.height, gl.canvas.width / Math.max(gl.canvas.height, 1))
         },
-        uScale: { value: scale },
+        uScale: { value: adjustedScale },
 
         uGridMul: { value: new Float32Array(gridMul) },
         uDigitSize: { value: digitSize },
-        uScanlineIntensity: { value: scanlineIntensity },
-        uGlitchAmount: { value: glitchAmount },
+        uScanlineIntensity: { value: adjustedScanline },
+        uGlitchAmount: { value: adjustedGlitch },
         uFlickerAmount: { value: flickerAmount },
-        uNoiseAmp: { value: noiseAmp },
-        uChromaticAberration: { value: chromaticAberration },
+        uNoiseAmp: { value: adjustedNoiseAmp },
+        uChromaticAberration: { value: adjustedChromatic },
         uDither: { value: ditherValue },
         uCurvature: { value: curvature },
         uTint: { value: new Color(tintVec[0], tintVec[1], tintVec[2]) },
@@ -324,7 +365,7 @@ export default function FaultyTerminal({
           value: new Float32Array([smoothMouseRef.current.x, smoothMouseRef.current.y])
         },
         uMouseStrength: { value: mouseStrength },
-        uUseMouse: { value: mouseReact ? 1 : 0 },
+        uUseMouse: { value: useMouseReact ? 1 : 0 },
         uPageLoadProgress: { value: pageLoadAnimation ? 0 : 1 },
         uUsePageLoadAnimation: { value: pageLoadAnimation ? 1 : 0 },
         uBrightness: { value: brightness }
@@ -333,71 +374,145 @@ export default function FaultyTerminal({
     programRef.current = program;
 
     const mesh = new Mesh(gl, { geometry, program });
+    meshRef.current = mesh;
 
     function resize() {
       if (!ctn || !renderer) return;
-      renderer.setSize(ctn.offsetWidth, ctn.offsetHeight);
-      program.uniforms.iResolution.value = new Color(
-        gl.canvas.width,
-        gl.canvas.height,
-        gl.canvas.width / gl.canvas.height
-      );
+      // Use offset sizes and apply DPR in renderer.setSize internally
+      const w = Math.max(1, Math.floor(ctn.offsetWidth));
+      const h = Math.max(1, Math.floor(ctn.offsetHeight));
+      renderer.setSize(w, h);
+      // update iResolution uniform (using Color to reuse your approach)
+      if (programRef.current) {
+        const canvas = renderer.gl.canvas as HTMLCanvasElement;
+        programRef.current.uniforms.iResolution.value = new Color(
+          canvas.width,
+          canvas.height,
+          canvas.width / Math.max(canvas.height, 1)
+        );
+      }
     }
 
-    const resizeObserver = new ResizeObserver(() => resize());
+    const throttledResize = throttle(resize, 250);
+    const resizeObserver = new ResizeObserver(throttledResize);
     resizeObserver.observe(ctn);
     resize();
 
-    const update = (t: number) => {
+    // IntersectionObserver: only render when visible in viewport
+    const io = new IntersectionObserver(entries => {
+      const ent = entries[0];
+      isVisibleRef.current = !!ent.isIntersecting;
+    }, { threshold: 0.01 });
+    io.observe(ctn);
+
+    // Page visibility: pause when tab hidden
+    const handleVisibility = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(rafRef.current);
+      } else {
+        // restart loop
+        rafRef.current = requestAnimationFrame(update);
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
+
+    // Append canvas to container
+    ctn.appendChild(gl.canvas);
+
+    // If not using mouse react, do not add listener (also avoids mobile overhead)
+    if (useMouseReact) ctn.addEventListener('mousemove', handleMouseMove);
+
+    // FPS limiter: 30 on mobile, 60 on desktop
+    const fpsLimit = isMobile ? 30 : 60;
+    const frameInterval = 1000 / fpsLimit;
+
+    // main update loop
+    function update(t: number) {
       rafRef.current = requestAnimationFrame(update);
+
+      // respect intersection / visibility / pause
+      if (!isVisibleRef.current || document.hidden || pause) {
+        return;
+      }
+
+      // throttle FPS
+      const last = lastFrameRef.current;
+      const delta = t - last;
+      if (delta < frameInterval) {
+        return;
+      }
+      lastFrameRef.current = t;
 
       if (pageLoadAnimation && loadAnimationStartRef.current === 0) {
         loadAnimationStartRef.current = t;
       }
 
+      // update time uniform (respecting pause)
       if (!pause) {
         const elapsed = (t * 0.001 + timeOffsetRef.current) * timeScale;
-        program.uniforms.iTime.value = elapsed;
+        if (programRef.current) programRef.current.uniforms.iTime.value = elapsed;
         frozenTimeRef.current = elapsed;
       } else {
-        program.uniforms.iTime.value = frozenTimeRef.current;
+        if (programRef.current) programRef.current.uniforms.iTime.value = frozenTimeRef.current;
       }
 
-      if (pageLoadAnimation && loadAnimationStartRef.current > 0) {
+      // page load animation progress
+      if (pageLoadAnimation && loadAnimationStartRef.current > 0 && programRef.current) {
         const animationDuration = 2000;
         const animationElapsed = t - loadAnimationStartRef.current;
         const progress = Math.min(animationElapsed / animationDuration, 1);
-        program.uniforms.uPageLoadProgress.value = progress;
+        programRef.current.uniforms.uPageLoadProgress.value = progress;
       }
 
-      if (mouseReact) {
+      // mouse smoothing & uniform update
+      if (useMouseReact && programRef.current) {
         const dampingFactor = 0.08;
         const smoothMouse = smoothMouseRef.current;
         const mouse = mouseRef.current;
         smoothMouse.x += (mouse.x - smoothMouse.x) * dampingFactor;
         smoothMouse.y += (mouse.y - smoothMouse.y) * dampingFactor;
 
-        const mouseUniform = program.uniforms.uMouse.value as Float32Array;
+        const mouseUniform = programRef.current.uniforms.uMouse.value as Float32Array;
         mouseUniform[0] = smoothMouse.x;
         mouseUniform[1] = smoothMouse.y;
       }
 
-      renderer.render({ scene: mesh });
-    };
+      // Render
+      try {
+        if (rendererRef.current && meshRef.current) rendererRef.current.render({ scene: meshRef.current });
+      } catch (err) {
+        // Fail gracefully on render errors (some mobile GPUs throw)
+        // attempt to stop the loop to avoid spamming errors
+        cancelAnimationFrame(rafRef.current);
+        // eslint-disable-next-line no-console
+        console.error('FaultyTerminal render error, stopping RAF:', err);
+      }
+    }
+
+    // start loop
     rafRef.current = requestAnimationFrame(update);
-    ctn.appendChild(gl.canvas);
 
-    if (mouseReact) ctn.addEventListener('mousemove', handleMouseMove);
-
+    // cleanup
     return () => {
       cancelAnimationFrame(rafRef.current);
       resizeObserver.disconnect();
-      if (mouseReact) ctn.removeEventListener('mousemove', handleMouseMove);
+      io.disconnect();
+      if (useMouseReact) ctn.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('visibilitychange', handleVisibility);
       if (gl.canvas.parentElement === ctn) ctn.removeChild(gl.canvas);
-      gl.getExtension('WEBGL_lose_context')?.loseContext();
+      // release GL resources
+      try {
+        gl.getExtension('WEBGL_lose_context')?.loseContext();
+      } catch (e) {
+        // ignore
+      }
+      rendererRef.current = null;
+      programRef.current = null;
+      meshRef.current = null;
       loadAnimationStartRef.current = 0;
       timeOffsetRef.current = Math.random() * 100;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     dpr,
     pause,
@@ -417,10 +532,29 @@ export default function FaultyTerminal({
     mouseStrength,
     pageLoadAnimation,
     brightness,
-    handleMouseMove
+    handleMouseMove,
+    // include fallbackImage in deps only to allow re-render if it changes
+    fallbackImage
   ]);
 
+  // Render wrapper: if fallbackImage is provided and device is mobile, show background image
+  const containerStyle: React.CSSProperties = {
+    width: '100%',
+    height: '100%',
+    position: 'relative',
+    overflow: 'hidden',
+    ...style,
+    backgroundImage: isMobile && fallbackImage ? `url(${fallbackImage})` : undefined,
+    backgroundSize: isMobile && fallbackImage ? 'cover' : undefined,
+    backgroundPosition: isMobile && fallbackImage ? 'center' : undefined
+  };
+
   return (
-    <div ref={containerRef} className={`w-full h-full relative overflow-hidden ${className ?? ''}`} style={style} {...rest} />
+    <div
+      ref={containerRef}
+      className={`w-full h-full relative overflow-hidden ${className ?? ''}`}
+      style={containerStyle}
+      {...rest}
+    />
   );
 }

@@ -19,7 +19,7 @@ export default function Home() {
       <main
         className="flex-grow relative overflow-hidden"
       >
-        <div className="absolute inset-0 z-0 bg-[#0D0D0D] hidden md:block">
+        <div className="absolute inset-0 z-0 bg-[#0D0D0D]">
           <FaultyTerminal
             scale={1.5}
             gridMul={[2, 1]}
@@ -38,20 +38,6 @@ export default function Home() {
             mouseStrength={0.5}
             pageLoadAnimation={false}
             brightness={1}
-          />
-        </div>
-        <div className="absolute inset-0 z-0 bg-[#0D0D0D] block lg:hidden">
-          <PrismaticBurst
-            animationType="rotate3d"
-            intensity={2}
-            speed={0.5}
-            distort={1.0}
-            paused={false}
-            offset={{ x: 0, y: 0 }}
-            hoverDampness={0.25}
-            rayCount={24}
-            mixBlendMode="lighten"
-            colors={['#ff007a', '#4d3dff', '#ffffff']}
           />
         </div>
         <div className="relative z-10 bg-gradient-to-b from-transparent via-transparent to-[#0F0019]">
