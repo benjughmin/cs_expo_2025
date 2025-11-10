@@ -2,10 +2,9 @@ import HeroSection from "@/components/home/hero-section";
 import Footer from "@/components/global/footer";
 import Navbar from "@/components/global/nav-bar";
 import FaultyTerminal from "@/components/FaultyTerminal";
-import Image from "next/image";
-import Hero from "@/components/global/Hero";
+import Hero from "@/components/home/Hero";
 import SponsorCarousel from "@/components/home/sponsor-carousel";
-import { TextSyncProvider } from "@/hooks/useTextSync";
+import PrismaticBurst from "@/components/PrismaticBurst";
 
 
 export default function Home() {
@@ -20,7 +19,7 @@ export default function Home() {
       <main
         className="flex-grow relative overflow-hidden"
       >
-        <div className="absolute inset-0 z-0 background-[#0D0D0D]">
+        <div className="absolute inset-0 z-0 bg-[#0D0D0D] hidden md:block">
           <FaultyTerminal
             scale={1.5}
             gridMul={[2, 1]}
@@ -41,6 +40,20 @@ export default function Home() {
             brightness={1}
           />
         </div>
+        <div className="absolute inset-0 z-0 bg-[#0D0D0D] block lg:hidden">
+          <PrismaticBurst
+            animationType="rotate3d"
+            intensity={2}
+            speed={0.5}
+            distort={1.0}
+            paused={false}
+            offset={{ x: 0, y: 0 }}
+            hoverDampness={0.25}
+            rayCount={24}
+            mixBlendMode="lighten"
+            colors={['#ff007a', '#4d3dff', '#ffffff']}
+          />
+        </div>
         <div className="relative z-10 bg-gradient-to-b from-transparent via-transparent to-[#0F0019]">
           <Navbar />
           <HeroSection />
@@ -54,22 +67,18 @@ export default function Home() {
 
       </main>
       <div className="bg-[#0F0019]">
-        <TextSyncProvider>
         <Hero
           title="CS EXPO"
           description="A two-day event held on November 10-11, 2025 where students showcase their projects to faculty and industry experts, with awards for top innovations. Talks by tech leaders will explore current trends and insights."
           variant="expo"
           textDirection="horizontal-right"
         />
-        </TextSyncProvider>
-        <TextSyncProvider>
-          <Hero
-            title="Dev Day"
-            description="Following the last day of CS Expo 2025, Dev Day brings together industry experts to share insights on staying current with tech skills and innovation in a fast-evolving field."
-            variant="devday"
-            textDirection="horizontal-left"
-          />
-        </TextSyncProvider>
+        <Hero
+          title="Dev Day"
+          description="Following the last day of CS Expo 2025, Dev Day brings together industry experts to share insights on staying current with tech skills and innovation in a fast-evolving field."
+          variant="devday"
+          textDirection="horizontal-left"
+        />
       </div>
       <Footer />
     </div>

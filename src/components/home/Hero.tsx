@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import TextType from "@/components/TextType";
 
 interface HeroProps {
   title: string;
@@ -26,9 +25,7 @@ function Hero({
       accentColor: '#FF37E3',
       titleGradient: 'linear-gradient(180deg, #FFFFFF 10%, #FFFFFF 0%, #FF37E3 30%, #FF00DC 70%, #FF00DC 100%)',
       titleGlow: 'drop-shadow(0px 0px 4px rgba(255, 55, 227, 0.8))',
-      // white "inner" text shadow (use via `textShadow` / `textShadow` style on the title)
       titleInnerShadow: '0 10px 0 rgba(255,255,255,0.95), 0 -10px 0 rgba(255,255,255,0.6), 0 6px 18px rgba(255,255,255,0.06)',
-      // smaller highlight for the repeating background text
       backgroundTextInnerShadow: '0 1px 0 rgba(255,255,255,0.9), 0 -1px 0 rgba(255,255,255,0.35)',
       svgFlipped: false,
       svgTranslateY: '-25px',
@@ -40,7 +37,6 @@ function Hero({
       accentColor: '#5C0BDE',
       titleGradient: 'linear-gradient(180deg, #FFFFFF 10%, #FFFFFF 0%, #5C0BDE 30%, #5C0BDE 70%, #5C0BDE 100%)',
       titleGlow: 'drop-shadow(0px 0px 4px rgba(92, 11, 222, 0.8))',
-      // white "inner" text shadow for devday
       titleInnerShadow: '0 1px 0 rgba(255,255,255,0.95), 0 -1px 0 rgba(255,255,255,0.6), 0 6px 18px rgba(255,255,255,0.06)',
       backgroundTextInnerShadow: '0 1px 0 rgba(255,255,255,0.9), 0 -1px 0 rgba(255,255,255,0.35)',
       svgFlipped: true,
@@ -141,43 +137,44 @@ function Hero({
 
       {isHorizontalLayout ? (
         <div className="max-w-7xl mx-auto relative z-10 min-h-[400px] top-15">
-          <div className="flex items-center justify-between gap-8 md:gap-12 lg:gap-16 relative">
-            {/* SVG Background - Behind title */}
+          {/* Stack vertically on mobile (< md), horizontal on md+ */}
+          <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-8 md:gap-12 lg:gap-16 relative">
+            {/* SVG Background - Behind title - Mobile: centered, Desktop: positioned */}
             <div
-              className={`absolute inset-0 flex items-center pointer-events-none z-0 ${isLeft ? 'justify-end' : 'justify-start'}`}
+              className={`absolute inset-0 flex items-center justify-center md:justify-${isLeft ? 'end' : 'start'} pointer-events-none z-0`}
               style={{ pointerEvents: 'none' }}
             >
               <img
                 src="/backgrounds/3.png"
                 alt=""
-                className="w-[600px] h-auto object-contain opacity-50"
+                className="w-[400px] md:w-[600px] h-auto object-contain opacity-50"
                 style={{
                   transform: `translateY(calc(${currentConfig.svgTranslateY} + 25px)) translateX(${horizontalTranslateXStr}) scaleX(${isLeft || currentConfig.svgFlipped ? -1 : 1})`
                 }}
               />
               <div
-                className={`absolute top-1/2 ${isLeft ? 'right-1/12' : 'left-1/5 -translate-x-1/2'} -translate-y-1/2 w-[500px] h-[300px] rounded-full blur-[100px] opacity-30`}
+                className={`absolute top-1/2 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:${isLeft ? 'right-1/12' : 'left-1/5 md:-translate-x-1/2'} -translate-y-1/2 w-[300px] md:w-[500px] h-[200px] md:h-[300px] rounded-full blur-[100px] opacity-30`}
                 style={{
                   background: `radial-gradient(ellipse at center, ${currentConfig.accentColor}, transparent 90%)`
                 }}
               ></div>
               <div
-                className={`absolute top-1/2 ${isLeft ? 'right-1/12' : 'left-1/5 -translate-x-1/2'} -translate-y-1/2 w-[400px] h-[250px] rounded-full blur-[80px] opacity-40`}
+                className={`absolute top-1/2 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:${isLeft ? 'right-1/12' : 'left-1/5 md:-translate-x-1/2'} -translate-y-1/2 w-[250px] md:w-[400px] h-[150px] md:h-[250px] rounded-full blur-[80px] opacity-40`}
                 style={{
                   background: `radial-gradient(ellipse at center, ${currentConfig.accentColor}, transparent 80%)`
                 }}
               ></div>
               <div
-                className={`absolute top-1/2 ${isLeft ? 'right-1/12' : 'left-1/5 -translate-x-1/2'} -translate-y-1/2 w-[300px] h-[200px] rounded-full blur-[60px] opacity-50`}
+                className={`absolute top-1/2 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:${isLeft ? 'right-1/12' : 'left-1/5 md:-translate-x-1/2'} -translate-y-1/2 w-[200px] md:w-[300px] h-[120px] md:h-[200px] rounded-full blur-[60px] opacity-50`}
                 style={{
                   background: `radial-gradient(ellipse at center, ${currentConfig.accentColor}, transparent 70%)`
                 }}
               ></div>
             </div>
 
-            {/* Repeating text background - Beside title */}
+            {/* Repeating text background - Mobile: behind content vertically, Desktop: beside title */}
             <div
-              className={`absolute ${isLeft ? 'right-[-300px]' : 'left-[-300px]'} top-1/2 -translate-y-7/16 flex flex-col pointer-events-none z-0`}
+              className={`absolute left-0 right-0 top-[-50px] md:left-auto md:right-auto md:top-1/2 md:${isLeft ? 'right-[-300px]' : 'left-[-300px]'} md:-translate-y-7/16 flex flex-col pointer-events-none z-0`}
               style={{
                 maskImage: 'linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,1) 100%)',
                 WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,1) 100%)'
@@ -186,7 +183,7 @@ function Hero({
               {[...Array(4)].map((_, i) => (
                 <div
                   key={i}
-                  className="font-monster text-[70px] md:text-[80px] lg:text-[100px] whitespace-nowrap tracking-widest leading-[50px] md:leading-[65px] lg:leading-[80px] opacity-20"
+                  className="font-monster text-[50px] md:text-[80px] lg:text-[100px] whitespace-nowrap tracking-widest leading-[40px] md:leading-[65px] lg:leading-[80px] opacity-20 text-center md:text-left"
                   style={{
                     WebkitTextStroke: `2px ${currentConfig.accentColor}`,
                     color: 'transparent',
@@ -198,100 +195,42 @@ function Hero({
               ))}
             </div>
 
-            {/* If horizontal-left: put Description/CTA on the left, Title on the right (reversed) */}
-            {isLeft ? (
-              <>
-                {/* Description and Button - Left side when isLeft */}
-                <div className="flex flex-col items-start text-left max-w-[500px] relative z-10">
-                  <div className="text-white/100 font-helvetica text-[14px] md:text-[16px] lg:text-[20px] mb-6 text-left">
-                    <TextType
-                      text={description}
-                      typingSpeed={15}
-                      pauseDuration={1500}
-                      showCursor={true}
-                      cursorCharacter="|"
-                      deletingSpeed={10}
-                    />
-                  </div>
-                  <Link
-                    href="/events/devday"
-                    className="text-white font-semibold text-xs py-2 px-4 rounded-md transition-all hover:brightness-110 inline-block"
-                    style={{ backgroundColor: currentConfig.buttonColor }}
-                  >
-                    Learn More
-                  </Link>
-                </div>
+            {/* Title - Always first in mobile stack */}
+            <div
+              className={`font-monster tracking-[0.09em] [text-shadow:0_2px_7.2px_rgba(255,255,255,0.1)] flex-shrink-0 relative z-10 max-w-[280px] md:max-w-[400px] lg:max-w-[600px] ${isLeft ? 'md:order-2' : 'md:order-1'}`}
+              style={{
+                backgroundImage: currentConfig.titleGradient,
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                WebkitTextStroke: '1px black',
+                filter: currentConfig.titleGlow,
+                display: 'inline-block'
+              }}
+            >
+              <p
+                className="text-[60px] md:text-[90px] lg:text-[120px] leading-[50px] md:leading-[75px] lg:leading-[100px]"
+                style={{
+                  letterSpacing: '-0.02em'
+                }}
+              >
+                {title}
+              </p>
+            </div>
 
-                {/* Title - Right */}
-                <div
-                  className="font-monster tracking-[0.09em] [text-shadow:0_2px_7.2px_rgba(255,255,255,0.1)] flex-shrink-0 relative z-10 max-w-[280px] md:max-w-[400px] lg:max-w-[600px]"
-                  style={{
-                    backgroundImage: currentConfig.titleGradient,
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                    WebkitTextStroke: '1px black',
-                    filter: currentConfig.titleGlow,
-                    display: 'inline-block'
-                  }}
-                >
-                  <p
-                    className="text-[60px] md:text-[90px] lg:text-[120px] leading-[50px] md:leading-[75px] lg:leading-[100px]"
-                    style={{
-                      letterSpacing: '-0.02em'
-                    }}
-                  >
-                    {title}
-                  </p>
-                </div>
-              </>
-            ) : (
-              <>
-                {/* Title - Left (default horizontal-right) */}
-                <div
-                  className="font-monster tracking-[0.09em] [text-shadow:0_2px_7.2px_rgba(255,255,255,0.1)] flex-shrink-0 relative z-10 max-w-[280px] md:max-w-[400px] lg:max-w-[600px]"
-                  style={{
-                    backgroundImage: currentConfig.titleGradient,
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                    WebkitTextStroke: '1px black',
-                    filter: currentConfig.titleGlow,
-                    display: 'inline-block'
-                  }}
-                >
-                  <p
-                    className="text-[60px] md:text-[90px] lg:text-[120px] leading-[50px] md:leading-[75px] lg:leading-[100px]"
-                    style={{
-                      letterSpacing: '-0.02em'
-                    }}
-                  >
-                    {title}
-                  </p>
-                </div>
-
-                {/* Description and Button - Right */}
-                <div className="flex flex-col items-end text-right max-w-[500px] relative z-10">
-                  <div className="text-white/100 font-helvetica text-[14px] md:text-[16px] lg:text-[20px] mb-6 text-right">
-                    <TextType
-                      text={description}
-                      typingSpeed={15}
-                      pauseDuration={1500}
-                      showCursor={true}
-                      cursorCharacter="|"
-                      deletingSpeed={10}
-                    />
-                  </div>
-                  <Link
-                    href="/events/expo"
-                    className="text-white font-semibold text-xs py-2 px-4 rounded-md transition-all hover:brightness-110 inline-block"
-                    style={{ backgroundColor: currentConfig.buttonColor }}
-                  >
-                    Learn More
-                  </Link>
-                </div>
-              </>
-            )}
+            {/* Description and Button - Second in mobile stack */}
+            <div className={`flex flex-col items-center md:items-${isLeft ? 'start' : 'end'} text-center md:text-${isLeft ? 'left' : 'right'} max-w-[500px] relative z-10 ${isLeft ? 'md:order-1' : 'md:order-2'}`}>
+              <div className={`text-white/100 font-helvetica text-[14px] md:text-[16px] lg:text-[20px] mb-6 text-center md:text-${isLeft ? 'left' : 'right'}`}>
+                {description}
+              </div>
+              <Link
+                href={isLeft ? "/events/devday" : "/events/expo"}
+                className="text-white font-semibold text-xs py-2 px-4 rounded-md transition-all hover:brightness-110 inline-block"
+                style={{ backgroundColor: currentConfig.buttonColor }}
+              >
+                Learn More
+              </Link>
+            </div>
           </div>
         </div>
       ) : (
