@@ -90,7 +90,7 @@ function Hero({
   const horizontalTranslateXStr = `${horizontalTranslateXValue}px`;
 
   return (
-    <section className="relative pt-20 md:pt-20 lg:pt-20 pb-12 px-4 text-center overflow-hidden">
+    <section className="relative pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10 md:pb-12 px-4 text-center overflow-hidden">
       {!isHorizontalLayout && (
         <>
           {/* Repeating text background - Vertical only */}
