@@ -24,9 +24,35 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      // Prevent scroll on both body and html
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      // Restore scroll
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.documentElement.style.overflow = '';
+      // Close dropdowns when menu closes
+      setEventsDropdown(false);
+      setProjectsDropdown(false);
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isOpen]);
+
   return (
     <nav className={`
-      fixed top-4 left-4 right-4 z-50 text-white transition-all duration-500 ease-in-out rounded-2xl
+      fixed top-4 left-4 right-4 z-[60] text-white transition-all duration-500 ease-in-out rounded-2xl
       ${isScrolled
         ? 'py-2 md:py-3 backdrop-blur-xl bg-black/30 shadow-lg'
         : 'py-4 md:py-6 bg-transparent'
@@ -128,8 +154,8 @@ export default function Navbar() {
           >
             Partners
           </Link>
-          <Link 
-            href="#" 
+          <Link
+            href="/about"
             className="px-4 md:px-6 py-2 text-sm md:text-base hover:text-[#FF33E1] transition-colors"
           >
             About
@@ -147,7 +173,7 @@ export default function Navbar() {
         {/* Mobile Hamburger Button */}
         <button
           onClick={toggleMenu}
-          className="lg:hidden flex flex-col gap-1.5 z-50 relative"
+          className="lg:hidden flex flex-col gap-1.5 z-[60] relative"
           aria-label="Toggle menu"
         >
           <span className={`w-7 h-0.5 bg-white transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
@@ -159,11 +185,15 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed inset-0 backdrop-blur-2xl bg-black/95 z-40 transition-all duration-300 ${
-          isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+        className={`lg:hidden fixed inset-0 backdrop-blur-2xl bg-black/95 z-[55] transition-all duration-300 overflow-hidden ${
+          isOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
         }`}
+        onClick={toggleMenu}
       >
-        <div className="flex flex-col items-center justify-center h-full gap-3 px-6">
+        <div
+          className="flex flex-col items-center justify-center h-full gap-3 px-6 overflow-y-auto overscroll-none"
+          onClick={(e) => e.stopPropagation()}
+        >
           {/* Logo at top of mobile menu */}
           <div className="mb-4">
             <Image
@@ -237,8 +267,9 @@ export default function Navbar() {
               }`}
             >
               <div className="space-y-1 pt-1">
-                <Link 
-                    href="/projects" 
+                <Link
+                    href="/projects"
+                    onClick={toggleMenu}
                     className="block text-center px-6 py-3 text-sm hover:text-[#FF33E1] transition-colors"
                   >
                     Collections
@@ -254,8 +285,8 @@ export default function Navbar() {
           >
             Partners
           </Link>
-          <Link 
-            href="#"
+          <Link
+            href="/about"
             onClick={toggleMenu}
             className="w-full max-w-xs text-center px-8 py-3 text-base hover:text-[#FF33E1] transition-all duration-200"
           >
