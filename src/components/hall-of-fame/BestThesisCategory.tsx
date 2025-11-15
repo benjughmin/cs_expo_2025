@@ -10,7 +10,7 @@ export function BestThesisCategory() {
   const { handleNext, handlePrev, currentPage } = usePagination(BestProjects) // Pagination hook
 
   return (
-    <section className="relative flex h-screen w-full flex-col overflow-hidden bg-black pb-5">
+    <section className="relative flex h-screen w-full flex-col overflow-hidden bg-[#840172] pb-5">
       {/* Section Header */}
       <div className="flex h-[15%] items-center justify-center px-8">
         <h1 className="font-monster text-center text-[64px] leading-[20px] tracking-wide text-white">
@@ -80,7 +80,7 @@ export function BestThesisCategory() {
               {/* Button */}
               <a
                 href={BestProjects[currentPage].link}
-                className="font-helvetica mt-auto block w-full -translate-y-10 rounded-full border-2 p-4 py-8 text-center font-light hover:bg-white hover:text-black"
+                className="font-helvetica mt-auto block w-full -translate-y-10 rounded-full border-2 p-4 py-5 text-center font-light hover:bg-white hover:text-black"
                 target="_blank"
                 rel="noopener noreferrer"
               >
