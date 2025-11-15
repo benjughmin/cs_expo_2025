@@ -1,17 +1,17 @@
 // Award Winner Types
 export type AwardProps = {
   title: string
-  top1: AwardeeProps
-  top2: AwardeeProps
-  top3: AwardeeProps
+  top1: AwardeeProps | AwardeeProps[]
+  top2: AwardeeProps | AwardeeProps[]
+  top3: AwardeeProps | AwardeeProps[]
 }
 
 export type AwardeeProps = {
   presenter?: string // for Best Presenter Award
   groupName: string
-  thesisTitle?: string
-  members?: string[]
-  mentor?: string
+  thesisTitle: string
+  members: string[]
+  mentor: string
   img: string
   tags: string
 }

@@ -5,14 +5,27 @@ export const AwardData: AwardProps[] = [
   // Award 1
   {
     title: "BEST THESIS OVERALL",
-    top1: {
-      groupName: groupsData[30].group_name,
-      thesisTitle: groupsData[30].thesis_title || "Thesis Title",
-      members: groupsData[30].members || ["Member 1", "Member 2", "Member 3"],
-      mentor: groupsData[30].thesis_mentor || "Mentor",
-      img: groupsData[30].group_picture_url.at(0) || "/HOF/placeholder.jpg",
-      tags: groupsData[30].category || "Category",
-    },
+    //sample data with multiple awardees of the same rank
+    top1: [
+      // group 1
+      {
+        groupName: groupsData[30].group_name,
+        thesisTitle: groupsData[30].thesis_title || "Thesis Title",
+        members: groupsData[30].members || ["Member 1", "Member 2", "Member 3"],
+        mentor: groupsData[30].thesis_mentor || "Mentor",
+        img: groupsData[30].group_picture_url.at(0) || "/HOF/placeholder.jpg",
+        tags: groupsData[30].category || "Category",
+      },
+      // group 2
+      {
+        groupName: groupsData[0].group_name,
+        thesisTitle: groupsData[0].thesis_title || "Thesis Title",
+        members: groupsData[0].members || ["Member 1", "Member 2", "Member 3"],
+        mentor: groupsData[0].thesis_mentor || "Mentor",
+        img: groupsData[0].group_picture_url.at(1) || "/HOF/placeholder.jpg",
+        tags: groupsData[0].category || "Category",
+      },
+    ],
     top2: {
       groupName: groupsData[1].group_name,
       thesisTitle: groupsData[1].thesis_title || "Thesis Title",
@@ -62,7 +75,7 @@ export const AwardData: AwardProps[] = [
 
   // Award 3
   {
-    title: "BEST PRESENTERS",
+    title: "BEST PRESENTER",
     top1: {
       presenter: groupsData[9].members.at(0) || "Presenter", //placeholder
       groupName: groupsData[9].group_name,
