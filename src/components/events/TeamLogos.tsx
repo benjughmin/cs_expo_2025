@@ -1,63 +1,73 @@
 "use client";
 
-import useEmblaCarousel from 'embla-carousel-react';
-import AutoScroll from 'embla-carousel-auto-scroll';
-import { useEffect } from 'react';
+import useEmblaCarousel from "embla-carousel-react";
+import AutoScroll from "embla-carousel-auto-scroll";
+import { useState } from "react";
+import groupsData from "@/data/groups"; // your existing data file
 
-interface TeamLogosProps {
-  logos?: string[]; 
-}
+export default function TeamLogos() {
+  const [imageErrors, setImageErrors] = useState<Set<number>>(new Set());
 
-export default function TeamLogos({ logos = [] }: TeamLogosProps) {
-  // For placeholder logos
-  const displayLogos = logos.length > 0 ? logos : Array(6).fill('/logo/logo-1.png');
+  // Extract all team logos from groupsData
+  const logos = groupsData
+    .map((group) => ({
+      name: group.group_name,
+      logo: group.group_logo,
+    }))
+    .filter((g) => g.logo);
 
-  const allLogos = [...displayLogos, ...displayLogos, ...displayLogos];
-  
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { 
+  const [emblaRef] = useEmblaCarousel(
+    {
       loop: true,
-      align: 'start',
-      dragFree: false,
+      align: "start",
       containScroll: false,
+      dragFree: true,
     },
-    [AutoScroll({ playOnInit: true, speed: 0.75, stopOnInteraction: false })]
+    [AutoScroll({ playOnInit: true, speed: 1.2, stopOnInteraction: false })]
   );
 
-  useEffect(() => {
-    if (emblaApi) {
-      console.log('Embla initialized');
-    }
-  }, [emblaApi]);
+  const handleImageError = (index: number) => {
+    const group = logos[index % logos.length]; // wrap around repeated array
+    console.warn(`⚠️ Failed to load logo for team: ${group.name}`);
+    setImageErrors((prev) => new Set(prev).add(index));
+  };
+
+  // Repeat logos for infinite scrolling
+  const allLogos = [...logos, ...logos, ...logos];
 
   return (
-    <section className="relative z-10 px-4 pb-6 md:pb-12">
-      <div className="max-w-7xl mx-auto">
-        <div 
-          className="rounded-[20px] overflow-hidden flex items-center h-[180px] md:h-[280px] lg:h-[358px]"  
-          style={{
-            maxWidth: '1278px',
-            margin: '0 auto'
-          }}
-        >
-          {/* Embla Carousel Container */}
-          <div className="overflow-hidden w-full" ref={emblaRef}>
-            <div className="flex gap-4 md:gap-8 lg:gap-12 px-4 md:px-8">
-              {allLogos.map((logo, index) => (
-                <div 
-                  key={index}
-                  className="flex-shrink-0 w-[80px] h-[80px] md:w-[120px] md:h-[120px] lg:w-[150px] lg:h-[150px] flex items-center justify-center"
-                  style={{ marginRight: index === allLogos.length - 1 ? '0' : '' }}
-                >
-                  <img 
-                    src={logo} 
-                    alt={`Team logo ${index + 1}`}
-                    className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                  />
+    <section className="relative z-10 w-full overflow-hidden py-8">
+      <div className="w-full" ref={emblaRef}>
+        <div className="flex items-center gap-7 px-12">
+          {allLogos.map((group, index) => (
+            <div
+              key={index}
+              className="flex-shrink-0 flex items-center justify-center"
+              style={{ height: "125px" }}
+            >
+              {imageErrors.has(index) ? (
+                <div className="w-[250px] h-full flex items-center justify-center bg-slate-200 rounded-lg">
+                  <span className="text-slate-400 text-xs">
+                    {group.name || "Logo"}
+                  </span>
                 </div>
-              ))}
+              ) : (
+                <img
+                  src={group.logo}
+                  alt={`${group.name} logo`}
+                  onError={() => handleImageError(index)}
+                  className="h-full w-auto object-contain transition-transform duration-300 ease-out will-change-transform"
+                  style={{ transform: "translateZ(0)" }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "scale(1.15) translateZ(0)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "scale(1) translateZ(0)";
+                  }}
+                />
+              )}
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

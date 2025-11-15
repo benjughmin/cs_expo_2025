@@ -1,10 +1,13 @@
 "use client";
 
-import TeamCategoryBox from './TeamCategoryBox';
+import React, { useEffect, useRef } from "react";
+import TeamCategoryBox from "./TeamCategoryBox";
 
 interface Team {
+  id?: string;
   name: string;
   category: string;
+  logo?: string;
 }
 
 interface EventDaySectionProps {
@@ -16,73 +19,77 @@ interface EventDaySectionProps {
   keynoteSubtitle?: string;
   keynoteDescription?: string;
   categories: string[];
-  teams: Team[];
-  boxOnLeft?: boolean; // Box on left, content on right
+  teams: any[];
+  boxOnLeft?: boolean;
+  onFocus?: () => void; // 🟣 add this
 }
 
-function EventDaySection({title, date, time, description, keynoteTitle, keynoteSubtitle, keynoteDescription, categories, teams, boxOnLeft = false}: EventDaySectionProps) {
+function EventDaySection({
+  title,
+  date,
+  time,
+  description,
+  keynoteTitle,
+  keynoteSubtitle,
+  keynoteDescription,
+  categories,
+  teams,
+  boxOnLeft = false,
+  onFocus,
+}: EventDaySectionProps) {
   return (
-    <section className="pt-0 pb-16 px-4 md:px-8">
+    <section
+      className="pt-0 pb-16 px-4 md:px-8"
+      onMouseEnter={onFocus} // 🟣 trigger Hero update on hover/focus
+      onFocus={onFocus}
+    >
       <div className="max-w-7xl mx-auto">
-        {/* Main Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-30 lg:items-center">
-          
-          {/* Teams/Categories Box - Order 3 on mobile, Order 1 or 2 on desktop */}
-          <div className={`w-full order-3 ${boxOnLeft ? 'lg:order-1' : 'lg:order-2'}`}>
+          {/* Team Box */}
+          <div
+            className={`w-full order-3 ${
+              boxOnLeft ? "lg:order-1" : "lg:order-2"
+            }`}
+          >
             <TeamCategoryBox categories={categories} teams={teams} />
           </div>
 
-          {/* Event Info - Order 1 on mobile, Order 1 or 2 on desktop */}
-          <div className={`space-y-6 order-1 ${boxOnLeft ? 'lg:order-2' : 'lg:order-1'}`}>
-            {/* Title */}
-            <p 
-              className="font-avolta font-normal md:text-[48px] text-4xl text-white leading-[40px] tracking-[0.1em] mb-0 align-middle"
-              style={{
-                filter: 'drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.8))'
-              }}
+          {/* Info */}
+          <div
+            className={`space-y-6 order-1 ${
+              boxOnLeft ? "lg:order-2" : "lg:order-1"
+            }`}
+          >
+            <p
+              className="font-avolta font-normal md:text-[48px] text-4xl text-white leading-[40px]"
+              style={{ filter: "drop-shadow(0 0 6px rgba(255,255,255,0.8))" }}
             >
               {title}
             </p>
-            
-            {/* Date and Time */}
-            <p 
-              className="font-dreamer font-normal md:text-[20px] text-sm text-[#FF00DC] leading-[20px] tracking-[0.1em]"
+            <p
+              className="font-dreamer md:text-[20px] text-sm text-[#FF00DC]"
               style={{
-                filter: 'drop-shadow(0px 0px 4.4px rgba(255, 0, 220, 0.8))'
+                filter: "drop-shadow(0 0 4px rgba(255,0,220,0.8))",
               }}
             >
               {date} | {time}
             </p>
-            
-            {/* Description */}
-            <p className="font-helvetica font-medium md:text-[16px] text-sm text-white leading-[20px] ">
+            <p className="font-helvetica text-white text-sm md:text-[16px] leading-[20px]">
               {description}
             </p>
 
-            {/* Keynote Talk Section */}
-            <div className="space-y-4 text-right">
-              {/* Keynote Title */}
-              <p 
-                className="font-avolta font-normal md:text-[36px] text-4xl text-white leading-[40px] tracking-[0.1em] mb-0 align-middle"
-                style={{
-                  filter: 'drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.8))'
-                }}
-              >
+            <div
+              className={`space-y-4 ${
+                boxOnLeft ? "text-left" : "text-right"
+              }`}
+            >
+              <p className="font-avolta text-4xl md:text-[36px] text-white">
                 {keynoteTitle}
               </p>
-
-              {/* Keynote Subtitle */}
-              <p 
-                className="font-dreamer font-normal md:text-[20px] text-sm text-[#FF00DC] leading-[20px] tracking-[0.1em]"
-                style={{
-                  filter: 'drop-shadow(0px 0px 4.4px rgba(255, 0, 220, 0.8))'
-                }}
-              >
+              <p className="font-dreamer text-[#FF00DC] text-sm md:text-[20px]">
                 {keynoteSubtitle}
               </p>
-
-              {/* Keynote Description */}
-              <p className="text-white/90 text-sm md:[20px] leading-relaxed font-helvetica mb-0">
+              <p className="text-white/90 text-sm md:text-[20px] leading-relaxed font-helvetica mb-0">
                 {keynoteDescription}
               </p>
             </div>

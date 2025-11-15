@@ -1,27 +1,33 @@
 "use client"
 import { useState } from "react"
+import { allCategories } from "@/app/projects/data/ProjectsData"
 
-export default function CategoryFilters() {
-  const categories = [
-    "Natural Language Processing",
-    "Medicine & Health",
-    "Computer Vision",
-    "Environment",
-    "Education",
-    "Agriculture",
-  ]
+interface CategoryFiltersProps {
+  onFilterChange?: (category: string | null) => void;
+}
 
+export default function CategoryFilters({ onFilterChange }: CategoryFiltersProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
+
+  const handleCategoryClick = (index: number, category: string) => {
+    const newActiveIndex = activeIndex === index ? null : index;
+    setActiveIndex(newActiveIndex);
+    
+    // Call the callback if provided
+    if (onFilterChange) {
+      onFilterChange(newActiveIndex === null ? null : category);
+    }
+  }
 
   return (
     <section className="w-full pb-8 flex flex-wrap items-center justify-center gap-10 mb-2 -mt-8 relative z-10">
-      {categories.map((category, index) => {
+      {allCategories.map((category, index) => {
         const isActive = activeIndex === index
 
         return (
           <button
             key={index}
-            onClick={() => setActiveIndex(isActive ? null : index)}
+            onClick={() => handleCategoryClick(index, category)}
             className={`
               min-w-[100px] px-2 font-helvetica font-bold h-[30px] text-xs rounded-[8px] transition-all whitespace-nowrap
               ${isActive

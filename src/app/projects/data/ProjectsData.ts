@@ -1,169 +1,37 @@
-//sample data only for testing
-export const projects = [
-  {
-    slug: "agila",
-    appTitle: "Agila",
-    thesisTitle:
-      "Employing Knowledge-Based Recommendations in Crime Mapping for Manila City using ARIMA Forecasting Algorithm",
-    poster: "/images/agila-poster.jpg",
-    logo: "/images/agila-logo.png",
-    details: {
-      groupName: "Agila Team",
-      groupMembers: ["Ana", "Leo", "Mika"],
-      mentor: "Prof. Santos",
-      category: ["Data Science", "Crime Analysis", "Forecasting"], 
-      thesisDescription:
-        "This project uses ARIMA forecasting to analyze crime data in Manila City, providing actionable insights for law enforcement.",
-      videoLink: "https://youtube.com/example-agila-avp",
-      photoshoot: [
-        "/images/agila-1.jpg",
-        "/images/agila-2.jpg",
-        "/images/agila-3.jpg",
-      ],
-    },
+// src/app/projects/data/ProjectsData.ts
+import groupsData from "@/data/groups";
+
+function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+// Transform the groups data to match your project structure
+export const projects = groupsData.map((group) => ({
+  slug: slugify(group.group_name),
+  appTitle: group.group_name,
+  thesisTitle: group.thesis_title,
+  poster: group.thesis_poster_url, // used in cards
+  logo: group.group_logo,          // used in hero
+  details: {
+    groupName: group.group_name,
+    groupMembers: group.members,
+    mentor: group.thesis_mentor,
+    category: Array.isArray(group.category)
+      ? group.category
+      : group.category
+      ? [group.category]
+      : [],
+    thesisDescription: group.thesis_description,
+    videoLink: group.avp_url || undefined,
+    photoshoot: group.group_picture_url,  // background / hero images
+    memberPictures: group.member_picture, // individual member images
   },
-  {
-    slug: "lumina",
-    appTitle: "Lumina",
-    thesisTitle: "Lumina: Smart Lighting System for Energy Efficiency",
-    poster: "/images/lumina-poster.jpg",
-    logo: "/images/lumina-logo.png",
-    details: {
-      groupName: "Lumina Team",
-      groupMembers: ["Ben", "Clara", "David"],
-      mentor: "Prof. Reyes",
-      category: ["IoT", "Engineering", "Energy"],
-      thesisDescription:
-        "Lumina is a smart lighting system that adjusts brightness and color temperature automatically based on ambient light and occupancy to save energy.",
-      videoLink: "https://youtube.com/example-lumina-avp",
-      photoshoot: ["/images/lumina-1.jpg", "/images/lumina-2.jpg"],
-    },
-  },
-  {
-    slug: "aurora",
-    appTitle: "Aurora",
-    thesisTitle: "Aurora: AI-Based Weather Prediction System",
-    poster: "/images/aurora-poster.jpg",
-    logo: "/images/aurora-logo.png",
-    details: {
-      groupName: "Aurora Team",
-      groupMembers: ["Ella", "James", "Nina"],
-      mentor: "Prof. Cruz",
-      category: ["Artificial Intelligence", "Weather", "Machine Learning"],
-      thesisDescription:
-        "Aurora predicts weather patterns using machine learning algorithms trained on historical climate data, providing accurate forecasts for local regions.",
-      videoLink: "https://youtube.com/example-aurora-avp",
-      photoshoot: [
-        "/images/aurora-1.jpg",
-        "/images/aurora-2.jpg",
-        "/images/aurora-3.jpg",
-      ],
-    },
-  },
-  {
-    slug: "nova",
-    appTitle: "Nova",
-    thesisTitle: "Nova: Renewable Energy Optimization for Smart Homes",
-    poster: "/images/nova-poster.jpg",
-    logo: "/images/nova-logo.png",
-    details: {
-      groupName: "Nova Team",
-      groupMembers: ["Sam", "Tina", "Milo"],
-      mentor: "Prof. Dela Cruz",
-      category: ["Sustainable Energy", "Smart Homes", "Optimization"],
-      thesisDescription:
-        "Nova optimizes solar panel usage and energy storage in smart homes to reduce electricity costs and environmental impact.",
-      videoLink: "https://youtube.com/example-nova-avp",
-      photoshoot: ["/images/nova-1.jpg", "/images/nova-2.jpg"],
-    },
-  },
-  {
-    slug: "orion",
-    appTitle: "Orion",
-    thesisTitle: "Orion: Intelligent Traffic Flow Management System",
-    poster: "/images/orion-poster.jpg",
-    logo: "/images/orion-logo.png",
-    details: {
-      groupName: "Orion Team",
-      groupMembers: ["Lara", "Noah", "Ethan"],
-      mentor: "Prof. Lim",
-      category: ["Smart Cities", "AI", "Traffic Management"],
-      thesisDescription:
-        "Orion uses sensors and AI to manage traffic lights dynamically, reducing congestion and improving urban mobility.",
-      videoLink: "https://youtube.com/example-orion-avp",
-      photoshoot: ["/images/orion-1.jpg", "/images/orion-2.jpg"],
-    },
-  },
-  {
-    slug: "vortex",
-    appTitle: "Vortex",
-    thesisTitle: "Vortex: AI-Powered Health Monitoring Wearables",
-    poster: "/images/vortex-poster.jpg",
-    logo: "/images/vortex-logo.png",
-    details: {
-      groupName: "Vortex Team",
-      groupMembers: ["Ivy", "Alex", "Jonas"],
-      mentor: "Prof. Tan",
-      category: ["Healthcare", "AI", "Wearables"],
-      thesisDescription:
-        "Vortex uses wearable devices and AI algorithms to continuously monitor vital signs and detect anomalies in real-time.",
-      videoLink: "https://youtube.com/example-vortex-avp",
-      photoshoot: ["/images/vortex-1.jpg", "/images/vortex-2.jpg"],
-    },
-  },
-  {
-    slug: "zephyr",
-    appTitle: "Zephyr",
-    thesisTitle: "Zephyr: Smart Air Quality Monitoring System",
-    poster: "/images/zephyr-poster.jpg",
-    logo: "/images/zephyr-logo.png",
-    details: {
-      groupName: "Zephyr Team",
-      groupMembers: ["Maya", "Felix", "Cleo"],
-      mentor: "Prof. Reyes",
-      category: ["Environmental Science", "IoT", "Air Quality"],
-      thesisDescription:
-        "Zephyr monitors air quality in real-time using IoT sensors, providing data for urban planning and public health initiatives.",
-      videoLink: "https://youtube.com/example-zephyr-avp",
-      photoshoot: ["/images/zephyr-1.jpg", "/images/zephyr-2.jpg"],
-    },
-  },
-  {
-    slug: "eclipse",
-    appTitle: "Eclipse",
-    thesisTitle: "Eclipse: Virtual Reality Learning Platform",
-    poster: "/images/eclipse-poster.jpg",
-    logo: "/images/eclipse-logo.png",
-    details: {
-      groupName: "Eclipse Team",
-      groupMembers: ["Liam", "Sophia", "Rina"],
-      mentor: "Prof. Cruz",
-      category: ["EdTech", "VR", "Education"],
-      thesisDescription:
-        "Eclipse offers immersive VR lessons for students, enhancing learning experiences through interactive simulations.",
-      videoLink: "https://youtube.com/example-eclipse-avp",
-      photoshoot: ["/images/eclipse-1.jpg", "/images/eclipse-2.jpg"],
-    },
-  },
-  {
-    slug: "phoenix",
-    appTitle: "Phoenix",
-    thesisTitle: "Phoenix: Disaster Response AI System",
-    poster: "/images/phoenix-poster.jpg",
-    logo: "/images/phoenix-logo.png",
-    details: {
-      groupName: "Phoenix Team",
-      groupMembers: ["Oscar", "Lily", "Vince"],
-      mentor: "Prof. Santos",
-      category: ["AI", "Disaster Management", "Emergency Response"],
-      thesisDescription:
-        "Phoenix uses AI to analyze disaster data and optimize emergency response strategies to save lives during natural calamities.",
-      videoLink: "https://youtube.com/example-phoenix-avp",
-      photoshoot: [
-        "/images/phoenix-1.jpg",
-        "/images/phoenix-2.jpg",
-        "/images/phoenix-3.jpg",
-      ],
-    },
-  },
-];
+}));
+
+// Extract unique categories for filtering
+export const allCategories = Array.from(
+  new Set(projects.flatMap((project) => project.details.category))
+).sort();
