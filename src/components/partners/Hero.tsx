@@ -1,7 +1,6 @@
 "use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import PixelBlast from "@/components/global/PixelBlast";
 
 interface HeroProps {
   title: string;
@@ -10,30 +9,44 @@ interface HeroProps {
 
 function Hero({title, description}: HeroProps) {
   return(
-    <section className="relative pt-12 md:pt-16 lg:pt-20 pb-0 px-4 text-center">
-      <div className="max-w-6xl mx-auto">
+    <section className="relative mx-auto flex h-[85vh] flex-col items-center justify-center text-center">
+      {/* Pixel background */}
+      <div className="absolute inset-0 z-0 cursor-pointer -bottom-40">
+        <PixelBlast
+          variant="circle"
+          pixelSize={9}
+          color="#B19EEF"
+          patternScale={3}
+          patternDensity={1.2}
+          pixelSizeJitter={0.5}
+          enableRipples
+          rippleSpeed={0.4}
+          rippleThickness={0.12}
+          rippleIntensityScale={1.5}
+          speed={0.6}
+          edgeFade={0.25}
+          transparent
+        />
+      </div>
+
+      {/* Glow */}
+      <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
         <div
-          className="font-monster tracking-[0.09em] [text-shadow:0_2px_7.2px_rgba(255,255,255,0.1)]"
-          style={{
-            backgroundImage: "linear-gradient(180deg, #FFFFFF 10%, #FFFFFF 0%, #FF37E3 30%, #FF00DC 70%, #FF00DC 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            WebkitTextStroke: "1px black",
-            filter: "drop-shadow(0px 0px 4px rgba(255, 55, 227, 0.8))",
-            display: "inline-block",
-          }}
-        >
-          <p 
-            className="text-[48px] md:text-[85px] lg:text-[110px] leading-[50px] md:leading-[70px] lg:leading-[85px] mb-6 md:mb-8 lg:mb-10"
-            style={{ letterSpacing: "-0.02em", whiteSpace: "pre-line" }}
-          >
-            {title.replace(" ", "\n")}
+          aria-hidden
+          className="h-[450px] w-[85%] max-w-5xl animate-[pulseGlow_4s_ease-in-out_infinite] rounded-full bg-[radial-gradient(circle_at_center,rgba(255,0,204,0.25)_0%,rgba(200,0,255,0.15)_30%,rgba(0,0,0,0)_70%)] blur-[80px]"
+        />
+      </div>
+
+      {/* Foreground content */}
+      <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center px-6">
+        <div className="pointer-events-auto flex max-w-4xl flex-col items-center gap-y-25 text-center">
+          <h1 className="font-monster text-gradient mb-0 text-4xl leading-[100px] -tracking-[2px] md:text-8xl lg:text-[96px]">
+            {title}
+          </h1>
+          <p className="font-helvetica indent-8 text-[20px] leading-[20px] font-extralight text-white">
+            {description}
           </p>
         </div>
-        <p className="text-white/100 max-w-[754px] mx-auto font-helvetica text-[14px] md:text-[16px] lg:text-[20px] px-4">
-          {description}
-        </p>
       </div>
     </section>
   );

@@ -4,97 +4,144 @@ export interface Partner {
   facebook?: string;
   instagram?: string;
   website?: string;
+  tier: string;
 }
 
-export const mediaPartners: Partner[] = [
+export const allPartners: Partner[] = [
+  // Diamond Sponsors
   {
-    name: "Partner 1",
-    logo: "/partners/placeholder.png",
+    name: "Partner Name",
+    logo: "/partners/placeholder/logo1.png",
     facebook: "https://facebook.com",
     instagram: "https://instagram.com",
-    website: "https://example.com"
+    website: "https://example.com",
+    tier: "Diamond Sponsors"
   },
   {
-    name: "Partner 2",
-    logo: "/partners/placeholder.png",
+    name: "Partner Name",
+    logo: "/partners/placeholder/logo1.png",
     facebook: "https://facebook.com",
     instagram: "https://instagram.com",
-    website: "https://example.com"
+    website: "https://example.com",
+    tier: "Diamond Sponsors"
+  },
+  // Gold Sponsors
+  {
+    name: "Partner Name",
+    logo: "/partners/placeholder/logo1.png",
+    facebook: "https://facebook.com",
+    instagram: "https://instagram.com",
+    website: "https://example.com",
+    tier: "Gold Sponsors"
   },
   {
-    name: "Partner 3",
-    logo: "/partners/placeholder.png",
+    name: "Partner Name",
+    logo: "/partners/placeholder/logo1.png",
     facebook: "https://facebook.com",
     instagram: "https://instagram.com",
-    website: "https://example.com"
+    website: "https://example.com",
+    tier: "Gold Sponsors"
+  },
+  // Silver Sponsors
+  {
+    name: "Partner Name",
+    logo: "/partners/placeholder/logo1.png",
+    facebook: "https://facebook.com",
+    instagram: "https://instagram.com",
+    website: "https://example.com",
+    tier: "Silver Sponsors"
   },
   {
-    name: "Partner 4",
-    logo: "/partners/placeholder.png",
+    name: "Partner Name",
+    logo: "/partners/placeholder/logo1.png",
     facebook: "https://facebook.com",
     instagram: "https://instagram.com",
-    website: "https://example.com"
+    website: "https://example.com",
+    tier: "Silver Sponsors"
   },
-];
-
-export const majorPartners: Partner[] = [
+  // Media Partners
   {
-    name: "Partner 1",
-    logo: "/partners/placeholder.png",
+    name: "Partner Name",
+    logo: "/partners/placeholder/logo1.png",
     facebook: "https://facebook.com",
     instagram: "https://instagram.com",
-    website: "https://example.com"
-  },
-  {
-    name: "Partner 2",
-    logo: "/partners/placeholder.png",
-    facebook: "https://facebook.com",
-    instagram: "https://instagram.com",
-    website: "https://example.com"
+    website: "https://example.com",
+    tier: "Media Partners"
   },
   {
-    name: "Partner 3",
-    logo: "/partners/placeholder.png",
+    name: "Partner Name",
+    logo: "/partners/placeholder/logo1.png",
     facebook: "https://facebook.com",
     instagram: "https://instagram.com",
-    website: "https://example.com"
+    website: "https://example.com",
+    tier: "Media Partners"
+  },
+  // Bronze Sponsors
+  {
+    name: "Partner Name",
+    logo: "/partners/placeholder/logo1.png",
+    facebook: "https://facebook.com",
+    instagram: "https://instagram.com",
+    website: "https://example.com",
+    tier: "Bronze Sponsors"
   },
   {
-    name: "Partner 4",
-    logo: "/partners/placeholder.png",
+    name: "Partner Name",
+    logo: "/partners/placeholder/logo1.png",
     facebook: "https://facebook.com",
     instagram: "https://instagram.com",
-    website: "https://example.com"
+    website: "https://example.com",
+    tier: "Bronze Sponsors"
   },
-];
-
-export const minorPartners: Partner[] = [
+  // Minor Partners
   {
-    name: "Partner 1",
-    logo: "/partners/placeholder.png",
+    name: "Partner Name",
+    logo: "/partners/placeholder/logo1.png",
     facebook: "https://facebook.com",
     instagram: "https://instagram.com",
-    website: "https://example.com"
-  },
-  {
-    name: "Partner 2",
-    logo: "/partners/placeholder.png",
-    facebook: "https://facebook.com",
-    instagram: "https://instagram.com",
-    website: "https://example.com"
+    website: "https://example.com",
+    tier: "Minor Partners"
   },
   {
-    name: "Partner 3",
-    logo: "/partners/placeholder.png",
+    name: "Partner Name",
+    logo: "/partners/placeholder/logo1.png",
     facebook: "https://facebook.com",
     instagram: "https://instagram.com",
-    website: "https://example.com"
+    website: "https://example.com",
+    tier: "Minor Partners"
+  },
+  // Major Partners
+  {
+    name: "Partner Name",
+    logo: "/partners/placeholder/logo1.png",
+    facebook: "https://facebook.com",
+    instagram: "https://instagram.com",
+    website: "https://example.com",
+    tier: "Major Partners"
   },
   {
-    name: "Partner 4",
-    logo: "/partners/placeholder.png",
+    name: "Partner Name",
+    logo: "/partners/placeholder/logo1.png",
     facebook: "https://facebook.com",
     instagram: "https://instagram.com",
-    website: "https://example.com"
+    website: "https://example.com",
+    tier: "Major Partners"
+  },
+  // Community Development Partners
+  {
+    name: "Partner Name",
+    logo: "/partners/placeholder/logo1.png",
+    facebook: "https://facebook.com",
+    instagram: "https://instagram.com",
+    website: "https://example.com",
+    tier: "Community Development Partners"
+  },
+  {
+    name: "Partner Name",
+    logo: "/partners/placeholder/logo1.png",
+    facebook: "https://facebook.com",
+    instagram: "https://instagram.com",
+    website: "https://example.com",
+    tier: "Community Development Partners"
   },
 ];

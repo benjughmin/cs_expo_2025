@@ -66,7 +66,6 @@ export default function PartnersCarousel({
                   facebook={partner.facebook}
                   instagram={partner.instagram}
                   website={partner.website}
-                  accentColor={accentColor}
                 />
               </CarouselItem>
             ))}

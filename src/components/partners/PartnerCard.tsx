@@ -1,6 +1,5 @@
 "use client";
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { FaFacebook, FaInstagram, FaGlobe } from 'react-icons/fa';
 
@@ -10,7 +9,6 @@ interface PartnerCardProps {
   facebook?: string;
   instagram?: string;
   website?: string;
-  accentColor: string;
 }
 
 export default function PartnerCard({ 
@@ -18,28 +16,26 @@ export default function PartnerCard({
   logo, 
   facebook, 
   instagram, 
-  website,
-  accentColor 
+  website
 }: PartnerCardProps) {
   return (
-    <div 
-      className="flex flex-col items-center justify-center p-6 md:p-8 rounded-[20px] border-2 h-[280px] md:h-[320px] w-full"
-      style={{ 
-        borderColor: accentColor,
-        background: `linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%)`
-      }}
-    >
+    <div className="w-full h-[410px] flex flex-col bg-[#FF37E31A] rounded-[16px] border-[#A2108D] border-[1px] overflow-hidden shadow-lg relative p-6">
       {/* Logo */}
-      <div className="w-[120px] h-[120px] md:w-[150px] md:h-[150px] bg-gray-300 rounded-[12px] mb-6 flex items-center justify-center overflow-hidden">
+      <div className="w-[250px] h-[250px] mb-6 flex items-center justify-center mx-auto">
         <img 
           src={logo} 
           alt={name}
-          className="w-full h-full object-contain"
+          className="max-w-full max-h-full object-contain"
         />
       </div>
 
       {/* Name */}
-      <p className="font-avolta text-white text-[18px] md:text-[20px] mb-4 text-center tracking-[0.05em]">
+      <p 
+        className="font-avolta text-[#FF37E3] font-normal text-xl md:text-2xl mb-4 text-center tracking-[0.1em]"
+        style={{
+          filter: 'drop-shadow(0px 0px 6px rgba(255,55,227,0.8))'
+        }}
+      >
         {name}
       </p>
 
@@ -50,8 +46,7 @@ export default function PartnerCard({
             href={facebook} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-white hover:opacity-80 transition-opacity"
-            style={{ color: accentColor }}
+            className="text-white hover:text-[#ff00dc] transition-colors"
           >
             <FaFacebook size={24} />
           </Link>
@@ -61,8 +56,7 @@ export default function PartnerCard({
             href={instagram} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-white hover:opacity-80 transition-opacity"
-            style={{ color: accentColor }}
+            className="text-white hover:text-[#ff00dc] transition-colors"
           >
             <FaInstagram size={24} />
           </Link>
@@ -72,8 +66,7 @@ export default function PartnerCard({
             href={website} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="text-white hover:opacity-80 transition-opacity"
-            style={{ color: accentColor }}
+            className="text-white hover:text-[#ff00dc] transition-colors"
           >
             <FaGlobe size={24} />
           </Link>

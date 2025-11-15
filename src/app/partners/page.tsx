@@ -1,51 +1,39 @@
+"use client";
+
+import { useState } from 'react';
 import Navbar from '@/components/global/nav-bar';
 import Footer from '@/components/global/footer';
 import Hero from '@/components/partners/Hero';
-import PartnersCarousel from '@/components/partners/PartnersCarousel';
-import { mediaPartners, majorPartners, minorPartners } from './data/partnersData';
+import PartnerTierFilters from '@/components/partners/PartnerTierFilters';
+import PartnersGrid from '@/components/partners/PartnersGrid';
+import { allPartners } from './data/partnersData';
 
 function PartnersPage() {
+    const [selectedTier, setSelectedTier] = useState<string | null>(null);
+
     return(
-        <div className="min-h-screen bg-[rgba(15,0,25,1)] relative overflow-hidden">
-            {/* Content wrapper */}
-            <div className="relative z-10">
-                {/* Navbar */}
-                <Navbar />
+        <main className="bg-black">
+            <Navbar />
+            
+            {/* Hero Component */}
+            <Hero
+                title="OUR PARTNERS"
+                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas enim neque, lobortis quis massa sit amet, convallis tincidunt enim."
+            />
 
-                {/* Hero Component */}
-                <Hero
-                    title="OUR PARTNERS"
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas enim neque, lobortis quis massa sit amet, convallis tincidunt enim."
-                />
-
-                {/* Media Partners Carousel */}
-                <PartnersCarousel 
-                    title="MEDIA PARTNERS"
-                    partners={mediaPartners}
-                    accentColor="#FF00DC"
-                    titleGradient="linear-gradient(180deg, #FFFFFF 40%, #FF37E3 60%)"
-                />
-
-                {/* Major Partners Carousel */}
-                <PartnersCarousel 
-                    title="MAJOR PARTNERS"
-                    partners={majorPartners}
-                    accentColor="#5C0BDE"
-                    titleGradient="linear-gradient(180deg, #FFFFFF 40%, #5C0BDE 60%)"
-                />
-
-                {/* Minor Partners Carousel */}
-                <PartnersCarousel 
-                    title="MINOR PARTNERS"
-                    partners={minorPartners}
-                    accentColor="#FF6B00"
-                    titleGradient="linear-gradient(180deg, #FFFFFF 40%, #FF6B00 60%)"
-                />
-
-                {/* Footer */}
-                <Footer />
+            <div className="bg-gradient-to-b from-[#0D0D0D] from-[2%] to-[#0F0019] to-[12%] pb-16">
+                {/* Partner Tier Filters */}
+                <PartnerTierFilters onFilterChange={setSelectedTier} />
+                
+                {/* Divider Line */}
+                <div className="w-full max-w-6xl mx-auto border-t border-white mb-8"></div>
+                
+                {/* Partners Grid */}
+                <PartnersGrid partners={allPartners} selectedTier={selectedTier} />
             </div>
-        </div>
+
+            <Footer />
+        </main>
     )
 }
 
