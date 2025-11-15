@@ -7,19 +7,23 @@ export type AwardProps = {
 }
 
 export type AwardeeProps = {
+  presenter?: string // for Best Presenter Award
   groupName: string
-  desc: string
+  thesisTitle?: string
+  members?: string[]
+  mentor?: string
   img: string
-  tags: string[]
-  link: string // Link to that particular project page
+  tags: string
 }
 
 // Best Project By Category Types
 export type BestProjectsProps = {
   title: string
   groupName: string
+  thesisTitle?: string
+  members?: string[]
+  mentor?: string
   desc: string
-  tags: string[]
+  tags: string
   img: string
-  link: string // Link to that particular project page
 }
