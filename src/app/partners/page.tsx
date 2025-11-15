@@ -1,6 +1,8 @@
 import Navbar from '@/components/global/nav-bar';
 import Footer from '@/components/global/footer';
-import Hero from '@/components/events/Hero';
+import Hero from '@/components/partners/Hero';
+import PartnersCarousel from '@/components/partners/PartnersCarousel';
+import { mediaPartners, majorPartners, minorPartners } from './data/partnersData';
 
 function PartnersPage() {
     return(
@@ -12,9 +14,32 @@ function PartnersPage() {
 
                 {/* Hero Component */}
                 <Hero
-                    title='OUR PARTNERS'
+                    title="OUR PARTNERS"
                     description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas enim neque, lobortis quis massa sit amet, convallis tincidunt enim."
-                    variant="expo"
+                />
+
+                {/* Media Partners Carousel */}
+                <PartnersCarousel 
+                    title="MEDIA PARTNERS"
+                    partners={mediaPartners}
+                    accentColor="#FF00DC"
+                    titleGradient="linear-gradient(180deg, #FFFFFF 40%, #FF37E3 60%)"
+                />
+
+                {/* Major Partners Carousel */}
+                <PartnersCarousel 
+                    title="MAJOR PARTNERS"
+                    partners={majorPartners}
+                    accentColor="#5C0BDE"
+                    titleGradient="linear-gradient(180deg, #FFFFFF 40%, #5C0BDE 60%)"
+                />
+
+                {/* Minor Partners Carousel */}
+                <PartnersCarousel 
+                    title="MINOR PARTNERS"
+                    partners={minorPartners}
+                    accentColor="#FF6B00"
+                    titleGradient="linear-gradient(180deg, #FFFFFF 40%, #FF6B00 60%)"
                 />
 
                 {/* Footer */}
