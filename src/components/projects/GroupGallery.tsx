@@ -12,6 +12,7 @@ type GroupGalleryProps = {
     groupName: string;
     groupMembers: string[];
     photoshoot: string[];
+    memberPictures?: string[];
   };
 };
 
@@ -19,11 +20,14 @@ const shimmer =
   "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxIDEnPjxyZWN0IHdpZHRoPScxJyBoZWlnaHQ9JzEnIGZpbGw9JyNFNUU3RUInLz48L3N2Zz4=";
 
 export default function GroupGallery({ details }: GroupGalleryProps) {
+  const { groupName, photoshoot = [], memberPictures = [] } = details;
+  const allImages = [...photoshoot, ...memberPictures];
+
   return (
-    // Gallery Header
     <div className="flex flex-col items-center justify-center text-center">
+      {/* Header */}
       <h1
-        className="font-monster text-center text-gradient text-2xl mt-20 leading-[100px] -tracking-[2px] md:text-8xl lg:text-[96px] px-6 overflow-visible"
+        className="font-monster text-center text-gradient text-2xl sm:mt-0 md:mt-20 leading-[100px] -tracking-[2px] md:text-8xl lg:text-[96px] px-6 overflow-visible"
         style={
           {
             "--gradient-stop": "35%",
@@ -33,53 +37,63 @@ export default function GroupGallery({ details }: GroupGalleryProps) {
       >
         Gallery
       </h1>
+        {/* Carousel */}
+      {allImages.length > 0 ? (
+        <div className="w-full max-w-5xl px-10 sm:mt-0 md:mt-12 relative">
+          <Carousel opts={{ align: "start", loop: true }} className="w-full">
+            <div className="rounded-[20px] overflow-hidden relative shadow-lg shadow-black/40">
+              <CarouselContent>
+                {allImages.map((photoUrl, index) => (
+                  <CarouselItem
+                    key={`gallery-${index}`}
+                    className="flex justify-center items-center"
+                  >
+                    {/* ✅ Dynamic container that resizes based on image ratio */}
+                    <div className="relative inline-block rounded-[20px] overflow-hidden">
+                      <Image
+                        src={
+                          photoUrl && photoUrl.length > 0
+                            ? photoUrl
+                            : "/projects/default_group_bg.jpg"
+                        }
+                        alt={`${groupName} image ${index + 1}`}
+                        width={1000}
+                        height={800}
+                        className="h-auto w-auto max-w-full max-h-[85vh] object-contain rounded-[20px] transition-transform duration-500 hover:scale-[1.02]"
+                        placeholder="blur"
+                        blurDataURL={shimmer}
+                        priority={index === 0}
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </div>
+
+            {/* Carousel Controls */}
+            <CarouselPrevious className="-left-20" />
+            <CarouselNext className="-right-20" />
+          </Carousel>
+        </div>
+      ) : (
+        <p className="text-white/70 text-lg mt-10 mb-20 font-avolta">
+          No images available for {groupName}.
+        </p>
+      )}
+
+      {/* Caption */}
+      <h2
+        className="text-2xl mb-6 mt-6 text-center font-avolta z-10"
+        style={{
+          letterSpacing: "4px",
+          color: "#ffffff",
+          textShadow: "0 0 6px rgba(255, 255, 255, 0.8)",
+        }}
+      >
+      </h2>
       <div className="w-full max-w-6xl mx-auto border-t border-white mt-6"></div>
-      <div className="w-full max-w-4xl px-24 mt-12 mb-12">
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          className="w-full"
-        >
-          {/* Image PlaceHolder */}
-          <div className="rounded-lg overflow-hidden relative">
-            <CarouselContent>
-              {details.photoshoot.map((photoUrl, index) => (
-                <CarouselItem key={index}>
-                  <div className="aspect-[3/2] relative">
-                    <Image
-                      src={'/projects/placeholderheader.png'} // To be replaced by actual values
-                      alt={`${details.groupName} gallery image ${index + 1}`}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      placeholder="blur"
-                      blurDataURL={shimmer}
-                    />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </div>
 
-          {/* Navigation buttons */}
-          <CarouselPrevious className="-left-20" />
-          <CarouselNext className="-right-20" />
-        </Carousel>
-
-        {/* Caption */}
-        <h2
-          className="text-2xl mb-6 mt-6 text-center font-avolta z-10"
-          style={{
-            letterSpacing: "4px",
-            color: "#ffffff",
-            textShadow: "0 0 6px rgba(255, 255, 255, 0.8)",
-          }}
-        >
-          Caption
-        </h2>
-      </div>
+      
     </div>
   );
 }

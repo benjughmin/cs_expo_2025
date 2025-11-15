@@ -35,7 +35,7 @@ export function ProjectsHero({ pageTitle, pageDesc }: { pageTitle: string; pageD
           <h1 className="font-monster text-gradient mb-0 text-4xl leading-[100px] -tracking-[2px] md:text-8xl lg:text-[96px]">
             {pageTitle}
           </h1>
-          <p className="font-helvetica indent-8 text-[14px] leading-[20px] font-extralight text-white">
+          <p className="font-helvetica indent-8 text-[20px] leading-[20px] font-extralight text-white">
             {pageDesc}
           </p>
         </div>

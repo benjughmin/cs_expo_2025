@@ -4,74 +4,89 @@ type GroupHeroProps = {
   appTitle: string;
   groupName: string;
   logo?: string;
+  groupPicture?: string[];
+  soloPicture?: string[];
 };
 
-export default function GroupHero({ appTitle, groupName, logo }: GroupHeroProps) {
+export default function GroupHero({
+  appTitle,
+  groupName,
+  logo,
+  groupPicture,
+  soloPicture,
+}: GroupHeroProps) {
+  const bgImage =
+    groupPicture && groupPicture.length > 0
+      ? groupPicture[0]
+      : "/projects/default_group_bg.jpg";
+
   return (
-    <section className="relative flex flex-col">
+    <section className="relative flex flex-col w-full">
       <div
-        className="relative flex h-[100vh] flex-col items-center justify-center text-white bg-cover bg-center"
-        style={{
-          backgroundImage: `
-            linear-gradient(to bottom, 
-              transparent 0%, 
-              #0F0019 95%
-            ),
-            url('/projects/placeholderheader.png') 
-          `,
-        }}
+        className="
+          relative flex flex-col items-center justify-center text-white overflow-hidden
+          min-h-[40vh] sm:min-h-[50vh] md:min-h-[60vh] lg:min-h-[70vh] xl:min-h-[80vh]
+        "
       >
-        {/* Glow */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div
-            aria-hidden
-            className="h-[450px] w-[85%] max-w-8xl animate-[pulseGlow_4s_ease-in-out_infinite] rounded-full bg-[radial-gradient(circle_at_center,rgba(255,0,204,0.25)_0%,rgba(200,0,255,0.15)_30%,rgba(0,0,0,0)_70%)] blur-[80px]"
-          />
-        </div>
+        {/* 🔹 Background blur layer (soft edges) */}
+        <div
+          className="
+            absolute inset-0 bg-center bg-cover blur-[35px] sm:blur-[40px] md:blur-[45px] 
+            scale-[1.15] opacity-80
+          "
+          style={{
+            backgroundImage: `url(${bgImage})`,
+            backgroundPosition: "center 40%",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
 
-        {/* Hero content */}
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-center px-4 gap-12 text-center">
-          {/* Group Logo */}
-          <div className="relative w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48">
-            {/* Placeholder box 
-           
-            <div className="w-full h-full bg-white flex items-center justify-center">
-              <span className="text-gray-300 text-sm font-semibold">LOGO</span>
-            </div>
+        {/* 🔹 Foreground (crisp image, fades to edges) */}
+        <div
+          className="absolute inset-0 flex items-center justify-center"
+          style={{
+            backgroundImage: `url(${bgImage})`,
+            backgroundPosition: "center 30%",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "70%",
+            WebkitMaskImage:
+              "radial-gradient(circle at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 90%)",
+            maskImage:
+              "radial-gradient(circle at center, rgba(0,0,0,1) 35%, rgba(0,0,0,0) 90%)",
+            WebkitMaskRepeat: "no-repeat",
+            maskRepeat: "no-repeat",
+            WebkitMaskSize: "cover",
+            maskSize: "cover",
+          }}
+        ></div>
 
-             */}
+        {/* 🔹 Smooth edge fade */}
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(15,0,25,0)_25%,#0F0019_100%)]"></div>
 
-            {logo && (
-              <Image
-                src={'/projects/Agile_ThesisLogo.png'} //To be replaced by actual values
-                alt={`${groupName} logo`}
-                fill
-                className="object-contain drop-shadow-[0_0_10px_rgba(255,0,204,0.5)]"
-                priority
-              />
-            )}
-          </div>
+        {/* 🟡 Yellow Tone Layer */}
+        <div className="absolute inset-0 bg-[#ffda17]/15 mix-blend-soft-light"></div>
 
-          <h1 className="font-monster text-gradient mb-0 text-2xl leading-[100px] -tracking-[2px] md:text-8xl lg:text-[96px] px-6 overflow-visible"
-            style={{
-              '--gradient-stop': '20%',
-              '--gradient-pink': '40%'
-            } as React.CSSProperties}
-          >
-            {appTitle}
-          </h1>
+        {/* 🟣 Pink/Purple overlays for depth */}
+        <div className="absolute inset-0 bg-[#8B00FF]/20 mix-blend-multiply"></div>
+        <div className="absolute inset-0 bg-[#FF37E3]/15 mix-blend-screen"></div>
 
-          <h2
-            className="text-4xl mb-6 text-center font-avolta z-10"
-            style={{
-              letterSpacing: '4px',
-              color: '#ffffff',
-              textShadow: '0 0 6px rgba(255, 255, 255, 0.8)'
-            }}
-          >
-            by {groupName}
-          </h2>
-        </div>
+        {/* 🔹 Alpha Texture Overlay (film grain / canvas) */}
+        <div
+          className="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none"
+          style={{
+            backgroundImage: `
+              url("/textures/alpha-texture.png"),
+              radial-gradient(circle, rgba(0,0,0,0.9) 10%, transparent 11%)
+            `,
+            backgroundSize: "cover, 6px 6px",
+            backgroundRepeat: "repeat",
+            backgroundBlendMode: "overlay",
+          }}
+        ></div>
+
+        {/* 🔹 Vignette and bottom fade */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_60%,rgba(0,0,0,0.85)_100%)] pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0F0019]/90 pointer-events-none"></div>
       </div>
     </section>
   );

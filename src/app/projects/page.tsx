@@ -1,3 +1,5 @@
+"use client"
+import { useState } from "react";
 import { ProjectsHero } from "@/app/hall-of-fame/ui/ProjectsHero";
 import CategoryFilters from "@/components/projects/CategoryFilters";
 import ProjectsGrid from "@/components/projects/ProjectsGrid";
@@ -5,17 +7,23 @@ import Footer from "@/components/global/footer";
 import Navbar from "@/components/global/nav-bar";
 
 export default function ProjectsPage() {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
   return (
     <main className="bg-black">
       <Navbar />
       <ProjectsHero
         pageTitle="Project Collection"
-        pageDesc="Join the first day of CS EXPO, as bright fourth-year students present their innovative theses with topics regarding data analytics, health, and natural language processing. Under the data analytics category are groups Agatha, LMNTRX, and Strawhats. For the health category, Code Geass, Hurtz, Lorem Ipsum, and Samsan. Lastly, for the natural language processing category are the thesis groups Codex, Ctrl Alt Delete, EnSys, Jathro's Matrix, and LMDIFY."
+        pageDesc="The Project Collection stands as a testament to the creativity, technical skill, and perseverance of the graduating students of the Computer Science program. Each project represents months of research, experimentation, and innovation, turning abstract ideas into tangible digital experiences that push the boundaries of what’s possible.
+
+Within this collection are applications and systems built to address real-world challenges across diverse domains. From data analytics that reveal insights hidden in complex datasets, to health-focused platforms that harness technology to improve lives, and natural language processing (NLP) systems that bridge human understanding and machine intelligence — every project carries a unique story of collaboration and purpose.
+
+These projects were developed under the guidance of dedicated mentors and reflect each group’s distinct identity, creativity, and technical mastery. They demonstrate not only proficiency in software engineering and research methodologies, but also a deep commitment to solving meaningful problems through innovation. This collection reveals the next generation of computer scientists whose ideas shape the digital landscape of tomorrow."
       />
       <div className="bg-gradient-to-b from-[#0D0D0D] from-[2%] to-[#0F0019] to-[12%] pb-16">
-        <CategoryFilters />
+        <CategoryFilters onFilterChange={setSelectedCategory} />
         <div className="w-full max-w-6xl mx-auto border-t border-white mb-2"></div>
-        <ProjectsGrid />
+        <ProjectsGrid selectedCategory={selectedCategory} />
       </div>
       <Footer />
     </main>

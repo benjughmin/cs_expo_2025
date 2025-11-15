@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Chivo_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import GlobalLoader from "@/components/GlobalLoader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,6 +46,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${chivoMono.variable} ${dreamerTM.variable} ${monsterRacing.variable} antialiased`}
       >
+        <GlobalLoader /> {/* ✅ Always visible above pages */}
         {children}
       </body>
     </html>
