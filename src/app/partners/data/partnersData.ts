@@ -5,6 +5,7 @@ export interface Partner {
   instagram?: string;
   website?: string;
   tier: string;
+  twitter?: string;
 }
 
 export const allPartners: Partner[] = [
@@ -14,6 +15,7 @@ export const allPartners: Partner[] = [
     logo: "/partners/placeholder/logo1.png",
     facebook: "https://facebook.com",
     instagram: "https://instagram.com",
+    twitter: "https://twitter.com",
     website: "https://example.com",
     tier: "Diamond Sponsors"
   },
@@ -22,6 +24,7 @@ export const allPartners: Partner[] = [
     logo: "/partners/placeholder/logo1.png",
     facebook: "https://facebook.com",
     instagram: "https://instagram.com",
+    twitter: "https://twitter.com",
     website: "https://example.com",
     tier: "Diamond Sponsors"
   },

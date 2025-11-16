@@ -9,6 +9,7 @@ interface Partner {
   instagram?: string;
   website?: string;
   tier: string;
+  twitter?: string;
 }
 
 interface PartnersGridProps {
@@ -23,7 +24,7 @@ export default function PartnersGrid({ partners, selectedTier }: PartnersGridPro
 
   return (
     <section className="w-full max-w-6xl mx-auto px-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
         {filteredPartners.map((partner, index) => (
           <PartnerCard
             key={index}
@@ -31,6 +32,7 @@ export default function PartnersGrid({ partners, selectedTier }: PartnersGridPro
             logo={partner.logo}
             facebook={partner.facebook}
             instagram={partner.instagram}
+            twitter={partner.twitter}
             website={partner.website}
           />
         ))}
