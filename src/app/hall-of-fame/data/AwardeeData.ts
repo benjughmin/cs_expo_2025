@@ -5,9 +5,7 @@ export const AwardData: AwardProps[] = [
   // Award 1
   {
     title: "BEST THESIS OVERALL",
-    //sample data with multiple awardees of the same rank
     top1: [
-      // group 1
       {
         groupName: groupsData[30].group_name,
         thesisTitle: groupsData[30].thesis_title || "Thesis Title",
@@ -15,15 +13,6 @@ export const AwardData: AwardProps[] = [
         mentor: groupsData[30].thesis_mentor || "Mentor",
         img: groupsData[30].group_picture_url.at(0) || "/HOF/placeholder.jpg",
         tags: groupsData[30].category || "Category",
-      },
-      // group 2
-      {
-        groupName: groupsData[0].group_name,
-        thesisTitle: groupsData[0].thesis_title || "Thesis Title",
-        members: groupsData[0].members || ["Member 1", "Member 2", "Member 3"],
-        mentor: groupsData[0].thesis_mentor || "Mentor",
-        img: groupsData[0].group_picture_url.at(1) || "/HOF/placeholder.jpg",
-        tags: groupsData[0].category || "Category",
       },
     ],
     top2: {
@@ -135,14 +124,24 @@ export const AwardData: AwardProps[] = [
   // Award 5
   {
     title: "BEST POSTER",
-    top1: {
-      groupName: groupsData[6].group_name,
-      thesisTitle: groupsData[6].thesis_title || "Thesis Title",
-      members: groupsData[6].members || ["Member 1", "Member 2", "Member 3"],
-      mentor: groupsData[6].thesis_mentor || "Mentor",
-      img: groupsData[6].group_picture_url.at(0) || "/HOF/placeholder.jpg",
-      tags: groupsData[6].category || "Category",
-    },
+    top1: [
+      {
+        groupName: groupsData[6].group_name,
+        thesisTitle: groupsData[6].thesis_title || "Thesis Title",
+        members: groupsData[6].members || ["Member 1", "Member 2", "Member 3"],
+        mentor: groupsData[6].thesis_mentor || "Mentor",
+        img: groupsData[6].group_picture_url.at(0) || "/HOF/placeholder.jpg",
+        tags: groupsData[6].category || "Category",
+      },
+      {
+        groupName: groupsData[0].group_name,
+        thesisTitle: groupsData[0].thesis_title || "Thesis Title",
+        members: groupsData[0].members || ["Member 1", "Member 2", "Member 3"],
+        mentor: groupsData[0].thesis_mentor || "Mentor",
+        img: groupsData[0].group_picture_url.at(0) || "/HOF/placeholder.jpg",
+        tags: groupsData[0].category || "Category",
+      },
+    ],
     top2: {
       groupName: groupsData[7].group_name,
       thesisTitle: groupsData[7].thesis_title || "Thesis Title",
