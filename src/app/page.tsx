@@ -24,7 +24,7 @@ export default function Home() {
         setGrid(1)
       } else {
         setScale(1.5)
-        setDsize(1.2)
+        setDsize(1.2) 
         setGrid(2)
       }
     }
