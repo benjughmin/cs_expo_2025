@@ -106,10 +106,10 @@ export default function Hero({
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   return (
-    <section className="relative pt-20 md:pt-20 lg:pt-20 pb-12 px-4 text-center overflow-hidden old-tv">
+    <section className="relative pt-[180px] md:pt-[210px] lg:pt-[240px] pb-12 mb-16 md:mb-24 lg:mb-10 px-4 text-center overflow-hidden old-tv">
       {/* 🔹 Background text pattern */}
       <div
-        className="absolute top-[-100px] md:top-[-150px] lg:top-[-200px] left-0 right-0 flex flex-col items-center pointer-events-none z-0"
+        className="absolute -top-[220px] md:-top-[260px] lg:-top-[320px] left-0 right-0 flex flex-col items-center pointer-events-none z-0"
         style={{
           maskImage:
             "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%, transparent 100%)",
@@ -117,7 +117,7 @@ export default function Hero({
             "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%, transparent 100%)",
         }}
       >
-        {[...Array(10)].map((_, i) => (
+        {[...Array(17)].map((_, i) => (
           <div
             key={i}
             className="font-monster text-[40px] md:text-[60px] lg:text-[80px] whitespace-nowrap tracking-widest leading-[30px] md:leading-[45px] lg:leading-[60px] opacity-30"
@@ -136,7 +136,7 @@ export default function Hero({
       <div
         className="absolute inset-[-50px] md:inset-[-75px] lg:inset-[-100px] flex items-center justify-center pointer-events-none z-0"
         style={{
-          transform: `translate(${currentConfig.svgTranslateX}, calc(${currentConfig.svgTranslateY} - 20px)) ${
+          transform: `translate(${currentConfig.svgTranslateX}, calc(${currentConfig.svgTranslateY} - -20px)) ${
             currentConfig.svgFlipped ? "scaleX(-1)" : "scaleX(1)"
           }`,
         }}

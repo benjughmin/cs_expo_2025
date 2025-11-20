@@ -22,7 +22,7 @@ function DevDayPage() {
         <div 
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(to bottom, transparent 0%, transparent 10%, rgba(15, 0, 25, 1) 80%)'
+            background: 'linear-gradient(to bottom, transparent 0%, transparent 10%, rgba(15, 0, 25, 1) 85%)'
           }}
         />
       </div>
