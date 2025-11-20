@@ -106,7 +106,7 @@ export default function Hero({
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
   return (
-    <section className="relative pt-[180px] md:pt-[210px] lg:pt-[240px] pb-12 mb-16 md:mb-24 lg:mb-10 px-4 text-center overflow-hidden old-tv">
+    <section className="relative pt-[180px] md:pt-[210px] lg:pt-[240px] pb-8 mb-16 md:mb-8 lg:mb-16 px-4 text-center overflow-hidden old-tv">
       {/* 🔹 Background text pattern */}
       <div
         className="absolute -top-[220px] md:-top-[260px] lg:-top-[320px] left-0 right-0 flex flex-col items-center pointer-events-none z-0"
@@ -150,7 +150,7 @@ export default function Hero({
 
       {/* 🔹 Floating Team Logos */}
       <div className="absolute inset-0 pointer-events-none z-[25]">
-        {teams.slice(0, 16).map((team, i) => {
+        {teams.slice(0, 11).map((team, i) => {
           const pos = logoPosition(i, isMobile);
           return (
             <img
@@ -163,7 +163,7 @@ export default function Hero({
                 top: pos.top,
                 width: `${pos.size}px`,
                 height: `${pos.size}px`,
-                transform: `translate(-50%, -50%) rotate(${pos.rotate}deg)`,
+                transform: `translate(-50%, 150%) rotate(${pos.rotate}deg)`,
                 opacity: pos.opacity,
                 objectFit: "contain",
                 filter:
