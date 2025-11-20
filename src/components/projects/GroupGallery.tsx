@@ -91,7 +91,6 @@ export default function GroupGallery({ details }: GroupGalleryProps) {
         }}
       >
       </h2>
-      <div className="w-full max-w-6xl mx-auto border-t border-white mt-6"></div>
 
       
     </div>
